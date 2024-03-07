@@ -1,0 +1,9 @@
+.card {
+  position: relative;
+}
+.show {
+  display: none;
+}
+.card:hover .show {
+  display: flex;
+}

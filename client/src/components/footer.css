@@ -1,0 +1,281 @@
+.footer-container {
+  position: relative;
+  width: 100%;
+  padding: 2rem 2rem 0rem;
+  background: #111;
+  color: #fff;
+  user-select: none;
+  overflow: hidden;
+}
+.footer-container > .footer-context {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 1.5rem;
+}
+.footer-context > .left-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  animation: leftArea 3s ease-in-out;
+}
+@keyframes leftArea {
+  from {
+    transform: translateX(-150px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.left-area > h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: orangered;
+  margin-left: 0.6rem;
+}
+.left-area > ul {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.left-area > ul > li {
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: #fff;
+  list-style: none;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border-radius: 0.5rem;
+}
+.left-area > ul > li > svg {
+  color: orangered;
+}
+.left-area > ul > li:hover > svg {
+  color: #fff;
+}
+.left-area > ul > li > a {
+  text-decoration: none;
+  color: #fff;
+}
+.left-area > ul > li:hover,
+.left-area > ul > li > a:hover {
+  color: orangered;
+  background: #000;
+}
+
+/* Center Section */
+.right-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  animation: rightArea 3s ease-in-out;
+  margin-left: 1rem;
+}
+@keyframes rightArea {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.right-area > h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: orangered;
+  text-align: start;
+  margin-left: -0.9rem;
+}
+.right-area > ul {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-left: -1.5rem;
+}
+.right-area > ul > a {
+  text-decoration: none;
+}
+.right-area > ul > a > li {
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: #fff;
+  list-style: none;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  border-radius: 0.5rem;
+}
+.right-area > ul > a > li:hover {
+  color: orangered;
+  background: #000;
+}
+.right-area > ul > a > li > svg {
+  color: rgb(255, 0, 85);
+}
+
+/* NewsLetter */
+.newsletter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  animation: newsletter 3s ease-in-out;
+}
+@keyframes newsletter {
+  from {
+    transform: translateX(150px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.newsletter > h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: orangered;
+}
+.newsletter > .inputbox {
+  width: 90%;
+  height: 3rem;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.2rem;
+  box-shadow: 0.3rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 1px solid orangered;
+}
+.newsletter > .inputbox:hover {
+  border: none;
+}
+.newsletter > .inputbox > input {
+  width: 80%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  border-right: 1px solid #7e7d7d;
+}
+.inputbox > input::placeholder {
+  color: #ccc;
+}
+.inputbox > input:focus {
+  border-bottom: 2px solid orangered;
+}
+.inputbox > button {
+  width: 23%;
+  height: 100%;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: orangered;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  font-size: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+.inputbox > button:hover {
+  background: orangered;
+}
+.inputbox > button:active {
+  transform: scale(0.98);
+}
+.newsletter > .icons {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+.newsletter > .icons > a {
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: 0.3s ease-in-out;
+}
+.newsletter > .icons > a:hover {
+  background: #000;
+}
+
+.newsletter > .icons > a > svg {
+  font-size: 2.5rem;
+}
+.footer-container > .footer-bottom {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  animation: footerbottom 3s ease-in-out;
+}
+@keyframes footerbottom {
+  from {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.footer-bottom > a > img {
+  width: 7rem;
+}
+.footer-bottom > h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0.3rem 1rem;
+  border-radius: 0.2rem;
+  border: 1px solid #000;
+}
+.footer-bottom > h3 > a {
+  text-decoration: none;
+  color: orangered;
+}
+
+/* Responsive */
+
+@media (max-width: 450px) {
+  .newsletter > h3 {
+    font-size: 1.2rem;
+  }
+  .footer-bottom > h3 {
+    font-size: 1rem;
+    width: 100%;
+  }
+  .inputbox > button {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .inputbox > button > svg {
+    display: none;
+  }
+}
