@@ -18,30 +18,17 @@ export default function Home() {
   const [toSubscriber, setToSubscriber] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Function to clear all filters
-  // const clearFilters = () => {
-  //   setSearchQuery("");
-  //   setName("");
-  //   setFromPrice("");
-  //   setToPrice("");
-  //   setSubject("None");
-  //   setFromSubscriber("");
-  //   setToSubscriber("");
-  //   setFromIncome("");
-  //   setToIncome("");
-  // };
-
   // Get All Channels Data
   const getChannels = async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(`/api/v1/channel/get-channels`);
-      if (data) {
-        setChannelsData(data?.channels);
-        setLoading(false);
-      }
+      setChannelsData(data?.channels || []);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching channels:", error);
+      setLoading(false);
+    } finally {
       setLoading(false);
     }
   };
@@ -55,6 +42,7 @@ export default function Home() {
     // Filter by searchQuery
     if (
       searchQuery &&
+      channel.category &&
       channel.category.toLowerCase().indexOf(searchQuery.toLowerCase()) === -1
     ) {
       return false;

@@ -17,6 +17,7 @@ import Terms from "./pages/user/Terms";
 import FAQ from "./pages/user/FAQ";
 import Comments from "./pages/user/Comments";
 import Features from "./pages/user/Features";
+import LayoutSetting from "./pages/admin/LayoutSetting";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/users" element={<Users />} />
           <Route path="/admin/channels" element={<Channels />} />
+          <Route path="/admin/layout-settings" element={<LayoutSetting />} />
         </Routes>
         <Toaster />
       </BrowserRouter>

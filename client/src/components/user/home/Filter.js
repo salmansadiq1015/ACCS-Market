@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export default function Filter({
-  searchQuery,
   setSearchQuery,
   name,
   setName,
@@ -19,7 +18,6 @@ export default function Filter({
   setFromIncome,
   toIncome,
   setToIncome,
-  getChannels,
 }) {
   const [active, setActive] = useState("");
   return (

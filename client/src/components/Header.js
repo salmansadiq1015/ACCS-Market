@@ -13,6 +13,7 @@ import ProfileModel from "../utils/ProfileModel";
 import Verification from "./auth/Verification";
 import { useAuth } from "../context/authContext";
 import { MdFavorite } from "react-icons/md";
+import { FiPlus } from "react-icons/fi";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -30,6 +31,7 @@ export default function Header() {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("auth");
   };
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-950 h-[4rem]">
@@ -57,14 +59,14 @@ export default function Header() {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <button
                     type="button"
-                    className="w-[6.7rem] h-[2.3rem] text-[14px] mr-4 sm:mr-[2rem] rounded-3xl cursor-pointer shadow-md hover:shadow-lg hover:scale-[1.02] transition duration-100 bg-fuchsia-500 hover:bg-fuchsia-600 text-white"
+                    className="w-[7.4rem] h-[2.3rem] text-[14px] flex items-center justify-center gap-[2px] mr-4 sm:mr-[2rem] rounded-3xl cursor-pointer shadow-md hover:shadow-lg hover:scale-[1.02] transition duration-100 bg-fuchsia-500 hover:bg-fuchsia-600 text-white"
                     onClick={() => {
                       auth?.token
                         ? router(auth?.user && "/add-channel")
                         : setOpen(true);
                     }}
                   >
-                    Start Selling
+                    <FiPlus className="h-4 w-4 text-white" /> Start Selling
                   </button>
                   {/* Notification */}
                   <button

@@ -3,7 +3,7 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import AdminSidebar from "./AdminSidebar";
 import { useAuth } from "../../context/authContext";
 import Spinner from "../../utils/Spinner";
-import MainLayout from "../MainLayout";
+import Header from "../Header";
 
 export default function Layout({ children }) {
   const [show, setShow] = useState(false);
@@ -13,7 +13,8 @@ export default function Layout({ children }) {
     return <Spinner />;
   }
   return (
-    <MainLayout>
+    <>
+      <Header />
       <div className=" w-full flex-1 gap-1 flex h-screen dark:bg-gray-900 fixed top-0 left-0 overflow-hidden mt-[4rem]">
         {!show && (
           <div className=" flex sm:hidden  absolute top-2 left-3">
@@ -47,6 +48,6 @@ export default function Layout({ children }) {
           {children}
         </div>
       </div>
-    </MainLayout>
+    </>
   );
 }

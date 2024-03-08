@@ -482,13 +482,13 @@ export default function AdminSidebar({ hide, setHide }) {
           <div
             className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
             onClick={() => {
-              router("/admin/layout-setting");
+              router("/admin/layout-settings");
             }}
           >
             <div
               className="adminbtn absolute h-full  sidebtn z-[20]"
               style={{
-                width: active === "layout-setting" && "100%",
+                width: active === "layout-settings" && "100%",
                 background: `rgb(2, 68, 2)`,
               }}
             ></div>
@@ -496,17 +496,17 @@ export default function AdminSidebar({ hide, setHide }) {
               {hide ? (
                 <GoGear
                   className="h-7 w-7 cursor-pointer ml-2"
-                  style={{ color: active === "layout-setting" && "#fff" }}
+                  style={{ color: active === "layout-settings" && "#fff" }}
                 />
               ) : (
                 <div className="flex items-center gap-2">
                   <GoGear
                     className="h-6 w-6 cursor-pointer ml-2"
-                    style={{ color: active === "layout-setting" && "#fff" }}
+                    style={{ color: active === "layout-settings" && "#fff" }}
                   />
                   <span
                     className="text-[16px] font-[400] "
-                    style={{ color: active === "layout-setting" && "#fff" }}
+                    style={{ color: active === "layout-settings" && "#fff" }}
                   >
                     Layout Settings
                   </span>

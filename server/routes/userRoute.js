@@ -9,9 +9,11 @@ import {
   singleUser,
   updatePassword,
   updateProfile,
+  userRole,
   verificationUser,
 } from "../controller/userController.js";
 import formidable from "express-formidable";
+import { isAdmin, requireSignIn } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -38,5 +40,8 @@ router.get("/user-avatar/:id", profileImage);
 router.post("/reset-password", resetPassword);
 // Update Password
 router.patch("/update-password", updatePassword);
+
+// Update User Role
+router.put("/update-role/:id", requireSignIn, isAdmin, userRole);
 
 export default router;
