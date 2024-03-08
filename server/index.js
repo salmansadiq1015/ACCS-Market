@@ -19,8 +19,8 @@ connectDB();
 // Middlewares
 const app = express();
 app.use(express.json());
-app.use(cors());
 app.use(morgan("dev"));
+app.use(cors());
 
 // All Routes
 app.use("/api/v1/user", userRoutes);
@@ -31,7 +31,7 @@ app.use("/api/v1/layout", layoutRoutes);
 
 // Rest API Call
 app.use("/", (req, res) => {
-  res.send("<h1>Server is running</h1>");
+  res.send("Server is running!");
 });
 
 // PORT
