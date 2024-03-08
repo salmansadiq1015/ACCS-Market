@@ -13,14 +13,16 @@ import layoutRoutes from "./routes/LayoutRoutes.js";
 // Dotenv Config
 dotenv.config();
 
-// Database Call
-connectDB();
+// Database Config
 
 // Middlewares
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors());
+
+// Database
+connectDB();
 
 // All Routes
 app.use("/api/v1/user", userRoutes);
@@ -31,7 +33,9 @@ app.use("/api/v1/layout", layoutRoutes);
 
 // Rest API Call
 app.use("/", (req, res) => {
-  res.send("Server is running!");
+  res.send(
+    `<h1 style="color: rgb(204, 0, 255);">AssalamoAlaikum, App is runing😇!...</h1>`
+  );
 });
 
 // PORT
