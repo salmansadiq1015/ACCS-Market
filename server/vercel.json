@@ -1,10 +1,6 @@
 {
    "version": 2,
    "name": "ACCA-Market",
-   "build": {
-      "src": "*.js",
-      "use": "vercel-sapper"
-   },
    "routes": [
       { "src": "/(.*)", "dest": "/index.js" }
    ]
