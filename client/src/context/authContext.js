@@ -11,6 +11,10 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [active, setActive] = useState("");
   const [favorite, setFavorite] = useState([]);
+  const [chats, setChats] = useState([]);
+  const [selectedChat, setSelectedChat] = useState();
+  const [notification, setNotification] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
   // check token
   axios.defaults.headers.common["Authorization"] = auth?.token;
@@ -47,6 +51,14 @@ const AuthProvider = ({ children }) => {
         setActive,
         favorite,
         setFavorite,
+        chats,
+        setChats,
+        selectedChat,
+        setSelectedChat,
+        notification,
+        setNotification,
+        onlineUsers,
+        setOnlineUsers,
       }}
     >
       {children}

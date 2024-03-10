@@ -18,6 +18,7 @@ import FAQ from "./pages/user/FAQ";
 import Comments from "./pages/user/Comments";
 import Features from "./pages/user/Features";
 import LayoutSetting from "./pages/admin/LayoutSetting";
+import Chat from "./pages/user/Chats/Chat";
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/comments" element={<Comments />} />
           <Route path="/Features" element={<Features />} />
+          {/* Chats */}
+          <Route path="/chats/:id" element={<Chat />} />
 
           {/* Admin-Routes */}
           <Route path="/admin/dashboard" element={<Dashboard />} />

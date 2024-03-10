@@ -31,12 +31,8 @@ export default function CreateChannels() {
   const [contentType, setContentType] = useState("");
   const [income, setIncome] = useState("");
   const [expense, setExpense] = useState("");
-  const [incomeSource, setIncomeSource] = useState("");
-  const [expenseDetail, setExpenseDetail] = useState("");
-  const [permotionMethod, setPermotionMethod] = useState("");
   const [support, setSupport] = useState("");
   const [images, setImages] = useState([]);
-  const [agree, setAgree] = useState(false);
   const navigate = useNavigate();
   console.log("Images:", images);
 
@@ -159,9 +155,6 @@ export default function CreateChannels() {
         contentType,
         income,
         expense,
-        incomeSource,
-        expenseDetail,
-        permotionMethod,
         support,
         images,
       });
@@ -386,25 +379,7 @@ export default function CreateChannels() {
                 className=" w-full h-[2.7rem] rounded-md shadow-md shadow-gray-200 border-2 border-gray-700 outline-none px-3 "
               />
             </div>
-            {/*  */}
-            <textarea
-              placeholder="Privide details about income sources"
-              value={incomeSource}
-              onChange={(e) => setIncomeSource(e.target.value)}
-              className=" w-full h-[6rem] rounded-md shadow-md py-2 resize-none shadow-gray-200 border-2 border-gray-700 outline-none px-3 "
-            />
-            <textarea
-              placeholder="Provide details about expenses"
-              value={expenseDetail}
-              onChange={(e) => setExpenseDetail(e.target.value)}
-              className=" w-full h-[6rem] rounded-md shadow-md py-2 resize-none shadow-gray-200 border-2 border-gray-700 outline-none px-3 "
-            />
-            <textarea
-              placeholder="Tell us how you promoted the page"
-              value={permotionMethod}
-              onChange={(e) => setPermotionMethod(e.target.value)}
-              className=" w-full h-[6rem] rounded-md shadow-md py-2 resize-none shadow-gray-200 border-2 border-gray-700 outline-none px-3 "
-            />
+
             <textarea
               placeholder="What is needed to support the page?"
               value={support}
@@ -457,55 +432,7 @@ export default function CreateChannels() {
                 </div>
               ))}
             </div>
-            {/*  */}
-            <p className="text-[14px] font-semibold text-gray-700">
-              Please confirm that you’re the page’s owner by placing this code
-              in the description (for Facebook or YouTube), and in the “Bio”
-              section on Instagram or Twitter.
-            </p>
-            <p className="text[14] text-gray-600">
-              You’ll be able to immediately delete the code after your listing
-              has gone live.
-            </p>
-            <p className="text-[14px] font-semibold text-gray-700">
-              Placing contacts in the description of the listing or contacts for
-              sale on the page itself is prohibited. If you need to have a
-              contact on the page for advertising, orders or similar purposes,
-              you can leave it. But if the client writes to you about the sale
-              through these contacts, you will have to ask him to contact the
-              seller through the listing he found. By listing on
-              accs-market.com, you accept these conditions and the fact that the
-              administration will control this and will be forced to block you
-              if this condition is not met. If you do not need to leave contacts
-              and open DM on the page, we are ready to give you 50% more rating
-              after the transaction is completed, as this will make it easier
-              for us to control. Rating is one of the main factors of trust from
-              buyers. An additional rating will be automatically added after the
-              completion of the transaction if you check the box below, but in
-              case of violation of this agreement, we will have to block you.
-            </p>
-            <div className="flex items-center gap-4 ">
-              <p className="text-[14px] font-semibold text-gray-700">
-                I agree to remove contacts / close DM on the page to get 50%
-                more rating
-              </p>
-              <label htmlFor="">
-                <div
-                  className={`relative w-[2.7rem] rounded-3xl transition-all duration-200 cursor-pointer h-[1.3rem] border-2  border-fuchsia-600 flex items-center ${
-                    agree ? "justify-end" : "justify-start"
-                  }`}
-                  onClick={() => setAgree(!agree)}
-                >
-                  <div className="w-[1.2rem]  h-[1.2rem] rounded-full flex items-center justify-center border-[.1rem] bg-fuchsia-600 border-white cursor-pointer ">
-                    {agree ? (
-                      <IoIosCheckmark className="h-5 w-5 text-white" />
-                    ) : (
-                      <IoIosClose className="h-4 w-4 text-white" />
-                    )}
-                  </div>
-                </div>
-              </label>
-            </div>
+
             <div className="w-full flex items-center justify-end">
               <button
                 className={`${button} rounded-3xl px-5 bg-fuchsia-500 hover:bg-fuchsia-600 text-white mt-4 ${

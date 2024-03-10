@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../../components/MainLayout";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import ImageModel from "../../components/user/home/ImageModel";
 import { IoClose } from "react-icons/io5";
@@ -14,13 +14,13 @@ import { BiLoaderCircle } from "react-icons/bi";
 export default function ChannelDetails() {
   const [channelData, setChannelData] = useState([]);
   const params = useParams();
-  const { auth, favorite, setFavorite } = useAuth();
+  const { auth, setFavorite } = useAuth();
   const [open, setOpen] = useState(false);
   const [ImageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [paymentLoad, setPaymentLoad] = useState(false);
-  console.log("favorite", favorite);
+  const navigate = useNavigate();
 
   // Rating
   const getRating = (comments) => {
@@ -111,6 +111,26 @@ export default function ChannelDetails() {
     if (result.error) {
       console.log(result.error);
       setPaymentLoad(false);
+    }
+  };
+
+  // Create Chat
+
+  const chatHandler = async (userId) => {
+    if (!auth?.token) {
+      return toast.error("Login required to initiate chat!");
+    }
+    try {
+      const { data } = await axios.post(`/api/v1/chat/channel/create-chat`, {
+        userId: userId,
+      });
+
+      if (data) {
+        navigate(`/chats/${channelData?.userId}`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong, try again!", { duration: 3000 });
     }
   };
 
@@ -237,7 +257,10 @@ export default function ChannelDetails() {
                     </span>
                   </div>
                 </div>
-                <button className="text-[14px] border-2 translate-y-[2.9rem] bg-fuchsia-500 hover:bg-fuchsia-600 cursor-pointer  transition-all duration-150 text-white rounded-bl-xl rounded-br-md py-[.3rem] px-4 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md ">
+                <button
+                  className="text-[14px] border-2 translate-y-[2.9rem] bg-fuchsia-500 hover:bg-fuchsia-600 cursor-pointer  transition-all duration-150 text-white rounded-bl-xl rounded-br-md py-[.3rem] px-4 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md "
+                  onClick={() => chatHandler(channelData.userId)}
+                >
                   Contact Seller
                 </button>
               </div>

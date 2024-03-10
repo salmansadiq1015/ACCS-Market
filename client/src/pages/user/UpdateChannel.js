@@ -31,9 +31,6 @@ export default function UpdateChannels() {
   const [contentType, setContentType] = useState("");
   const [income, setIncome] = useState("");
   const [expense, setExpense] = useState("");
-  const [incomeSource, setIncomeSource] = useState("");
-  const [expenseDetail, setExpenseDetail] = useState("");
-  const [permotionMethod, setPermotionMethod] = useState("");
   const [support, setSupport] = useState("");
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
@@ -62,9 +59,6 @@ export default function UpdateChannels() {
         setIncome(data?.channel?.income);
         setExpense(data?.channel?.expense);
 
-        setIncomeSource(data?.channel?.incomeSource);
-        setExpenseDetail(data?.channel?.expenseDetail);
-        setPermotionMethod(data?.channel?.permotionMethod);
         setSupport(data?.channel?.support);
         setImages(data?.channel?.images);
       }
@@ -200,9 +194,6 @@ export default function UpdateChannels() {
           contentType,
           income,
           expense,
-          incomeSource,
-          expenseDetail,
-          permotionMethod,
           support,
           images,
         }
@@ -429,24 +420,7 @@ export default function UpdateChannels() {
               />
             </div>
             {/*  */}
-            <textarea
-              placeholder="Privide details about income sources"
-              value={incomeSource}
-              onChange={(e) => setIncomeSource(e.target.value)}
-              className=" w-full h-[6rem] rounded-md shadow-md py-2 resize-none shadow-gray-200 border-2 border-gray-700 outline-none px-3 "
-            />
-            <textarea
-              placeholder="Provide details about expenses"
-              value={expenseDetail}
-              onChange={(e) => setExpenseDetail(e.target.value)}
-              className=" w-full h-[6rem] rounded-md shadow-md py-2 resize-none shadow-gray-200 border-2 border-gray-700 outline-none px-3 "
-            />
-            <textarea
-              placeholder="Tell us how you promoted the page"
-              value={permotionMethod}
-              onChange={(e) => setPermotionMethod(e.target.value)}
-              className=" w-full h-[6rem] rounded-md shadow-md py-2 resize-none shadow-gray-200 border-2 border-gray-700 outline-none px-3 "
-            />
+
             <textarea
               placeholder="What is needed to support the page?"
               value={support}

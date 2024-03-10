@@ -1,13 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./home.css";
 import { FiCheck } from "react-icons/fi";
 import { FaCog } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
 import Empty from "../../../utils/Empty";
+import { loadStripe } from "@stripe/stripe-js";
+import { BiLoaderCircle } from "react-icons/bi";
+import toast from "react-hot-toast";
 
 export default function Channels({ channelsData }) {
   const navigate = useNavigate();
+  const [paymentLoad, setPaymentLoad] = useState(false);
+  const [channelId, setChannelId] = useState("");
+
+  // ---------------Handle Buy Channels-------------
+  const makePayment = async (userId, channelId, price) => {
+    setChannelId(channelId);
+    if (!userId) {
+      return toast.error("User id is required!") + setPaymentLoad(false);
+    }
+    if (!channelId) {
+      return toast.error("Channel id is required!") + setPaymentLoad(false);
+    }
+    if (!price) {
+      return toast.error("Price is required!") + setPaymentLoad(false);
+    }
+    setPaymentLoad(true);
+    const stripe = await loadStripe(
+      "pk_test_51OKdAYHDam9TUVDQjZG6rTj0nzzrKcvaUui6kSk4ivuTObT42WJZEhrfj5UeIrbBVgnjAkH7iWkxSgPRvalzBrTz00FOa4YigN"
+    );
+
+    const body = {
+      userId: userId,
+      channelId: channelId,
+      price: price,
+    };
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = await fetch(`/api/v1/orders/channel/payment`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
+    });
+    const session = await response.json();
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+    setPaymentLoad(false);
+
+    if (result.error) {
+      console.log(result.error);
+      setPaymentLoad(false);
+    }
+  };
 
   return (
     <div className=" relative w-full min-h-screen py-8 px-3 sm:px-6">
@@ -87,8 +137,16 @@ export default function Channels({ channelsData }) {
                     </span>
                   </div>
                   {/*  */}
-                  <button type="butto " className={`btn `}>
+                  <button
+                    type="button "
+                    className={`btn flex items-center justify-center gap-1 `}
+                    onClick={() => makePayment(c.userId, c._id, c.price)}
+                    disabled={paymentLoad}
+                  >
                     Buy this Channel
+                    {paymentLoad && channelId === c._id && (
+                      <BiLoaderCircle className="h-4 w-4 animate-spin text-white" />
+                    )}
                   </button>
                 </div>
               </div>
