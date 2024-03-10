@@ -518,3 +518,22 @@ export const userRole = async (req, res) => {
     });
   }
 };
+
+// Get Admin
+export const getAdmin = async (req, res) => {
+  try {
+    const admin = await userModel.find({ role: 1 }).select("-avatar");
+
+    res.status(200).send({
+      success: true,
+      admin: admin,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: true,
+      message: "Error in get admin controller!",
+      error,
+    });
+  }
+};

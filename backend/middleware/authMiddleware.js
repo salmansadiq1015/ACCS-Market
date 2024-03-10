@@ -2,6 +2,7 @@ import JWT from "jsonwebtoken";
 import userModel from "../model/userModel.js";
 
 // isUser
+// requireSignIn
 export const requireSignIn = async (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) {
@@ -13,9 +14,13 @@ export const requireSignIn = async (req, res, next) => {
   try {
     const decode = JWT.verify(token, process.env.JWT_SECRET);
     req.user = decode;
-    next();
+    next(); // Pass control to the next middleware or route handler
   } catch (error) {
     console.log(error);
+    return res.status(401).send({
+      success: false,
+      message: "Invalid JWT Token",
+    });
   }
 };
 

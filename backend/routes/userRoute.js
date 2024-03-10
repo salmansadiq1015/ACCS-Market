@@ -2,6 +2,7 @@ import express from "express";
 import {
   allUsers,
   deleteUser,
+  getAdmin,
   loginUser,
   profileImage,
   register,
@@ -43,5 +44,6 @@ router.patch("/update-password", updatePassword);
 
 // Update User Role
 router.put("/update-role/:id", requireSignIn, isAdmin, userRole);
+router.get("/get-admin", getAdmin);
 
 export default router;
