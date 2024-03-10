@@ -27,12 +27,7 @@ app.use(cors());
 
 // All Routes
 app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/channel", channelRoutes);
-app.use("/api/v1/comments", commentRoutes);
-app.use("/api/v1/orders", ordersRoutes);
-app.use("/api/v1/layout", layoutRoutes);
-app.use("/api/v1/chat", chatRoutes);
-app.use("/api/v1/message", messageRoutes);
+
 
 // Rest API Call
 app.use("/", (req, res) => {
