@@ -41,7 +41,7 @@ export default function ChannelDetails() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `/api/v1/channel/getSingle-channel/${params.id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/getSingle-channel/${params.id}`
       );
       if (data) {
         setChannelData(data.channel);
@@ -63,7 +63,7 @@ export default function ChannelDetails() {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `/api/v1/comments/get-channel-comment/${channelData?._id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/comments/get-channel-comment/${channelData?._id}`
       );
       if (data) {
         setComments(data?.comments);
@@ -96,11 +96,14 @@ export default function ChannelDetails() {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch(`/api/v1/orders/channel/payment`, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/v1/orders/channel/payment`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
     const session = await response.json();
 
     const result = stripe.redirectToCheckout({
@@ -121,9 +124,12 @@ export default function ChannelDetails() {
       return toast.error("Login required to initiate chat!");
     }
     try {
-      const { data } = await axios.post(`/api/v1/chat/channel/create-chat`, {
-        userId: userId,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/chat/channel/create-chat`,
+        {
+          userId: userId,
+        }
+      );
 
       if (data) {
         navigate(`/chats/${channelData?.userId}`);

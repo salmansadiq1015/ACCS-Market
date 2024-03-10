@@ -20,7 +20,9 @@ export default function LayoutSetting() {
   const getFAQ = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/v1/layout/get-layouts/FAQ`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/layout/get-layouts/FAQ`
+      );
       setFaqData(data?.layoutData?.faq);
       setLoading(false);
     } catch (error) {
@@ -35,10 +37,13 @@ export default function LayoutSetting() {
   // Update FAQ
   const updateFAQ = async () => {
     try {
-      const { data } = await axios.put(`/api/v1/layout/update-layouts`, {
-        type: "FAQ",
-        faq: faqData,
-      });
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/v1/layout/update-layouts`,
+        {
+          type: "FAQ",
+          faq: faqData,
+        }
+      );
       if (data?.success) {
         getFAQ();
         toast.success("FAQ Updated successfully.");
@@ -86,7 +91,9 @@ export default function LayoutSetting() {
   // Get Logo
   const getLogo = async () => {
     try {
-      const { data } = await axios.get(`/api/v1/layout/get-layouts/Logo`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/layout/get-layouts/Logo`
+      );
       setLogo(data?.layoutData?.logo);
     } catch (error) {
       console.log(error);
@@ -99,10 +106,13 @@ export default function LayoutSetting() {
   // Update Logo
   const updateLogo = async () => {
     try {
-      const { data } = await axios.put(`/api/v1/layout/update-layouts`, {
-        type: "Logo",
-        logoImage: imageUrl,
-      });
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/v1/layout/update-layouts`,
+        {
+          type: "Logo",
+          logoImage: imageUrl,
+        }
+      );
       if (data?.success) {
         getLogo();
         toast.success("Logo Updated successfully.");

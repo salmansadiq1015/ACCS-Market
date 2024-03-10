@@ -64,7 +64,7 @@ export default function ChannelComment({ channelId }) {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `/api/v1/comments/get-channel-comment/${channelId}`
+        `${process.env.REACT_APP_API_URL}/api/v1/comments/get-channel-comment/${channelId}`
       );
       if (data) {
         setComments(data?.comments);
@@ -87,12 +87,15 @@ export default function ChannelComment({ channelId }) {
     }
     setPosting(true);
     try {
-      await axios.post(`/api/v1/comments/create-comment`, {
-        channelId,
-        userId: userId,
-        rating: stars,
-        comment: comment,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/comments/create-comment`,
+        {
+          channelId,
+          userId: userId,
+          rating: stars,
+          comment: comment,
+        }
+      );
       getComments();
       setStars(0);
       toast.success("Thank you for your feedback!", { duration: 3000 });
@@ -123,7 +126,7 @@ export default function ChannelComment({ channelId }) {
               <div className="flex items-center gap-2">
                 <div className="relative w-[3.5rem] h-[3.5rem] rounded-full border overflow-hidden shadow-md">
                   <img
-                    src={`/api/v1/user/user-avatar/${c?.userId}`}
+                    src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${c?.userId}`}
                     fill
                     className="rounded-full"
                     alt="Logo"

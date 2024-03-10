@@ -88,7 +88,7 @@ export default function Header() {
                           className="h-10 w-10 rounded-full"
                           src={
                             auth?.token
-                              ? `/api/v1/user/user-avatar/${auth?.user?.id}`
+                              ? `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${auth?.user?.id}`
                               : "/user2.png"
                           }
                           alt=""

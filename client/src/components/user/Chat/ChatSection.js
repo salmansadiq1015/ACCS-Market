@@ -47,7 +47,7 @@ export default function ChatSection() {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `/api/v1/message/channel/get-messages/${selectedChat._id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/message/channel/get-messages/${selectedChat._id}`
       );
       if (data) {
         setMessages(data?.messages);
@@ -90,7 +90,7 @@ export default function ChatSection() {
     socket.emit("stop typing", selectedChat._id);
     try {
       const { data } = await axios.post(
-        `/api/v1/message/channel/create-messages`,
+        `${process.env.REACT_APP_API_URL}/api/v1/message/channel/create-messages`,
         {
           content: newMessage,
           chatId: selectedChat._id,
@@ -183,7 +183,7 @@ export default function ChatSection() {
                     {mess?.sender._id !== auth?.user?.id && (
                       <span>
                         <img
-                          src={`/api/v1/user/user-avatar/${mess?.sender?._id}`}
+                          src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${mess?.sender?._id}`}
                           alt="Avatar"
                           name={`${mess?.sender?.name}`}
                           className="w-10 h-10 rounded-full border-2 border-sky-500 shadow-md shadow-gray-300"
@@ -215,7 +215,7 @@ export default function ChatSection() {
                     {mess?.sender._id === auth?.user?.id && (
                       <span>
                         <img
-                          src={`/api/v1/user/user-avatar/${mess?.sender?._id}`}
+                          src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${mess?.sender?._id}`}
                           alt="Avatar"
                           name={`${mess?.sender?.name}`}
                           className="w-10 h-10  rounded-full border-2 border-sky-500 shadow-md shadow-gray-300"

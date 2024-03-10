@@ -18,7 +18,9 @@ export default function ChatUsers({ setSelected }) {
   const getAdmin = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`/api/v1/user/get-admin`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/get-admin`
+      );
       if (data) {
         setAdmin(data?.admin);
         setLoading(false);
@@ -40,9 +42,12 @@ export default function ChatUsers({ setSelected }) {
       return toast.error("Login required to initiate chat!");
     }
     try {
-      const { data } = await axios.post(`/api/v1/chat/channel/create-chat`, {
-        userId: userId,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/chat/channel/create-chat`,
+        {
+          userId: userId,
+        }
+      );
       if (data) {
         getChat();
       }
@@ -59,7 +64,7 @@ export default function ChatUsers({ setSelected }) {
     setChatLoad(true);
     try {
       const { data } = await axios.get(
-        `/api/v1/chat/channel/getChats/${userId}`
+        `${process.env.REACT_APP_API_URL}/api/v1/chat/channel/getChats/${userId}`
       );
 
       if (data) {
@@ -130,7 +135,7 @@ export default function ChatUsers({ setSelected }) {
                     }}
                   >
                     <img
-                      src={`/api/v1/user/user-avatar/${chat?._id}`}
+                      src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?._id}`}
                       alt="avatar"
                       className="w-[2.8rem] h-[2.8rem] rounded-full border-2 border-fuchsia-600 shadow-md shadow-gray-500 filter drop-shadow-md "
                     />
@@ -178,8 +183,8 @@ export default function ChatUsers({ setSelected }) {
                     <img
                       src={
                         chat?.users[0]._id === auth?.user?.id
-                          ? `/api/v1/user/user-avatar/${chat?.users[1]._id}`
-                          : `/api/v1/user/user-avatar/${chat?.users[0]._id}`
+                          ? `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?.users[1]._id}`
+                          : `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?.users[0]._id}`
                       }
                       alt="avatar"
                       className="w-[2.5rem] h-[2.5rem] rounded-full border-2 border-sky-500 shadow-md shadow-gray-500 filter drop-shadow-md "

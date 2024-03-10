@@ -21,7 +21,7 @@ export default function Home() {
   // Get All Channels Data
   const getChannels = async () => {
     setLoading(true);
-    console.log("Api URL:", process.env.REACT_APP_API_URL);
+
     try {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/v1/channel/get-channels`

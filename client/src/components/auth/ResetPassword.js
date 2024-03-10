@@ -12,9 +12,12 @@ export default function ResetPassword({ setOpen, setRoute }) {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(`/api/v1/user/reset-password`, {
-        email,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/reset-password`,
+        {
+          email,
+        }
+      );
 
       if (data?.success) {
         setRoute("UpdatePassword");

@@ -35,7 +35,10 @@ export default function Register({ setRoute }) {
       formData.append("email", email);
       formData.append("password", password);
       formData.append("avatar", avatar);
-      const { data } = await axios.post(`/api/v1/user/register`, formData);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/register`,
+        formData
+      );
 
       if (data?.success) {
         setToken(data?.activationToken);

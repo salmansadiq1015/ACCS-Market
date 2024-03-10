@@ -16,7 +16,7 @@ export default function UpdateProfile({ setRoute, setOpen }) {
   const userData = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/user/single-user/${auth?.user.id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/user/single-user/${auth?.user.id}`
       );
       if (data?.success) {
         setName(data?.user?.name);
@@ -42,7 +42,7 @@ export default function UpdateProfile({ setRoute, setOpen }) {
       formData.append("email", email);
       formData.append("avatar", avatar);
       const { data } = await axios.put(
-        `/api/v1/user/update-profile/${auth?.user.id}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/user/update-profile/${auth?.user.id}`,
         formData
       );
       if (data.success) {

@@ -21,8 +21,8 @@ export default function ChatProfile({ setIsShow }) {
           <img
             src={
               auth?.user?.id === selectedChat?.users[0]?._id
-                ? `/api/v1/user/user-avatar/${selectedChat?.users[1]?._id}`
-                : `/api/v1/user/user-avatar/${selectedChat?.users[0]?._id}`
+                ? `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${selectedChat?.users[1]?._id}`
+                : `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${selectedChat?.users[0]?._id}`
             }
             alt="Avatar"
             className="h-[6rem] w-[6rem] rounded-full border-2 border-green-500 shadow-md shadow-gray-300 filter drop-shadow-md"

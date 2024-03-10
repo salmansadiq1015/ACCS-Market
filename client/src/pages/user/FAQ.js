@@ -13,7 +13,9 @@ export default function FAQ() {
   const getFAQ = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`/api/v1/layout/get-layouts/FAQ`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/layout/get-layouts/FAQ`
+      );
       setFaqData(data?.layoutData?.faq);
       setLoading(false);
     } catch (error) {

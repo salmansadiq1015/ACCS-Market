@@ -16,10 +16,13 @@ export default function UpdatePassword({ setOpen, setRoute }) {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.patch(`/api/v1/user/update-password`, {
-        token,
-        newPassword,
-      });
+      const { data } = await axios.patch(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/update-password`,
+        {
+          token,
+          newPassword,
+        }
+      );
 
       if (data?.success) {
         setRoute("Login");

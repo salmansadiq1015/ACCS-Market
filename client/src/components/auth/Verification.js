@@ -40,10 +40,13 @@ export default function Verification({ setRoute }) {
     }
     setLoading(true);
     try {
-      const { data } = await axios.post(`/api/v1/user/verification-account`, {
-        activation_code: verificationNumber,
-        activation_token: token,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/verification-account`,
+        {
+          activation_code: verificationNumber,
+          activation_token: token,
+        }
+      );
       if (data?.success) {
         setRoute("Login");
         toast.success(data?.message);

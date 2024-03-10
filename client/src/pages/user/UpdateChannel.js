@@ -41,7 +41,7 @@ export default function UpdateChannels() {
   const getChannel = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/channel/getSingle-channel/${channelId}`
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/getSingle-channel/${channelId}`
       );
       if (data) {
         setLogo(data?.channel?.logo);
@@ -178,7 +178,7 @@ export default function UpdateChannels() {
     setLoading(true);
     try {
       const { data } = await axios.put(
-        `/api/v1/channel/update/channel/${channelId}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/update/channel/${channelId}`,
         {
           userId: auth.user.id,
           channelLink,

@@ -140,24 +140,27 @@ export default function CreateChannels() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await axios.post(`/api/v1/channel/create-sell-channel`, {
-        userId: auth.user.id,
-        channelLink,
-        name,
-        logo,
-        subject,
-        subscriber,
-        category,
-        price,
-        monotization,
-        allowComment,
-        description,
-        contentType,
-        income,
-        expense,
-        support,
-        images,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/create-sell-channel`,
+        {
+          userId: auth.user.id,
+          channelLink,
+          name,
+          logo,
+          subject,
+          subscriber,
+          category,
+          price,
+          monotization,
+          allowComment,
+          description,
+          contentType,
+          income,
+          expense,
+          support,
+          images,
+        }
+      );
       if (data?.success) {
         setLoading(false);
         toast.success(data?.message, { duration: 3000 });

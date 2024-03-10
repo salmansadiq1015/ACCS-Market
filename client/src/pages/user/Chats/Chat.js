@@ -56,8 +56,8 @@ export default function Chat() {
                 <img
                   src={
                     selectedChat?.users[0]._id === auth?.user?.id
-                      ? `/api/v1/user/user-avatar/${selectedChat?.users[1]._id}`
-                      : `/api/v1/user/user-avatar/${selectedChat?.users[0]._id}`
+                      ? `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${selectedChat?.users[1]._id}`
+                      : `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${selectedChat?.users[0]._id}`
                   }
                   alt="Avatar"
                   className="rounded-full w-[2.5rem] h-[2.5rem] border-2 border-green-500 shadow-md shadow-zinc-500 drop-shadow-md"

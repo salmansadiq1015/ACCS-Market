@@ -22,7 +22,7 @@ export default function UserChannel() {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `/api/v1/channel/users-channels/${auth?.user?.id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/users-channels/${auth?.user?.id}`
       );
       if (data) {
         setChannelsData(data?.channels);
@@ -43,7 +43,7 @@ export default function UserChannel() {
   const handleDelete = async (id) => {
     try {
       const { data } = await axios.delete(
-        `/api/v1/channel/delete/channels/${id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/delete/channels/${id}`
       );
       if (data) {
         toast.success(data?.message, { duration: 3000 });

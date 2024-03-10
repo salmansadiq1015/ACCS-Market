@@ -17,10 +17,13 @@ export default function Login({ setOpen, setRoute }) {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(`/api/v1/user/login-user`, {
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/login-user`,
+        {
+          email,
+          password,
+        }
+      );
 
       if (data?.success) {
         setAuth({ ...auth, user: data?.user, token: data?.token });

@@ -10,7 +10,7 @@ export default function Profile({ setRoute }) {
   const userData = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/user/single-user/${auth?.user.id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/user/single-user/${auth?.user.id}`
       );
       if (data?.success) {
         setData(data?.user);
@@ -27,7 +27,7 @@ export default function Profile({ setRoute }) {
   //   Profile Image
   const [avatar, setAvatar] = useState("");
   useEffect(() => {
-    const url = `/api/v1/user/user-avatar/${auth?.user.id}`;
+    const url = `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${auth?.user.id}`;
     setAvatar(url);
     userData();
     // eslint-disable-next-line

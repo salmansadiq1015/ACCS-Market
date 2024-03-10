@@ -41,11 +41,14 @@ export default function Channels({ channelsData }) {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch(`/api/v1/orders/channel/payment`, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/v1/orders/channel/payment`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
     const session = await response.json();
 
     const result = stripe.redirectToCheckout({

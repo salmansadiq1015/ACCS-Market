@@ -33,7 +33,9 @@ export default function Users() {
   const getAllUsers = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`/api/v1/user/all-users`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/all-users`
+      );
       if (data?.success) {
         setUsers(data?.users);
         setLoading(false);
@@ -56,9 +58,12 @@ export default function Users() {
     }
     setLoad(true);
     try {
-      const { data } = await axios.put(`/api/v1/user/update-role/${id}`, {
-        role,
-      });
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/update-role/${id}`,
+        {
+          role,
+        }
+      );
       if (data?.success) {
         getAllUsers();
         toast.success(data?.message);
@@ -81,7 +86,9 @@ export default function Users() {
     }
     setLoad(true);
     try {
-      const { data } = await axios.delete(`/api/v1/user/delete-user/${id}`);
+      const { data } = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/v1/user/delete-user/${id}`
+      );
       if (data?.success) {
         getAllUsers();
         toast.success(data?.message);
@@ -210,7 +217,7 @@ export default function Users() {
                         <div className="flex items-center justify-center">
                           <div className="relative w-[2.5rem] h-[2.5rem] overflow-hidden border border-sky-500 dark:border-fuchsia-500 dark:shadow-gray-600 shadow-md shadow-gray-300 hover:shadow-lg filter  hover:drop-shadow-md rounded-full">
                             <img
-                              src={`/api/v1/user/user-avatar/${user._id}`}
+                              src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${user._id}`}
                               alt="Avatar"
                               loader={loaderProp}
                               className="w-[2.5rem] h-[2.5rem]  rounded-full"
@@ -302,7 +309,7 @@ export default function Users() {
                       <div className="">
                         <div className="relative w-[4.5rem] h-[4.5rem] overflow-hidden border border-sky-500 dark:border-fuchsia-500 dark:shadow-gray-600 shadow-md shadow-gray-300 hover:shadow-lg filter  hover:drop-shadow-md rounded-full">
                           <img
-                            src={`/api/v1/user/user-avatar/${user._id}`}
+                            src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${user._id}`}
                             alt="Avatar"
                             className="w-full h-full  rounded-full"
                             loader={loaderProp}
