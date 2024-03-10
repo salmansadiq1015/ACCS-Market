@@ -6,7 +6,7 @@ import colors from "colors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js";
 import channelRoutes from "./routes/channelRoutes.js";
-// import commentRoutes from "./routes/commentRoute.js";
+import commentRoutes from "./routes/commentRoute.js";
 // import ordersRoutes from "./routes/ordersRoutes.js";
 import layoutRoutes from "./routes/LayoutRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
@@ -28,7 +28,7 @@ app.use(cors());
 // All Routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/channel", channelRoutes);
-// app.use("/api/v1/comments", commentRoutes);
+app.use("/api/v1/comments", commentRoutes);
 // app.use("/api/v1/orders", ordersRoutes);
 app.use("/api/v1/layout", layoutRoutes);
 app.use("/api/v1/chat", chatRoutes);
@@ -50,7 +50,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://accs-market.vercel.app",
   },
 });
 
