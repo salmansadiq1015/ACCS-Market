@@ -24,14 +24,14 @@ export default function ChannelDetails() {
 
   // Rating
   const getRating = (comments) => {
-    if (comments.length === 0) return 0;
+    if (comments?.length === 0) return 0;
 
     let totalRating = 0;
-    comments.forEach((comment) => {
+    comments?.forEach((comment) => {
       totalRating += comment.rating;
     });
 
-    return totalRating / comments.length;
+    return totalRating / comments?.length;
   };
 
   const averageRating = getRating(comments);

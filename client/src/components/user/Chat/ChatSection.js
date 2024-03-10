@@ -9,7 +9,7 @@ import TypingIndicator from "./TypingIndicator";
 import { useAuth } from "../../../context/authContext";
 import toast from "react-hot-toast";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://accs-market-backend.vercel.app";
 var socket, selectedChatCompare;
 
 export default function ChatSection() {

@@ -304,7 +304,7 @@ export default function Users() {
                           <img
                             src={`/api/v1/user/user-avatar/${user._id}`}
                             alt="Avatar"
-                            className="w-[2.5rem] h-[2.5rem]  rounded-full"
+                            className="w-full h-full  rounded-full"
                             loader={loaderProp}
                           />
                         </div>
