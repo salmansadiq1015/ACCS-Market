@@ -9,54 +9,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16",
 });
 
-// Webhook endpoint to listen for Stripe events
-// export const stripeWebhook = async (req, res) => {
-//   const sig = req.headers["stripe-signature"];
-//   let event;
-
-//   try {
-//     event = stripe.webhooks.constructEvent(
-//       req.rawBody,
-//       sig,
-//       process.env.STRIPE_WEBHOOK_SECRET
-//     );
-//   } catch (err) {
-//     console.error("Webhook error:", err.message);
-//     return res.status(400).send(`Webhook Error: ${err.message}`);
-//   }
-
-//   // Handle the event
-//   if (event.type === "checkout.session.completed") {
-//     const session = event.data.object;
-
-//     try {
-//       // Retrieve payment details
-//       const paymentIntent = await stripe.paymentIntents.retrieve(
-//         session.payment_intent
-//       );
-
-//       // Save payment details to the database
-//       const order = new OrderModel({
-//         sellerId: paymentIntent.metadata.sellerId,
-//         sellerName: paymentIntent.metadata.sellerName,
-//         sellerEmail: paymentIntent.metadata.sellerEmail,
-//         channelId: paymentIntent.metadata.channelId,
-//         channelName: paymentIntent.metadata.channelName,
-//         channelLink: paymentIntent.metadata.channelLink,
-//         paymentId: paymentIntent.id,
-//         price: paymentIntent.amount,
-//       });
-
-//       await order.save();
-//       console.log("Payment details saved:", order);
-//     } catch (error) {
-//       console.error("Error retrieving payment details:", error);
-//     }
-//   }
-
-//   res.status(200).end();
-// };
-
 // Create Order
 export const createOrder = async (req, res) => {
   try {
