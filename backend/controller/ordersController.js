@@ -3,7 +3,6 @@ dotenv.config();
 import Stripe from "stripe";
 import channelModel from "../model/channelModel.js";
 import userModel from "../model/userModel.js";
-import OrderModel from "../model/OrderModel.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16",
@@ -13,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 export const createOrder = async (req, res) => {
   try {
     const { userId, channelId, price } = req.body;
-    console.log(userId, channelId, price);
+
     if (!userId) {
       return res.status(400).send({
         success: false,
@@ -82,7 +81,6 @@ export const createOrder = async (req, res) => {
     });
 
     res.json({ id: session.id });
-    console.log("Session:", session);
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).send({
