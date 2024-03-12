@@ -21,8 +21,8 @@ export default function Features() {
             <div className="flex items-center justify-center">
               <img src="/contact-removebg-preview.png" alt="Features" />
             </div>
-            <div className=" flex flex-col gap-4 py-4 px-3 sm:px-4 rounded-xl shadow-md bg-gray-100 dark:bg-gray-800">
-              <h3 className="text-2xl sm:text-3xl font-semibold">
+            <div className=" flex flex-col gap-4 py-4 px-3 sm:px-4 rounded-xl shadow-md bg-gray-100 ">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-center">
                 Here are the features of ACCS-Market:
               </h3>
               {/* Feature 1 */}
@@ -30,7 +30,7 @@ export default function Features() {
                 <h3 className="text-xl sm:text-2xl font-semibold">
                   1. Diverse Buying and Selling Channels:
                 </h3>
-                <p className="text-[17px] text-gray-800 dark:text-gray-200">
+                <p className="text-[17px] text-gray-800 ">
                   ACCS-Market offers diverse buying and selling channels,
                   leveraging platforms like YouTube, Facebook, Instagram, and
                   TikTok for efficient transactions and outreach.
@@ -41,7 +41,7 @@ export default function Features() {
                 <h3 className="text-xl sm:text-2xl font-semibold">
                   2. Secure Transactions:
                 </h3>
-                <p className="text-[17px] text-gray-800 dark:text-gray-200">
+                <p className="text-[17px] text-gray-800 ">
                   We prioritize the security of transactions on ACCS-Market,
                   ensuring that both buyers and sellers have a safe and reliable
                   platform for their transactions.
@@ -52,7 +52,7 @@ export default function Features() {
                 <h3 className="text-xl sm:text-2xl font-semibold">
                   3. Trusted Community:
                 </h3>
-                <p className="text-[17px] text-gray-800 dark:text-gray-200">
+                <p className="text-[17px] text-gray-800 ">
                   Join our trusted community of buyers and sellers who engage in
                   transparent and honest transactions on ACCS-Market.
                 </p>
@@ -62,7 +62,7 @@ export default function Features() {
                 <h3 className="text-xl sm:text-2xl font-semibold">
                   4. Convenient Payment Methods:
                 </h3>
-                <p className="text-[17px] text-gray-800 dark:text-gray-200">
+                <p className="text-[17px] text-gray-800 ">
                   Choose from a variety of secure payment methods accepted on
                   ACCS-Market for hassle-free transactions.
                 </p>

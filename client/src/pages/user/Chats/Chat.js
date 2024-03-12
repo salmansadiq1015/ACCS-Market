@@ -9,7 +9,7 @@ import { RiMenuUnfoldFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 export default function Chat() {
-  const [left, setLeft] = useState(false);
+  const [left, setLeft] = useState(true);
   const [selected, setSelected] = useState(false);
   const { selectedChat, auth } = useAuth();
   const [isShow, setIsShow] = useState(false);

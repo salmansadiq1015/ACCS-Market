@@ -247,24 +247,24 @@ export default function ChannelDetails() {
               </div>
             </div>
             <div className="flex-1 sm:flex-[.30] ">
-              <div className="relative flex items-center  justify-between border rounded-3xl rounded-br-none hover:shadow-lg shadow-gray-300 hover:bg-gray-100 transition duration-150">
-                <div className="flex items-center gap-4">
+              <div className="relative flex items-center  justify-between border rounded-[4rem] h-[3.6rem] rounded-br-none hover:shadow-lg shadow-gray-300 hover:bg-gray-100 transition duration-150">
+                <div className="flex items-center gap-4 w-full">
                   <img
                     src={channelData?.logo}
                     alt="Logo"
                     className="w-[3.5rem] h-[3.5rem] rounded-full shadow-md border border-fuchsia-500"
                   />
-                  <div className="flex flex-col gap-1 ">
-                    <h3 className="text-[17px] font-semibold text-gray-800">
+                  <div className="flex flex-col gap-1 w-full  ">
+                    <h3 className="text-[17px]  font-semibold text-gray-800 w-[10rem] ">
                       {channelData?.userName}
                     </h3>
-                    <span className="text-[13px] text-gray-600">
+                    <span className="text-[13px]  py-1 px-3 bg-green-400 w-[5rem] flex items-center justify-center text-white border-gray-100 mb-[3px] rounded-3xl">
                       Rating: {averageRating}
                     </span>
                   </div>
                 </div>
                 <button
-                  className="text-[14px] border-2 translate-y-[2.9rem] bg-fuchsia-500 hover:bg-fuchsia-600 cursor-pointer  transition-all duration-150 text-white rounded-bl-xl rounded-br-md py-[.3rem] px-4 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md "
+                  className="text-[14px] border-2 translate-y-[2.9rem] w-[15rem] bg-fuchsia-500 hover:bg-fuchsia-600 cursor-pointer  transition-all duration-150 text-white rounded-bl-xl rounded-br-md py-[.3rem] px-4 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md "
                   onClick={() => chatHandler(channelData.userId)}
                 >
                   Contact Seller

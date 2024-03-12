@@ -5,10 +5,10 @@ import { GoArrowRight } from "react-icons/go";
 export default function Section1() {
   const { auth } = useAuth();
   return (
-    <div className=" relative w-full min-h-screen pt-8 px-2 sm:px-4 bg-gradient-to-br  from-fuchsia-950 to-gray-950">
+    <div className=" relative w-full min-h-screen pt-8 px-2 pb-5 sm:px-4 bg-gradient-to-br  from-fuchsia-950 to-gray-950">
       <div className="absolute top-3 right-2 w-[13rem] h-[13rem] borderRadius bg-fuchsia-600/30 animate-spin z-20"></div>
-      <div className="relative grid grid-cols-1 sm:grid-cols-2 z-30">
-        <div className="w-full min-h-[85vh] ">
+      <div className="relative grid grid-cols-1 sm:grid-cols-2 sm:grid-flow-col-reverse z-30 gap-8 sm:gap-4">
+        <div className="w-full h-full">
           <img
             src="/c1.avif"
             alt="Section1"

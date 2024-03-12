@@ -11,12 +11,12 @@ export default function Privacy() {
           </h1>
         </div>
         <div className="px-1 sm:px-8">
-          <div className="px-4 sm:px-10 py-8 font-medium bg-gray-100 dark:bg-gray-800 rounded-xl translate-y-[-4rem]">
+          <div className="px-4 sm:px-10 py-8 font-medium bg-gray-100  rounded-xl translate-y-[-4rem]">
             <h4 className="text-xl sm:text-2xl font-semibold ">
               Last updated: March 28, 2024
             </h4>
             <div className="flex flex-col gap-4 mt-[2rem]">
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 ACCS-Market ("we," "us," or "our") is committed to protecting
                 the privacy and security of your personal information. This
                 Privacy Policy explains how we collect, use, and disclose
@@ -25,14 +25,14 @@ export default function Privacy() {
               <h3 className="text-lg font-semibold ">
                 Information We Collect:
               </h3>
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 <span className="font-semibold">a.</span> Information You
                 Provide: We collect personal information that you voluntarily
                 provide to us when you use our website or services. This may
                 include your name, email address, contact information, payment
                 details, and any other information you choose to provide.
               </p>
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 <span className="font-semibold">b.</span> Information Collected
                 Automatically: We may automatically collect certain information
                 when you use our website or services, such as your IP address,
@@ -63,7 +63,7 @@ export default function Privacy() {
                   service.
                 </li>
               </ul>
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 b. We will not sell or share your personal information with
                 third parties for their direct marketing purposes without your
                 consent.
@@ -75,7 +75,7 @@ export default function Privacy() {
                 1.1 Disclosure of Information:
               </b>
 
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 a. We may disclose your personal information to third-party
                 service providers who help us operate our website and services,
                 such as payment processors, hosting providers, and analytics
@@ -83,19 +83,19 @@ export default function Privacy() {
                 personal information only as necessary to provide services to
                 us.
               </p>
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 b. We may disclose your personal information in response to
                 lawful requests by public authorities, including to meet
                 national security or law enforcement requirements.
               </p>
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 c. We may also disclose your personal information as required by
                 law, such as to comply with a subpoena, bankruptcy proceedings,
                 or similar legal process.
               </p>
               {/*  */}
               <b className="text-[18px] font-semibold"> 1.2 Data Security:</b>
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 We take reasonable measures to protect the security of your
                 personal information and prevent unauthorized access,
                 disclosure, or alteration. However, no method of transmission
@@ -107,7 +107,7 @@ export default function Privacy() {
                 1.3 Children's Privacy:
               </b>
 
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 Our website and services are not intended for children under the
                 age of 13. We do not knowingly collect personal information from
                 children under the age of 13. If you are a parent or guardian
@@ -120,20 +120,20 @@ export default function Privacy() {
                 1.4 Changes to this Privacy Policy:
               </b>
 
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 We may update this Privacy Policy from time to time by posting
                 the updated version on our website. We encourage you to review
                 this Privacy Policy periodically for any changes.
               </p>
 
               <b className="text-[19px] font-semibold">5. Contact Us</b>
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 If you have any questions or concerns about this Privacy Policy
                 or our privacy practices, please contact us at{" "}
                 <b className="font-semibold">ACCS-Market.Support@gmail.com</b>.
               </p>
 
-              <p className="text-[17px] text-gray-800 dark:text-gray-200">
+              <p className="text-[17px] text-gray-800 ">
                 This Privacy Policy is effective as of{" "}
                 <b className="font-semibold">March 28, 2024</b> and supersedes
                 any prior versions.

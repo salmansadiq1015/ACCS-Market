@@ -120,7 +120,7 @@ export default function ChannelComment({ channelId }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-[3rem]">
           {comments?.map((c) => (
             <div
-              className=" box1 py-4 px-4 rounded-md shadow-md bg-gray-100 dark:bg-gray-800 cursor-pointer"
+              className=" box1 py-4 px-4 rounded-md shadow-md bg-gray-100  cursor-pointer"
               key={c?._id}
             >
               <div className="flex items-center gap-2">
@@ -155,13 +155,13 @@ export default function ChannelComment({ channelId }) {
       )}
       {/* Add Comment */}
 
-      <div className="w-full  py-3 px-3 rounded-md shadow-md cursor-pointer dark:bg-gray-800 bg-gray-100">
+      <div className="w-full  py-3 px-3 rounded-md shadow-md cursor-pointer  bg-gray-100">
         <h3 className="text-lg font-semibold mb-3 text-center">
           Share your Feedback
         </h3>
         <div className="w-full flex flex-col gap-3">
           <textarea
-            className=" rounded-md shadow-md shadow-gray-300 outline-none dark:shadow-gray-700 w-full h-[8rem] resize-none py-2 px-2 border-2 border-gray-300"
+            className=" rounded-md shadow-md shadow-gray-300 outline-none  w-full h-[8rem] resize-none py-2 px-2 border-2 border-gray-300"
             value={comment}
             required
             onChange={(e) => setComment(e.target.value)}
