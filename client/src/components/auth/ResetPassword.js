@@ -36,7 +36,7 @@ export default function ResetPassword({ setOpen, setRoute }) {
 
   return (
     <>
-      <div className="rounded-full p-1 w-[2rem] h-[2rem] flex items-center justify-center hover:bg-blue-500/40 cursor-pointer">
+      <div className="rounded-full p-1 w-[2rem] h-[2rem] flex items-center justify-center hover:bg-blue-500/40 cursor-pointer text-black">
         <TiArrowLeft size={30} onClick={() => setRoute("Login")} />
       </div>
       <div className="w-full py-3 px-2">

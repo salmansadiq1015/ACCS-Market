@@ -18,13 +18,24 @@ export default function Filter({
   setFromIncome,
   toIncome,
   setToIncome,
+  handleClear,
 }) {
   const [active, setActive] = useState("");
+
   return (
-    <div className="w-full min-h-[60vh] py-8 px-3 sm:px-4 flex items-center justify-center  bg-gradient-to-tr from-gray-900 to-fuchsia-950">
-      <div className="flex items-center justify-center rounded-lg shadow-md w-[98%] sm:w-[75%] flex-col gap-5 bg-black/60 py-4 sm:py-6 px-2 sm:px-4">
+    <div className=" relative w-full min-h-[60vh] py-8 px-3 sm:px-4 flex items-center justify-center  bg-gradient-to-tr from-gray-900 to-fuchsia-950">
+      <div
+        className="absolute bottom-3 left-2 w-[13rem] h-[13rem] borderRadius bg-orange-600/30 animate-spin z-20"
+        style={{ borderRadius: "68% 32% 40% 60% / 38% 57% 43% 62%" }}
+      ></div>
+
+      <div className=" relative z-40 flex items-center justify-center rounded-lg shadow-md w-[98%] sm:w-[75%] flex-col gap-5 bg-black/60 py-4 sm:py-6 px-2 sm:px-4">
+        <h1 className=" text-white text-3xl sm:text-4xl text-center font-semibold pb-8 ">
+          Filter Channel
+        </h1>
+
         {/* By Category */}
-        <div className=" flex items-center gap-3 sm:gap-6 flex-wrap">
+        <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 flex-wrap ">
           <span
             className={`py-2 px-5 text-white ${
               active === "Youtube"
@@ -185,6 +196,16 @@ export default function Filter({
               "
               />
             </div>
+          </div>
+
+          {/* Handle Clear */}
+          <div className="flex items-center justify-end mt-6 px-4 sm:px-8">
+            <button
+              className="py-[.4rem] px-6 cursor-pointer shadow-md hover:shadow-lg bg-red-600 hover:bg-red-700 text-white text-[13px] font-medium rounded-3xl "
+              onClick={handleClear}
+            >
+              Clear
+            </button>
           </div>
         </div>
       </div>

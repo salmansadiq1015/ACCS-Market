@@ -8,3 +8,11 @@
 .color {
   color: rgb(2, 68, 2);
 }
+
+.box1 {
+  filter: contrast(1) drop-shadow(0.3px 0.3px 6px rgba(0, 0, 0, 0.1));
+}
+
+.box1:hover {
+  filter: contrast(1.1) drop-shadow(0.3px 0.3px 6px rgba(0, 0, 0, 0.3));
+}

@@ -110,11 +110,9 @@ export default function Users() {
 
   return (
     <Layout>
-      <div className="w-full min-h-screen py-4 px-3 dark:bg-gray-900 ">
+      <div className="w-full min-h-screen py-4 px-3 bg-white  ">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 ">
-            All Users
-          </h1>
+          <h1 className="text-3xl sm:text-4xl font-bold  ">All Users</h1>
           <span>
             {load && (
               <TbLoader3 className="h-5 w-5 animate-spin text-red-500" />
@@ -132,7 +130,7 @@ export default function Users() {
           <div className="w-full message overflow-y-auto">
             <div className="h-[70vh] pb-[6rem] ">
               <table
-                className="border-2  w-full hidden sm:table shadow-md shadow-gray-300 dark:shadow-gray-600 rounded-md filter drop-shadow-md "
+                className="border-2  w-full hidden sm:table shadow-md shadow-gray-300  rounded-md filter drop-shadow-md "
                 style={{
                   border: `2px solid #D500F9 `,
                 }}
@@ -292,7 +290,7 @@ export default function Users() {
                 {users?.map((user, index) => (
                   <div
                     key={index}
-                    className="py-4 flex flex-col gap-3 px-3 rounded-md box cursor-pointer border-2 border-sky-600 dark:border-fuchsia-600 "
+                    className="py-4 flex flex-col gap-3 px-3 rounded-md box cursor-pointer border-2 border-sky-600 dark:border-fuchsia-600 bg-gray-50 text-black "
                   >
                     <div className="flex items-center justify-between">
                       <span className="rounded-3xl py-1 px-2 border border-green-500 bg-green-500/30 cursor-pointer shadow-md text-xs">

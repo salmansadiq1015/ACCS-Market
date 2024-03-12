@@ -6,7 +6,7 @@ export default function Terms() {
     <MainLayout>
       <div className="w-full min-h-[95vh] flex flex-col gap-4  pb-[1rem]">
         <div className="relative w-full h-[40vh] flex items-center justify-center term">
-          <h1 className=" relative text-3xl sm:text-5xl font-bold z-10 text-green-950">
+          <h1 className=" relative text-3xl sm:text-5xl font-bold z-10 text-white">
             Terms & Conditions
           </h1>
         </div>

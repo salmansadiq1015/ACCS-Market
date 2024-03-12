@@ -183,6 +183,7 @@ export default function UpdateChannels() {
           userId: auth.user.id,
           channelLink,
           name,
+          userName: auth.user.name,
           logo,
           subject,
           subscriber,

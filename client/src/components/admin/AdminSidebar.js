@@ -58,7 +58,7 @@ export default function AdminSidebar({ hide, setHide }) {
           }}
         >
           <img
-            src={`/api/v1/user/user-avatar/${auth?.user?.id}`}
+            src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${auth?.user?.id}`}
             alt="Admin"
             layout="fill"
             className="rounded-full"

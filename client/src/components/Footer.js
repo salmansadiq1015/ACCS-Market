@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div
-      className="w-full text-center flex flex-col gap-4 items-center 
+      className="w-full text-center flex flex-col gap-4 items-center bg-gray-900 text-white
     justify-center  border-t border-gray-600 dark:border-gray-400 "
       style={{ boxShadow: "0rem 2px .1rem 2px rgba(0,0,0,.25)" }}
     >
@@ -17,7 +17,7 @@ export default function Footer() {
         <div className=" col-span-2 w-full flex flex-col gap-6 items-start sm:mx-auto text-start ">
           <Link to="/">
             <h1
-              className="text-2xl  text-fuchsia-500 font-bold cursor-pointer"
+              className="text-2xl  text-fuchsia-600 font-bold cursor-pointer"
               style={{
                 textDecoration: "underline",
               }}

@@ -28,6 +28,9 @@ export default function Register({ setRoute }) {
   // Handle Form
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!avatar) {
+      return toast.error("Upload your profile image!");
+    }
     try {
       setLoading(true);
       const formData = new FormData();
@@ -61,7 +64,7 @@ export default function Register({ setRoute }) {
   };
 
   return (
-    <div className="w-full py-3 px-2">
+    <div className="w-full py-3 px-2 text-black">
       <h1 className="text-center font-semibold text-[1.5rem] ">
         Join to ACCS.Market
       </h1>
@@ -70,7 +73,6 @@ export default function Register({ setRoute }) {
           <input
             type="file"
             placeholder="Avatar"
-            required
             onChange={(e) => setAvatar(e.target.files[0])}
             className="hidden"
             id="avatar"

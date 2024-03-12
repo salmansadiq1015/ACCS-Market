@@ -34,7 +34,6 @@ export default function CreateChannels() {
   const [support, setSupport] = useState("");
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
-  console.log("Images:", images);
 
   // Logo
 
@@ -146,6 +145,7 @@ export default function CreateChannels() {
           userId: auth.user.id,
           channelLink,
           name,
+          userName: auth.user.name,
           logo,
           subject,
           subscriber,

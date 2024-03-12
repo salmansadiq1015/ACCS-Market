@@ -12,7 +12,6 @@ export default function ChatUsers({ setSelected }) {
   const userId = auth?.user?.id;
   const [loading, setLoading] = useState(false);
   const [chatLoad, setChatLoad] = useState(false);
-  console.log("Chats:", chats);
 
   // Get Admin
   const getAdmin = async () => {
@@ -195,7 +194,9 @@ export default function ChatUsers({ setSelected }) {
                         {chat?.users[1]?.name.slice(0, 15)}
                       </h3>
                       <span className="text-[13px] font-light ">
-                        {chat?.latestMessage?.content.slice(0, 15)}
+                        {chat?.latestMessage?.content?.startsWith("http")
+                          ? "Attachment"
+                          : chat?.latestMessage?.content.slice(0, 15)}
                       </span>
                     </div>
                   </div>

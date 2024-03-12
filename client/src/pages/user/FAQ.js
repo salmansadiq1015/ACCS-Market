@@ -48,7 +48,7 @@ export default function FAQ() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 mt-[2.5rem]">
           <div className="">
-            <img src="/faq.jpg" alt="FAQ" />
+            <img src="/faq.png" alt="FAQ" className="box1" />
           </div>
           <div className="">
             {loading ? (
@@ -59,12 +59,12 @@ export default function FAQ() {
                   <div
                     className={`${
                       faq._id !== faqData[0]?._id && "border-t"
-                    } border-gray-300 bg-gray-100 dark:bg-gray-700 px-2 py-2 rounded-md shadow-md dark:shadow-sm hover:shadow-lg stroke-gray-200 dark:shadow-gray-800`}
+                    } border-gray-300 bg-gray-100  px-2 py-2 rounded-md shadow-md dark:shadow-sm hover:shadow-lg stroke-gray-200 dark:shadow-gray-800`}
                     key={faq?._id}
                   >
                     <dt className="text-lg ">
                       <button
-                        className="flex items-center dark:text-white text-black justify-between w-full text-left focus:outline-none"
+                        className="flex items-center  text-black justify-between w-full text-left focus:outline-none"
                         onClick={() => toggleQuestion(faq._id)}
                       >
                         <input

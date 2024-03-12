@@ -43,7 +43,7 @@ export default function Login({ setOpen, setRoute }) {
   };
 
   return (
-    <div className="w-full py-3 px-2">
+    <div className="w-full py-3 px-2 text-black">
       <h1 className="text-center font-semibold text-[1.5rem] ">
         Login with ACCS.Market
       </h1>

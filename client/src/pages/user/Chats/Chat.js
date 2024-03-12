@@ -6,12 +6,14 @@ import { FaEye } from "react-icons/fa6";
 import ChatSection from "../../../components/user/Chat/ChatSection";
 import ChatProfile from "../../../components/user/Chat/ChatProfile";
 import { RiMenuUnfoldFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 export default function Chat() {
   const [left, setLeft] = useState(false);
   const [selected, setSelected] = useState(false);
   const { selectedChat, auth } = useAuth();
   const [isShow, setIsShow] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="relative w-full h-[100vh] overflow-hidden">
@@ -75,7 +77,7 @@ export default function Chat() {
                 </span>
                 <span
                   className="hover:border cursor-pointer p-1 hover:bg-slate-500/30 rounded-md hover:shadow-md"
-                  onClick={() => setSelected(!selected)}
+                  onClick={() => navigate("/")}
                 >
                   <IoClose className="h-6 w-6 text-sky-600" />
                 </span>

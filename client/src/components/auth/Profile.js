@@ -34,7 +34,7 @@ export default function Profile({ setRoute }) {
   }, [data]);
   return (
     <>
-      <div className="w-full flex flex-col gap-4 items-center justify-center px-2 py-4">
+      <div className="w-full flex flex-col gap-4 items-center justify-center px-2 py-4 text-black">
         <div className="relative w-[6rem] h-[6rem] rounded-full border-2 border-green-500 overflow-hidden">
           <img
             src={`${avatar}`}

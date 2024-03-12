@@ -4,6 +4,8 @@ import axios from "axios";
 import Filter from "../../components/user/home/Filter";
 import Channels from "../../components/user/home/Channels";
 import Loader from "../../utils/Loader";
+import Section1 from "../../components/user/home/Section1";
+import Section5 from "../../components/user/home/Section5";
 
 export default function Home() {
   const [channelsData, setChannelsData] = useState([]);
@@ -91,9 +93,24 @@ export default function Home() {
     return true;
   });
 
+  const handleClear = () => {
+    setSearchQuery("");
+    setName("");
+    setFromPrice("");
+    setToPrice("");
+    setSubject("");
+    setFromSubscriber("");
+    setToSubscriber("");
+    setFromIncome("");
+    setToIncome("");
+    getChannels();
+  };
   return (
     <MainLayout>
       <div className="overflow-x-hidden">
+        <section className="w-full min-h-screen">
+          <Section1 />
+        </section>
         {/* Filterations */}
         <div className="w-full min-h-[60vh]">
           <Filter
@@ -116,6 +133,7 @@ export default function Home() {
             toIncome={toIncome}
             setToIncome={setToIncome}
             getChannels={getChannels}
+            handleClear={handleClear}
           />
         </div>
 
@@ -129,6 +147,15 @@ export default function Home() {
             />
           </section>
         )}
+        {/*  */}
+        <div className="w-full py-6 px-4 sm:px-8">
+          <hr className="w-full h-[2px] bg-gray-300 " />
+        </div>
+        {/* FAQ */}
+
+        <section className=" w-full min-h-screen">
+          <Section5 />
+        </section>
       </div>
     </MainLayout>
   );

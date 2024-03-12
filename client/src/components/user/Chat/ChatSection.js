@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ImAttachment } from "react-icons/im";
 
 import { AiOutlineSend } from "react-icons/ai";
 import axios from "axios";
@@ -20,10 +21,6 @@ export default function ChatSection() {
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  console.log("Auth:", auth);
-
-  console.log("selectedChat:", selectedChat);
-  console.log("Messages:", messages);
 
   // Socket.io
   useEffect(() => {
@@ -81,7 +78,54 @@ export default function ChatSection() {
         setMessages([...messages, newMessageReceived]);
       }
     });
+    // ------------
+    // socket.on("message received", (newMessageReceived) => {
+    //   if (selectedChat?._id === newMessageReceived.chat._id) {
+    //     setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
+    //   } else {
+    //     // Give notification
+    //     if (!notification.includes(newMessageReceived)) {
+    //       setNotification([...notification, newMessageReceived]);
+    //     }
+    //   }
+    // });
   });
+
+  // Upload Image In CLoud
+
+  const postLogo = (image) => {
+    if (image === undefined) {
+      toast.error("Please select an image!");
+      return;
+    }
+
+    if (
+      image.type === "image/jpeg" ||
+      image.type === "image/png" ||
+      image.type === "image/jpg" ||
+      image.type === "image/*"
+    ) {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "socket.io");
+      formData.append("cloud_name", "dat1f5g7r");
+
+      fetch("https://api.cloudinary.com/v1_1/dat1f5g7r/image/upload", {
+        method: "post",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setNewMessage(data.url.toString());
+        })
+        .catch((err) => {
+          console.error("Error uploading image:", err);
+          toast.error("Error uploading image");
+        });
+    } else {
+      toast.error("Please select an image!", { duration: 3000 });
+    }
+  };
 
   // Handle Messages
   const handleMessage = async (e) => {
@@ -191,7 +235,39 @@ export default function ChatSection() {
                       </span>
                     )}
 
-                    <span
+                    {mess.content.startsWith("http") ? (
+                      <div className="w-[10rem] h-[9rem] bg-gray-950/50 rounded-lg overflow-hidden shadow-md border mt-[1.8rem] ">
+                        <img
+                          src={mess.content}
+                          alt="Images"
+                          className="w-full h-full object-fill"
+                        />
+                      </div>
+                    ) : (
+                      <span
+                        className={`m-2  ${
+                          mess?.sender._id !== auth?.user?.id
+                            ? "rounded-tr-xl rounded-br-xl rounded-bl-xl"
+                            : "rounded-tl-xl rounded-br-xl rounded-bl-xl"
+                        }  text-white max-w-[75%] gap-2 w-fit py-1 px-2 mt-[2rem] shadow-md shadow-gray-300 filter drop-shadow-md cursor-pointer`}
+                        style={{
+                          backgroundColor: `${
+                            mess?.sender._id === auth?.user?.id
+                              ? "#0091ff"
+                              : "#fff"
+                          }`,
+                          color: `${
+                            mess?.sender._id === auth?.user?.id
+                              ? "white"
+                              : "#111"
+                          }`,
+                        }}
+                      >
+                        {mess?.content}
+                      </span>
+                    )}
+
+                    {/* <span
                       className={`m-2  ${
                         mess?.sender._id !== auth?.user?.id
                           ? "rounded-tr-xl rounded-br-xl rounded-bl-xl"
@@ -209,7 +285,7 @@ export default function ChatSection() {
                       }}
                     >
                       {mess?.content}
-                    </span>
+                    </span> */}
 
                     {/* Conditional rendering of image based on sender */}
                     {mess?.sender._id === auth?.user?.id && (
@@ -238,15 +314,28 @@ export default function ChatSection() {
 
         <div className="sticky h-[3.1rem] bottom-0 left-0 w-full rounded-md bg-gray-200/70 border p-1 ">
           <form
-            className="w-full h-full flex items-center gap-1"
+            className=" relative w-full h-full flex items-center gap-1"
             onSubmit={handleMessage}
           >
+            <input
+              type="file"
+              id="uploadImage"
+              accept="image/*"
+              onChange={(e) => postLogo(e.target.files[0])}
+              className="hidden"
+            />
+            <label
+              htmlFor="uploadImage"
+              className="absolute top-2 left-1 cursor-pointer z-30 p-1 rounded-full hover:bg-black/10"
+            >
+              <ImAttachment className="h-4 w-4 text-gray-700" />
+            </label>
             <input
               type="text"
               placeholder="Message here..."
               value={newMessage}
               onChange={typingHandler}
-              className="w-[95%] rounded-md outline-none px-3 shadow-md bg-white h-full"
+              className="w-[95%] rounded-md outline-none px-3 pl-7 shadow-md bg-white h-full"
             />
             <button
               disabled={newMessage.length === 0}

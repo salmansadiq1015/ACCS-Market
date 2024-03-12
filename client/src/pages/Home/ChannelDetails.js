@@ -256,7 +256,7 @@ export default function ChannelDetails() {
                   />
                   <div className="flex flex-col gap-1 ">
                     <h3 className="text-[17px] font-semibold text-gray-800">
-                      {auth?.user?.name}
+                      {channelData?.userName}
                     </h3>
                     <span className="text-[13px] text-gray-600">
                       Rating: {averageRating}
