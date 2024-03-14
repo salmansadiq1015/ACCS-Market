@@ -319,14 +319,14 @@ export default function Users() {
                         type="text"
                         value={user?.name}
                         disabled
-                        className="border-2 w-full rounded-md border-gray-500 shadow-md py-2 px-3 text-black dark:text-white"
+                        className="border-2 w-full rounded-md border-gray-500  shadow-md py-2 px-3 text-black "
                       />
 
                       <input
                         type="text"
                         value={user?.email}
                         disabled
-                        className="border-2 w-full rounded-md border-gray-500 shadow-md py-2 px-3 text-black dark:text-white"
+                        className="border-2 w-full rounded-md border-gray-500 shadow-md py-2 px-3 text-black "
                       />
                       <select
                         value={user?.role}
