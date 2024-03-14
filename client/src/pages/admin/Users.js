@@ -213,7 +213,7 @@ export default function Users() {
                         }}
                       >
                         <div className="flex items-center justify-center">
-                          <div className="relative w-[2.5rem] h-[2.5rem] overflow-hidden border border-sky-500 dark:border-fuchsia-500 dark:shadow-gray-600 shadow-md shadow-gray-300 hover:shadow-lg filter  hover:drop-shadow-md rounded-full">
+                          <div className="relative w-[2.5rem] h-[2.5rem] overflow-hidden border border-sky-500  shadow-md shadow-gray-300 hover:shadow-lg filter  text-black rounded-full">
                             <img
                               src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${user._id}`}
                               alt="Avatar"
