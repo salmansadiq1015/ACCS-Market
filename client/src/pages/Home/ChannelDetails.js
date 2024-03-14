@@ -95,6 +95,7 @@ export default function ChannelDetails() {
     const headers = {
       "Content-Type": "application/json",
     };
+    // ${process.env.REACT_APP_API_URL}
 
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/api/v1/orders/channel/payment`,

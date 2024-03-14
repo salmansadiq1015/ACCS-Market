@@ -10,7 +10,6 @@ import { BsBell } from "react-icons/bs";
 import { BsCashCoin } from "react-icons/bs";
 import { LiaUsersSolid } from "react-icons/lia";
 import { TbBrandGoogleAnalytics } from "react-icons/tb";
-import { IoAnalyticsOutline } from "react-icons/io5";
 import { LiaUsersCogSolid } from "react-icons/lia";
 import { TbFileAnalytics } from "react-icons/tb";
 import { GoGear } from "react-icons/go";
@@ -39,12 +38,12 @@ export default function AdminSidebar({ hide, setHide }) {
         {hide ? (
           <AiOutlineMenuUnfold
             onClick={() => setHide(!hide)}
-            className="h-6 w-6 cursor-pointer hover:text-sky-600 dark:hover:text-fuchsia-600 transition-all duration-150"
+            className="h-6 w-6 cursor-pointer hover:text-fuchsia-600 transition-all duration-150"
           />
         ) : (
           <AiOutlineMenuFold
             onClick={() => setHide(!hide)}
-            className="h-6 w-6 cursor-pointer hover:text-sky-600 dark:hover:text-fuchsia-600 transition-all duration-150"
+            className="h-6 w-6 cursor-pointer hover:text-fuchsia-600 transition-all duration-150"
           />
         )}
       </div>
@@ -52,7 +51,7 @@ export default function AdminSidebar({ hide, setHide }) {
         <div
           className={`relative ${
             hide ? "w-[3rem] h-[3rem]" : "w-[4rem] h-[4rem]"
-          } rounded-full object-fill mt-2 border-[2px] shadow-md shadow-gray-300 dark:shadow-gray-700 filter drop-shadow-md active:scale-[1.03] select-none`}
+          } rounded-full object-fill mt-2 border-[2px] shadow-md shadow-gray-300  filter drop-shadow-md active:scale-[1.03] select-none`}
           style={{
             border: `2px solid rgb(2, 68, 2)`,
           }}
@@ -65,16 +64,16 @@ export default function AdminSidebar({ hide, setHide }) {
             loader={loaderProp}
           />
         </div>
-        <h3 className="text-[18px] font-semibold text-black dark:text-white fon">
+        <h3 className="text-[18px] font-semibold text-black  fon">
           {hide ? "" : auth?.user?.name}
         </h3>
       </div>
       {/*  */}
-      <div className="relative w-full  py-3 h-[23.5rem] sm:h-[24.4rem] pb-[4rem] sm:pb-[3rem] overflow-y-auto message">
+      <div className="relative w-full  py-3 h-[27rem] sm:h-[24.4rem] pb-[4rem] sm:pb-[3rem] overflow-y-auto message">
         <div className="relative w-full   flex flex-col gap-4 overflow-y-auto allMessages py-1 pb-6 pr-1 message">
           {/* 1 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/dashboard");
             }}
@@ -110,7 +109,7 @@ export default function AdminSidebar({ hide, setHide }) {
           </div>
           {/* 2 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/users");
             }}
@@ -146,7 +145,7 @@ export default function AdminSidebar({ hide, setHide }) {
           </div>
           {/* 3 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/channels");
             }}
@@ -182,51 +181,15 @@ export default function AdminSidebar({ hide, setHide }) {
           </div>
           {/* 4 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
-              router("/admin/files");
+              router("/admin/sellers");
             }}
           >
             <div
               className="adminbtn absolute h-full  sidebtn z-[20]"
               style={{
-                width: active === "files" && "100%",
-                background: `rgb(2, 68, 2)`,
-              }}
-            ></div>
-            <div className="relative w-full h-full flex items-center px-2 z-30 bg-transparent">
-              {hide ? (
-                <BsFileEarmarkText
-                  className="h-7 w-7 cursor-pointer ml-2"
-                  style={{ color: active === "files" && "#fff" }}
-                />
-              ) : (
-                <div className="flex items-center gap-2">
-                  <BsFileEarmarkText
-                    className="h-6 w-6 cursor-pointer ml-2"
-                    style={{ color: active === "files" && "#fff" }}
-                  />
-                  <span
-                    className="text-[16px] font-[400]"
-                    style={{ color: active === "files" && "#fff" }}
-                  >
-                    Files
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-          {/* 5 */}
-          <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
-            onClick={() => {
-              router("/admin/leads");
-            }}
-          >
-            <div
-              className="adminbtn absolute h-full  sidebtn z-[20]"
-              style={{
-                width: active === "leads" && "100%",
+                width: active === "sellers" && "100%",
                 background: `rgb(2, 68, 2)`,
               }}
             ></div>
@@ -234,19 +197,55 @@ export default function AdminSidebar({ hide, setHide }) {
               {hide ? (
                 <LiaUsersSolid
                   className="h-7 w-7 cursor-pointer ml-2"
-                  style={{ color: active === "leads" && "#fff" }}
+                  style={{ color: active === "sellers" && "#fff" }}
                 />
               ) : (
                 <div className="flex items-center gap-2">
                   <LiaUsersSolid
                     className="h-6 w-6 cursor-pointer ml-2"
-                    style={{ color: active === "leads" && "#fff" }}
+                    style={{ color: active === "sellers" && "#fff" }}
                   />
                   <span
                     className="text-[16px] font-[400]"
-                    style={{ color: active === "leads" && "#fff" }}
+                    style={{ color: active === "sellers" && "#fff" }}
                   >
-                    Leads
+                    Sellers
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+          {/* 5 */}
+          <div
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
+            onClick={() => {
+              router("/admin/blogs");
+            }}
+          >
+            <div
+              className="adminbtn absolute h-full  sidebtn z-[20]"
+              style={{
+                width: active === "blogs" && "100%",
+                background: `rgb(2, 68, 2)`,
+              }}
+            ></div>
+            <div className="relative w-full h-full flex items-center px-2 z-30 bg-transparent">
+              {hide ? (
+                <BsFileEarmarkText
+                  className="h-7 w-7 cursor-pointer ml-2"
+                  style={{ color: active === "blogs" && "#fff" }}
+                />
+              ) : (
+                <div className="flex items-center gap-2">
+                  <BsFileEarmarkText
+                    className="h-6 w-6 cursor-pointer ml-2"
+                    style={{ color: active === "blogs" && "#fff" }}
+                  />
+                  <span
+                    className="text-[16px] font-[400]"
+                    style={{ color: active === "blogs" && "#fff" }}
+                  >
+                    Blogs
                   </span>
                 </div>
               )}
@@ -254,7 +253,7 @@ export default function AdminSidebar({ hide, setHide }) {
           </div>
           {/* 6 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/notifications");
             }}
@@ -290,7 +289,7 @@ export default function AdminSidebar({ hide, setHide }) {
           </div>
           {/* 7 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/subscription");
             }}
@@ -329,7 +328,7 @@ export default function AdminSidebar({ hide, setHide }) {
           <h4 className="text-[16] font-semibold px-2">Analytics</h4>
 
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/user-analytics");
             }}
@@ -366,15 +365,15 @@ export default function AdminSidebar({ hide, setHide }) {
 
           {/* 2 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
-              router("/admin/assistant-analytics");
+              router("/admin/channel-analytics");
             }}
           >
             <div
               className="adminbtn absolute h-full  sidebtn z-[20]"
               style={{
-                width: active === "assistant-analytics" && "100%",
+                width: active === "channel-analytics" && "100%",
                 background: `rgb(2, 68, 2)`,
               }}
             ></div>
@@ -382,23 +381,23 @@ export default function AdminSidebar({ hide, setHide }) {
               {hide ? (
                 <TbBrandGoogleAnalytics
                   className="h-7 w-7 cursor-pointer ml-2"
-                  style={{ color: active === "assistant-analytics" && "#fff" }}
+                  style={{ color: active === "channel-analytics" && "#fff" }}
                 />
               ) : (
                 <div className="flex items-center gap-2">
                   <TbBrandGoogleAnalytics
                     className="h-6 w-6 cursor-pointer ml-2"
                     style={{
-                      color: active === "assistant-analytics" && "#fff",
+                      color: active === "channel-analytics" && "#fff",
                     }}
                   />
                   <span
                     className="text-[16px] font-[400] "
                     style={{
-                      color: active === "assistant-analytics" && "#fff",
+                      color: active === "channel-analytics" && "#fff",
                     }}
                   >
-                    Assistant Analytics
+                    Channels Analytics
                   </span>
                 </div>
               )}
@@ -407,15 +406,15 @@ export default function AdminSidebar({ hide, setHide }) {
 
           {/* 3 */}
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
-              router("/admin/files-analytics");
+              router("/admin/sellers-analytics");
             }}
           >
             <div
               className="adminbtn absolute h-full  sidebtn z-[20]"
               style={{
-                width: active === "files-analytics" && "100%",
+                width: active === "sellers-analytics" && "100%",
                 background: `rgb(2, 68, 2)`,
               }}
             ></div>
@@ -423,64 +422,30 @@ export default function AdminSidebar({ hide, setHide }) {
               {hide ? (
                 <TbFileAnalytics
                   className="h-7 w-7 cursor-pointer ml-2"
-                  style={{ color: active === "files-analytics" && "#fff" }}
+                  style={{ color: active === "sellers-analytics" && "#fff" }}
                 />
               ) : (
                 <div className="flex items-center gap-2">
                   <TbFileAnalytics
                     className="h-6 w-6 cursor-pointer ml-2"
-                    style={{ color: active === "files-analytics" && "#fff" }}
+                    style={{ color: active === "sellers-analytics" && "#fff" }}
                   />
                   <span
                     className="text-[16px] font-[400] "
-                    style={{ color: active === "files-analytics" && "#fff" }}
+                    style={{ color: active === "sellers-analytics" && "#fff" }}
                   >
-                    Files Analytics
+                    Sellers Analytics
                   </span>
                 </div>
               )}
             </div>
           </div>
           {/* 4 */}
-          <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
-            onClick={() => {
-              router("/admin/lead-analytics");
-            }}
-          >
-            <div
-              className="adminbtn absolute h-full  sidebtn z-[20]"
-              style={{
-                width: active === "lead-analytics" && "100%",
-                background: `rgb(2, 68, 2)`,
-              }}
-            ></div>
-            <div className="relative w-full h-full flex items-center px-2 z-30 bg-transparent">
-              {hide ? (
-                <IoAnalyticsOutline
-                  className="h-7 w-7 cursor-pointer ml-2"
-                  style={{ color: active === "lead-analytics" && "#fff" }}
-                />
-              ) : (
-                <div className="flex items-center gap-2">
-                  <IoAnalyticsOutline
-                    className="h-6 w-6 cursor-pointer ml-2"
-                    style={{ color: active === "lead-analytics" && "#fff" }}
-                  />
-                  <span
-                    className="text-[16px] font-[400] "
-                    style={{ color: active === "lead-analytics" && "#fff" }}
-                  >
-                    Lead Analytics
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
+
           <hr className="my-2" />
           <h4 className="text-[16] font-semibold px-2">Settings</h4>
           <div
-            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200 dark:bg-gray-800 dark:shadow-gray-800 filter drop-shadow-md  overflow-hidden"
+            className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/layout-settings");
             }}

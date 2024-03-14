@@ -19,6 +19,9 @@ import Comments from "./pages/user/Comments";
 import Features from "./pages/user/Features";
 import LayoutSetting from "./pages/admin/LayoutSetting";
 import Chat from "./pages/user/Chats/Chat";
+import UserAnalytics from "./pages/admin/UserAnalytics";
+import ChannelsAnalytics from "./pages/admin/ChannelsAnalytics";
+import SellerAnalytics from "./pages/admin/SellerAnalytics";
 
 function App() {
   return (
@@ -46,6 +49,15 @@ function App() {
           <Route path="/admin/users" element={<Users />} />
           <Route path="/admin/channels" element={<Channels />} />
           <Route path="/admin/layout-settings" element={<LayoutSetting />} />
+          <Route path="/admin/user-analytics" element={<UserAnalytics />} />
+          <Route
+            path="/admin/channel-analytics"
+            element={<ChannelsAnalytics />}
+          />
+          <Route
+            path="/admin/sellers-analytics"
+            element={<SellerAnalytics />}
+          />
         </Routes>
         <Toaster />
       </BrowserRouter>

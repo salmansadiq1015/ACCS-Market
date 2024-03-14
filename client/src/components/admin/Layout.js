@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <div className=" w-full flex-1 gap-1 flex h-screen dark:bg-gray-900 fixed top-0 left-0 overflow-hidden mt-[4rem]">
+      <div className=" w-full flex-1 gap-1 flex h-screen  fixed top-0 left-0 overflow-hidden mt-[4rem]">
         {!show && (
           <div className=" flex sm:hidden  absolute top-2 left-3">
             <IoMenu
@@ -26,14 +26,14 @@ export default function Layout({ children }) {
           </div>
         )}
         <div
-          className={`hidden sm:flex dark:bg-gray-900 transition-all duration-200 ${
+          className={`hidden sm:flex  transition-all duration-200 ${
             hide ? "w-[5rem]" : "w-[13rem]"
           }`}
         >
           <AdminSidebar hide={hide} setHide={setHide} />
         </div>
         {show && (
-          <div className=" absolute top-0 left-0 flex dark:bg-gray-900 bg-white sm:hidden z-20 w-[13rem] pt-[2rem]  border-r-[2px] dark:border-gray-300 border-gray-600">
+          <div className=" absolute top-0 left-0 flex  bg-white sm:hidden z-20 w-[13rem] pt-[2rem]  border-r-[2px] dark:border-gray-300 border-gray-600">
             <div className="absolute top-2 right-3">
               <IoClose
                 onClick={() => setShow(false)}
@@ -44,7 +44,7 @@ export default function Layout({ children }) {
             <AdminSidebar />
           </div>
         )}
-        <div className="flex-[1.8] border-r-red-500  pt-[2.5rem] sm:pt-0 border-l-[2px] dark:border-gray-300 border-gray-600">
+        <div className="flex-[1.8] border-r-red-500  pt-[2.5rem] sm:pt-0 border-l-[2px] dark:border-gray-300 ">
           {children}
         </div>
       </div>

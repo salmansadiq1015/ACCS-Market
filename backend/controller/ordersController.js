@@ -90,3 +90,155 @@ export const createOrder = async (req, res) => {
     });
   }
 };
+
+// Webhook endpoint to listen for Stripe events
+export const webhookHandler = async (req, res) => {
+  try {
+    const sig = req.headers["stripe-signature"];
+    const buf = req.body;
+    const webhookSecret = process.env.STRIPE_WEBHOOKS_SECRET;
+
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      // On error, log and return the error message.
+      if (err instanceof Error) console.log(err);
+      console.log(`❌ Error message: ${errorMessage}`);
+
+      return res.status(400).json({
+        error: {
+          message: `Webhook Error: ${errorMessage}`,
+        },
+      });
+    }
+
+    // Successfully constructed event.
+    console.log("✅ Success:", event.id);
+
+    // getting to the data we want from the event
+    const subscription = event.data.object;
+    const itemId = subscription.items.data[0].price.product;
+
+    // Fetch the product (plan) details
+    const product = await stripe.products.retrieve(itemId);
+
+    const planName = product.name;
+
+    switch (event.type) {
+      case "customer.subscription.created":
+        // customer subscription created
+        const membership = await subscriptionModel.findOne({
+          stripeCustomerId: subscription.customer,
+        });
+
+        if (membership) {
+          await subscriptionModel.updateOne(
+            {
+              stripeCustomerId: subscription.customer,
+            },
+            { $set: { plan: planName } }
+          );
+        }
+        break;
+      case "customer.subscription.deleted":
+        // subscription deleted
+        break;
+
+      default:
+        console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
+        break;
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Error in webhook controller",
+      error,
+    });
+  }
+};
+
+// export const stripeWebhook = async (req, res) => {
+//   const sig = req.headers["stripe-signature"];
+//   let event;
+
+//   try {
+//     event = stripe.webhooks.constructEvent(
+//       req.rawBody,
+//       sig,
+//       process.env.STRIPE_WEBHOOK_SECRET
+//     );
+//   } catch (err) {
+//     console.error("Webhook error:", err.message);
+//     return res.status(400).send(`Webhook Error: ${err.message}`);
+//   }
+
+//   // Handle the event
+//   if (event.type === "checkout.session.completed") {
+//     const session = event.data.object;
+
+//     try {
+//       // Retrieve payment details
+//       const paymentIntent = await stripe.paymentIntents.retrieve(
+//         session.payment_intent
+//       );
+
+//       console.log(paymentIntent);
+
+//       // Save payment details to the database
+//       const order = new OrderModel({
+//         sellerId: paymentIntent.metadata.sellerId,
+//         sellerName: paymentIntent.metadata.sellerName,
+//         sellerEmail: paymentIntent.metadata.sellerEmail,
+//         channelId: paymentIntent.metadata.channelId,
+//         channelName: paymentIntent.metadata.channelName,
+//         channelLink: paymentIntent.metadata.channelLink,
+//         paymentId: paymentIntent.id,
+//         price: paymentIntent.amount,
+//       });
+
+//       await order.save();
+//       console.log("Payment details saved:", order);
+//     } catch (error) {
+//       console.error("Error retrieving payment details:", error);
+//     }
+//   } else if (event.type === "invoice.payment_succeeded") {
+//     const invoice = event.data.object;
+
+//     try {
+//       // Retrieve payment details from the invoice
+//       const paymentIntent = await stripe.paymentIntents.retrieve(
+//         invoice.payment_intent
+//       );
+
+//       console.log(paymentIntent);
+
+//       // Save payment details to the database
+//       const order = new OrderModel({
+//         sellerId: paymentIntent.metadata.sellerId,
+//         sellerName: paymentIntent.metadata.sellerName,
+//         sellerEmail: paymentIntent.metadata.sellerEmail,
+//         channelId: paymentIntent.metadata.channelId,
+//         channelName: paymentIntent.metadata.channelName,
+//         channelLink: paymentIntent.metadata.channelLink,
+//         paymentId: paymentIntent.id,
+//         price: paymentIntent.amount,
+//       });
+
+//       await order.save();
+//       console.log("Payment details saved:", order);
+//     } catch (error) {
+//       console.error("Error retrieving payment details from invoice:", error);
+//     }
+//   }
+
+//   res.status(200).end();
+// };

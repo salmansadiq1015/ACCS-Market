@@ -11,6 +11,7 @@ import ordersRoutes from "./routes/ordersRoutes.js";
 import layoutRoutes from "./routes/LayoutRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import messageRoutes from "./routes/messagesRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 import { Server } from "socket.io";
 
 // Dotenv Config
@@ -33,6 +34,7 @@ app.use("/api/v1/orders", ordersRoutes);
 app.use("/api/v1/layout", layoutRoutes);
 app.use("/api/v1/chat", chatRoutes);
 app.use("/api/v1/message", messageRoutes);
+app.use("/api/v1/analytics", analyticsRoutes);
 
 // Rest API Call
 app.use("/", (req, res) => {
@@ -50,7 +52,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://accs-market.vercel.app",
+    origin: "http://localhost:3000",
   },
 });
 

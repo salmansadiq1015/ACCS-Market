@@ -6,6 +6,7 @@ export const createSellChannel = async (req, res) => {
     const {
       userId,
       name,
+      userName,
       logo,
       channelLink,
       subject,
@@ -52,6 +53,7 @@ export const createSellChannel = async (req, res) => {
     const channel = await channelModel.create({
       userId,
       name,
+      userName,
       logo,
       channelLink,
       subject,
@@ -143,6 +145,7 @@ export const UpdateSingleChannel = async (req, res) => {
     const {
       userId,
       name,
+      userName,
       logo,
       channelLink,
       subject,
@@ -173,6 +176,7 @@ export const UpdateSingleChannel = async (req, res) => {
       {
         userId,
         name,
+        userName,
         logo,
         channelLink,
         subject,

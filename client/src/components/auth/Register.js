@@ -28,9 +28,6 @@ export default function Register({ setRoute }) {
   // Handle Form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!avatar) {
-      return toast.error("Upload your profile image!");
-    }
     try {
       setLoading(true);
       const formData = new FormData();

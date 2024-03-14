@@ -35,12 +35,6 @@ export const register = async (req, res) => {
         message: "Password is required",
       });
     }
-    if (!avatar) {
-      return res.status(400).send({
-        success: false,
-        message: "Avatar is required",
-      });
-    }
 
     // Existing User
     const existingUser = await userModel.findOne({ email: email });
