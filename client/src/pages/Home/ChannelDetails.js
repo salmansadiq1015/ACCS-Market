@@ -259,8 +259,8 @@ export default function ChannelDetails() {
                     <h3 className="text-[17px]  font-semibold text-gray-800 w-[10rem] ">
                       {channelData?.userName}
                     </h3>
-                   <div className="w-full w-[7rem]">
-                       <span className="text-[13px]  py-1 px-3 bg-green-400 px-[1.2rem] flex items-center justify-center text-white border-gray-100 mb-[3px] rounded-3xl">
+                   <div className=" w-full">
+                       <span className="text-[13px]  py-1 px-3 px-[1rem] flex items-center justify-center text-white border-gray-100 mb-[3px] rounded-3xl">
                       Rating: {averageRating}
                     </span>
                       </div>
