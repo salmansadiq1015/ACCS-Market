@@ -160,7 +160,7 @@ export const UpdateSingleChannel = async (req, res) => {
       expense,
       support,
       images,
-      // code,
+      status,
     } = req.body;
 
     const existingChannel = await channelModel.findById({ _id: channelId });
@@ -191,6 +191,7 @@ export const UpdateSingleChannel = async (req, res) => {
         expense,
         support,
         images,
+        status,
       },
       { new: true }
     );

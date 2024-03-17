@@ -10,13 +10,15 @@ import { BiLoaderCircle } from "react-icons/bi";
 import toast from "react-hot-toast";
 import ReactPaginate from "react-paginate";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useAuth } from "../../../context/authContext";
 
 export default function Channels({ channelsData }) {
   const navigate = useNavigate();
   const [paymentLoad, setPaymentLoad] = useState(false);
+  const { auth } = useAuth();
   const [channelId, setChannelId] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
-  const itemsPerPage = 12;
+  const itemsPerPage = 20;
   const pagesVisited = pageNumber * itemsPerPage;
 
   const pageCount = Math.ceil(channelsData?.length / itemsPerPage);
@@ -27,6 +29,9 @@ export default function Channels({ channelsData }) {
 
   // ---------------Handle Buy Channels-------------
   const makePayment = async (userId, channelId, price) => {
+    if (!auth?.token) {
+      return toast.error("Login required to buy channel!");
+    }
     setChannelId(channelId);
     if (!userId) {
       return toast.error("User id is required!") + setPaymentLoad(false);
@@ -62,9 +67,16 @@ export default function Channels({ channelsData }) {
     );
     const session = await response.json();
 
+    const metaData = session.metaData;
+    localStorage.setItem(
+      "metaData",
+      JSON.stringify({ paymentId: session.id, metaData: metaData })
+    );
+
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
     });
+
     setPaymentLoad(false);
 
     if (result.error) {
@@ -173,7 +185,7 @@ export default function Channels({ channelsData }) {
                   </div>
                 ))}
           </div>
-          {channelsData.length > 12 && (
+          {channelsData.length > 20 && (
             <div className="pagination-container mt-[3rem] py-2 w-full bg-fuchsia-600 rounded-[5rem] text-white">
               <ReactPaginate
                 previousLabel={

@@ -10,7 +10,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-export default function Channels() {
+export default function Subscription() {
   const [channelData, setChannelData] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -129,7 +129,7 @@ export default function Channels() {
   return (
     <Layout>
       <div className=" w-full h-[85vh] sm:h-[88.5vh] overflow-y-auto  pb-[3rem] px-4 mt-3">
-        <h1 className="text-3xl sm:text-4xl font-bold  ">All Channels</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold  ">Subscriptions</h1>
 
         <div className="w-full h-full overflow-x-auto ">
           {/* Employee Data */}

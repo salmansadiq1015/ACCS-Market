@@ -213,7 +213,7 @@ export default function Users() {
                         }}
                       >
                         <div className="flex items-center justify-center">
-                          <div className="relative w-[2.5rem] h-[2.5rem] overflow-hidden border border-sky-500  shadow-md shadow-gray-300 hover:shadow-lg filter  text-black rounded-full">
+                          <div className="relative w-[2.5rem] h-[2.5rem] overflow-hidden border border-sky-500   shadow-md shadow-gray-300 hover:shadow-lg filter  hover:drop-shadow-md rounded-full">
                             <img
                               src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${user._id}`}
                               alt="Avatar"
@@ -272,7 +272,7 @@ export default function Users() {
                       >
                         <div className="w-full flex items-center justify-center">
                           <span
-                            className="p-1 rounded-md shadow-md  cursor-pointer transition-all duration-150 hover:bg-red-500 flex items-center justify-center text-red-500 hover:text-white"
+                            className="p-1 rounded-md shadow-md  cursor-pointer transition-all duration-150 hover:bg-red-500 flex items-center justify-center text-red-500 "
                             onClick={() => handleDelete(user?._id)}
                           >
                             <MdOutlineAutoDelete className="w-6 h-6" />
@@ -290,14 +290,14 @@ export default function Users() {
                 {users?.map((user, index) => (
                   <div
                     key={index}
-                    className="py-4 flex flex-col gap-3 px-3 rounded-md box cursor-pointer border-2 border-sky-600 dark:border-fuchsia-600 bg-gray-50 text-black "
+                    className="py-4 flex flex-col gap-3 px-3 rounded-md box cursor-pointer border-2 border-fuchsia-600 bg-gray-50 text-black "
                   >
                     <div className="flex items-center justify-between">
                       <span className="rounded-3xl py-1 px-2 border border-green-500 bg-green-500/30 cursor-pointer shadow-md text-xs">
                         {moment(user?.createdAt).format("MMMM Do YYYY")}
                       </span>
                       <span
-                        className="p-1 rounded-md shadow-md  cursor-pointer transition-all duration-150 hover:bg-red-500 flex items-center justify-center text-red-500 hover:text-white"
+                        className="p-1 rounded-md shadow-md  cursor-pointer transition-all duration-150 hover:bg-red-500 flex items-center justify-center text-red-500 "
                         onClick={() => handleDelete(user?._id)}
                       >
                         <MdOutlineAutoDelete className="w-5 h-5" />
@@ -319,7 +319,7 @@ export default function Users() {
                         type="text"
                         value={user?.name}
                         disabled
-                        className="border-2 w-full rounded-md border-gray-500  shadow-md py-2 px-3 text-black "
+                        className="border-2 w-full rounded-md border-gray-500 shadow-md py-2 px-3 text-black "
                       />
 
                       <input

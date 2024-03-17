@@ -9,6 +9,7 @@ import Section5 from "../../components/user/home/Section5";
 
 export default function Home() {
   const [channelsData, setChannelsData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [name, setName] = useState("");
   const [subject, setSubject] = useState("");
@@ -18,7 +19,6 @@ export default function Home() {
   const [toIncome, setToIncome] = useState("");
   const [fromSubscriber, setFromSubscriber] = useState("");
   const [toSubscriber, setToSubscriber] = useState("");
-  const [loading, setLoading] = useState(false);
 
   // Get All Channels Data
   const getChannels = async () => {

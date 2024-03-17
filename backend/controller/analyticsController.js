@@ -1,4 +1,5 @@
 import channelModel from "../model/channelModel.js";
+import orderModel from "../model/orderModel.js";
 import userModel from "../model/userModel.js";
 import { generateLast12MonthData } from "../utils/analyticsGenerator.js";
 
@@ -84,12 +85,12 @@ export const BlogsAnalytics = async (req, res) => {
 // Subscription
 export const subscriptionAnalytics = async (req, res) => {
   try {
-    const users = await generateLast12MonthData(channelModel);
+    const orders = await generateLast12MonthData(orderModel);
 
     res.status(200).send({
       success: true,
       message: "User Analytics",
-      users: users,
+      orders: orders,
     });
   } catch (error) {
     console.log(error);

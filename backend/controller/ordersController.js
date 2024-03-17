@@ -3,6 +3,7 @@ dotenv.config();
 import Stripe from "stripe";
 import channelModel from "../model/channelModel.js";
 import userModel from "../model/userModel.js";
+import orderModel from "../model/orderModel.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16",
@@ -11,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 // Create Order
 export const createOrder = async (req, res) => {
   try {
-    const { userId, channelId, price } = req.body;
+    const { userId, channelId, price, buyerEmail } = req.body;
 
     if (!userId) {
       return res.status(400).send({
@@ -77,10 +78,11 @@ export const createOrder = async (req, res) => {
         channelName: channel.name,
         channelLink: channel.channelLink,
         price: price,
+        buyerEmail: buyerEmail,
       },
     });
 
-    res.json({ id: session.id });
+    res.json({ id: session.id, metaData: session.metadata });
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).send({
@@ -166,79 +168,98 @@ export const webhookHandler = async (req, res) => {
   }
 };
 
-// export const stripeWebhook = async (req, res) => {
-//   const sig = req.headers["stripe-signature"];
-//   let event;
+// Store Order In Database
+export const storeOrder = async (req, res) => {
+  try {
+    const {
+      sellerId,
+      sellerName,
+      sellerEmail,
+      buyerEmail,
+      channelId,
+      channelName,
+      channelLink,
+      price,
+      paymentId,
+    } = req.body;
 
-//   try {
-//     event = stripe.webhooks.constructEvent(
-//       req.rawBody,
-//       sig,
-//       process.env.STRIPE_WEBHOOK_SECRET
-//     );
-//   } catch (err) {
-//     console.error("Webhook error:", err.message);
-//     return res.status(400).send(`Webhook Error: ${err.message}`);
-//   }
+    if (
+      !sellerId ||
+      !sellerName ||
+      !sellerEmail ||
+      !buyerEmail ||
+      !channelId ||
+      !channelName ||
+      !channelLink ||
+      !price ||
+      !paymentId
+    ) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Provide all required fields!" });
+    }
 
-//   // Handle the event
-//   if (event.type === "checkout.session.completed") {
-//     const session = event.data.object;
+    await orderModel.create({
+      sellerId,
+      sellerName,
+      sellerEmail,
+      buyerEmail,
+      channelId,
+      channelName,
+      channelLink,
+      price,
+      paymentId,
+    });
 
-//     try {
-//       // Retrieve payment details
-//       const paymentIntent = await stripe.paymentIntents.retrieve(
-//         session.payment_intent
-//       );
+    res.status(200).send({
+      success: true,
+      message: "Order is created!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(200).send({
+      success: false,
+      message: "Error in store order controller!",
+      error,
+    });
+  }
+};
 
-//       console.log(paymentIntent);
+// Get All Order
+export const getAllOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "All orders",
+      orders: orders,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(200).send({
+      success: false,
+      message: "Error in get all orders controller!",
+      error,
+    });
+  }
+};
 
-//       // Save payment details to the database
-//       const order = new OrderModel({
-//         sellerId: paymentIntent.metadata.sellerId,
-//         sellerName: paymentIntent.metadata.sellerName,
-//         sellerEmail: paymentIntent.metadata.sellerEmail,
-//         channelId: paymentIntent.metadata.channelId,
-//         channelName: paymentIntent.metadata.channelName,
-//         channelLink: paymentIntent.metadata.channelLink,
-//         paymentId: paymentIntent.id,
-//         price: paymentIntent.amount,
-//       });
-
-//       await order.save();
-//       console.log("Payment details saved:", order);
-//     } catch (error) {
-//       console.error("Error retrieving payment details:", error);
-//     }
-//   } else if (event.type === "invoice.payment_succeeded") {
-//     const invoice = event.data.object;
-
-//     try {
-//       // Retrieve payment details from the invoice
-//       const paymentIntent = await stripe.paymentIntents.retrieve(
-//         invoice.payment_intent
-//       );
-
-//       console.log(paymentIntent);
-
-//       // Save payment details to the database
-//       const order = new OrderModel({
-//         sellerId: paymentIntent.metadata.sellerId,
-//         sellerName: paymentIntent.metadata.sellerName,
-//         sellerEmail: paymentIntent.metadata.sellerEmail,
-//         channelId: paymentIntent.metadata.channelId,
-//         channelName: paymentIntent.metadata.channelName,
-//         channelLink: paymentIntent.metadata.channelLink,
-//         paymentId: paymentIntent.id,
-//         price: paymentIntent.amount,
-//       });
-
-//       await order.save();
-//       console.log("Payment details saved:", order);
-//     } catch (error) {
-//       console.error("Error retrieving payment details from invoice:", error);
-//     }
-//   }
-
-//   res.status(200).end();
-// };
+// Get Seller Order
+export const getSellerOrders = async (req, res) => {
+  try {
+    const sellerId = req.params.id;
+    const orders = await orderModel.find({ sellerId: sellerId });
+    res.status(200).send({
+      success: true,
+      message: "All orders",
+      orders: orders,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(200).send({
+      success: false,
+      message: "Error in get seller order controller!",
+      error,
+    });
+  }
+};

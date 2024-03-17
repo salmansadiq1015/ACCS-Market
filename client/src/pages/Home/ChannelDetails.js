@@ -81,6 +81,9 @@ export default function ChannelDetails() {
 
   // ---------------Handle Buy Channels-------------
   const makePayment = async () => {
+    if (!auth?.token) {
+      return toast.error("Login required to buy channel!");
+    }
     setPaymentLoad(true);
     const stripe = await loadStripe(
       "pk_test_51OKdAYHDam9TUVDQjZG6rTj0nzzrKcvaUui6kSk4ivuTObT42WJZEhrfj5UeIrbBVgnjAkH7iWkxSgPRvalzBrTz00FOa4YigN"
@@ -90,6 +93,7 @@ export default function ChannelDetails() {
       userId: channelData.userId,
       channelId: channelData._id,
       price: channelData.price,
+      buyerEmail: auth.user.email,
     };
 
     const headers = {
@@ -106,6 +110,11 @@ export default function ChannelDetails() {
       }
     );
     const session = await response.json();
+    const metaData = session.metaData;
+    localStorage.setItem(
+      "metaData",
+      JSON.stringify({ paymentId: session.id, metaData: metaData })
+    );
 
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
@@ -200,16 +209,18 @@ export default function ChannelDetails() {
                   </h3>
                   {/*  */}
                   <div className="flex items-center gap-6">
-                    <button
-                      className="text-[16px] border-2 flex items-center justify-center gap-1 border-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer text-fuchsia-500 transition-all duration-150 hover:text-white rounded-3xl py-2 px-5 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md "
-                      onClick={makePayment}
-                      disabled={paymentLoad}
-                    >
-                      Buy Channel{" "}
-                      {paymentLoad && (
-                        <BiLoaderCircle className="h-4 w-4 animate-spin text-green-500" />
-                      )}
-                    </button>
+                    {
+                      <button
+                        className="text-[16px] border-2 flex items-center justify-center gap-1 border-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer text-fuchsia-500 transition-all duration-150 hover:text-white rounded-3xl py-2 px-5 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md "
+                        onClick={makePayment}
+                        disabled={paymentLoad}
+                      >
+                        Buy Channel{" "}
+                        {paymentLoad && (
+                          <BiLoaderCircle className="h-4 w-4 animate-spin text-green-500" />
+                        )}
+                      </button>
+                    }
                     <button
                       className="text-[16px] border-2 border-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer text-fuchsia-500 transition-all duration-150 hover:text-white rounded-3xl py-2 px-5 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md "
                       onClick={() => {
@@ -259,11 +270,9 @@ export default function ChannelDetails() {
                     <h3 className="text-[17px]  font-semibold text-gray-800 w-[10rem] ">
                       {channelData?.userName}
                     </h3>
-                   <div className=" w-full">
-                       <span className="text-[13px]  py-1 px-3 px-[1rem] flex items-center justify-center text-white border-gray-100 mb-[3px] rounded-3xl">
+                    <span className="text-[13px]  py-1 px-3 w-full  flex items-center justify-center text-black border-gray-100 mb-[3px] rounded-3xl">
                       Rating: {averageRating}
                     </span>
-                      </div>
                   </div>
                 </div>
                 <button

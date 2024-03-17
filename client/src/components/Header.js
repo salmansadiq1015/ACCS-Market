@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ import Verification from "./auth/Verification";
 import { useAuth } from "../context/authContext";
 import { MdFavorite } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
+import axios from "axios";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -31,6 +32,34 @@ export default function Header() {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("auth");
   };
+
+  const [price, setPrice] = useState(0);
+
+  const getOrders = async () => {
+    if (!auth.token) {
+      return;
+    }
+
+    try {
+      const { data } = await axios.get(
+        `http://localhost:5000/api/v1/orders/seller-orders/${auth.user.id}`
+      );
+      if (data) {
+        const sum = data.orders.reduce(
+          (acc, order) => acc + parseFloat(order.price),
+          0
+        );
+        setPrice(sum);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getOrders();
+    // eslint-disable-next-line
+  }, [auth]);
 
   return (
     <>
@@ -151,7 +180,33 @@ export default function Header() {
                                     router(`/channels/${auth?.user?.id}`)
                                   }
                                 >
-                                  Your Selling Channel
+                                  My Selling Channels
+                                </span>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <span
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                                  )}
+                                  // onClick={() => router(`/balance`)}
+                                >
+                                  Balance:${price.toLocaleString()}
+                                </span>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <span
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                                  )}
+                                  onClick={() => router(`/deals`)}
+                                >
+                                  My Deal
                                 </span>
                               )}
                             </Menu.Item>

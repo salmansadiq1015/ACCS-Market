@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
   const [selectedChat, setSelectedChat] = useState();
   const [notification, setNotification] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [paymentDetails, setPaymentDetails] = useState([]);
 
   // check token
   axios.defaults.headers.common["Authorization"] = auth?.token;
@@ -40,6 +41,12 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const metadata = JSON.parse(localStorage.getItem("metaData")) || [];
+    if (metadata) {
+      setPaymentDetails(metadata);
+    }
+  }, []);
   return (
     <AuthContext.Provider
       value={{
@@ -59,6 +66,8 @@ const AuthProvider = ({ children }) => {
         setNotification,
         onlineUsers,
         setOnlineUsers,
+        paymentDetails,
+        setPaymentDetails,
       }}
     >
       {children}

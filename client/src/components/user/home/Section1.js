@@ -1,9 +1,9 @@
 import React from "react";
-import { useAuth } from "../../../context/authContext";
 import { GoArrowRight } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 export default function Section1() {
-  const { auth } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className=" relative w-full min-h-screen pt-8 px-2 pb-5 sm:px-4 bg-gradient-to-br  from-fuchsia-950 to-gray-950">
       <div className="absolute top-3 right-2 w-[13rem] h-[13rem] borderRadius bg-fuchsia-600/30 animate-spin z-20"></div>
@@ -33,8 +33,11 @@ export default function Section1() {
             commerce.
           </p>
           <div className="flex items-center justify-center mt-4">
-            <button className="text-[16px] bg-fuchsia-500 flex items-center justify-center gap-1 hover:bg-fuchsia-600 cursor-pointer text-white rounded-3xl py-2 px-[2rem] shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[1] filter hover:drop-shadow-md ">
-              {!auth.token ? "Login" : "Get Started"}{" "}
+            <button
+              className="text-[16px] bg-fuchsia-500 flex items-center justify-center gap-1 hover:bg-fuchsia-600 cursor-pointer text-white rounded-3xl py-2 px-[2rem] shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[1] filter hover:drop-shadow-md "
+              onClick={() => navigate("/all-channels")}
+            >
+              Get Started
               <GoArrowRight className="h-6 w-6 text-white" />
             </button>
           </div>

@@ -14,9 +14,14 @@ import axios from "axios";
 import { MdShop2 } from "react-icons/md";
 import { AiOutlineRead } from "react-icons/ai";
 import ChannelAnalytics from "../../components/admin/Analytics/ChannelAnalytics";
+import { useAuth } from "../../context/authContext";
+import SubscriptionAnalytics from "../../components/admin/Analytics/SubscriptionAnalytics";
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
+  const { auth } = useAuth();
+  const [price, setPrice] = useState(0);
+  const [channels, setChannels] = useState([]);
   // Get Users
   const getAllUsers = async () => {
     try {
@@ -33,6 +38,60 @@ export default function Dashboard() {
   useEffect(() => {
     getAllUsers();
     // eslint-disable-next-line
+  }, []);
+
+  // Get Order
+
+  const getOrders = async () => {
+    if (!auth.token) {
+      return;
+    }
+
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/orders/all-orders`
+      );
+      if (data) {
+        const sum = data.orders.reduce(
+          (acc, order) => acc + parseFloat(order.price),
+          0
+        );
+        setPrice(sum);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getOrders();
+    // eslint-disable-next-line
+  }, [auth]);
+
+  function formatPrice(price) {
+    if (price >= 1000000) {
+      return `$${(price / 1000000).toFixed(1)}M`;
+    } else if (price >= 1000) {
+      return `$${(price / 1000).toFixed(1)}K`;
+    } else {
+      return `$${price}`;
+    }
+  }
+
+  // Get All Channels Data
+  const getChannels = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/get-channels`
+      );
+      setChannels(data?.channels || []);
+    } catch (error) {
+      console.error("Error fetching channels:", error);
+    }
+  };
+
+  useEffect(() => {
+    getChannels();
   }, []);
 
   return (
@@ -57,8 +116,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-4 justify-between sm:justify-normal  mt-4">
                 <div className="flex flex-col gap-4">
                   <h1 className="text-3xl font-[500] text-fuchsia-600">
-                    {" "}
-                    $24.8k
+                    {formatPrice(price)}
                   </h1>
 
                   <button className=" flex items-center gap-2 justify-center bg-fuchsia-500 py-2 px-[1.1rem] font-medium rounded-md shadow shadow-gray-300 text-white  cursor-pointer hover:scale-[1.01] active:scale-[1]">
@@ -123,7 +181,7 @@ export default function Dashboard() {
                       Channels
                     </h3>
                     <span className="text-[16px] font-medium text-pink-600 ">
-                      10k
+                      {channels?.length}
                     </span>
                   </div>
                 </Link>
@@ -207,7 +265,7 @@ export default function Dashboard() {
                   <GrAnalytics className=" text-3xl sm:text-4xl text-green-500 " />
                   Subscription Analytics
                 </h3>
-                {/* <SubscriptionAnalytics /> */}
+                <SubscriptionAnalytics />
               </div>
               <div className="md:flex-[.3] py-4 px-3 h-[17rem] flex-col gap-4 bg-gray-100  rounded-md shadow shadow-gray-300 dark:shadow-gray-700 cursor-pointer hover:scale-[1.01] active:scale-[1]">
                 <h2
@@ -223,7 +281,7 @@ export default function Dashboard() {
                 <p className="mt-1">Last Month Subscription Revenue ⚡</p>
                 <div className="flex flex-row ">
                   <h3 className="text-2xl ml-2 sm:text-3xl mt-[1rem] ">
-                    $24,8k
+                    {formatPrice(price)}
                   </h3>
                   <img
                     src="/money.png"

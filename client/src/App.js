@@ -21,7 +21,13 @@ import LayoutSetting from "./pages/admin/LayoutSetting";
 import Chat from "./pages/user/Chats/Chat";
 import UserAnalytics from "./pages/admin/UserAnalytics";
 import ChannelsAnalytics from "./pages/admin/ChannelsAnalytics";
-import SellerAnalytics from "./pages/admin/SellerAnalytics";
+import Deals from "./pages/user/Deals";
+import Balance from "./pages/user/Balance";
+import SubscriptionAnalytic from "./pages/admin/SubscriptionAnalytic";
+import Blogs from "./pages/admin/Blogs";
+import Subscription from "./pages/admin/Subscription";
+import UpdateAdminChannel from "./pages/admin/UpdateAdminChannel";
+import AllChannels from "./components/user/home/AllChannels";
 
 function App() {
   return (
@@ -41,6 +47,9 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/comments" element={<Comments />} />
           <Route path="/Features" element={<Features />} />
+          <Route path="/deals" element={<Deals />} />
+          <Route path="/balance" element={<Balance />} />
+          <Route path="/all-channels" element={<AllChannels />} />
           {/* Chats */}
           <Route path="/chats/:id" element={<Chat />} />
 
@@ -50,13 +59,19 @@ function App() {
           <Route path="/admin/channels" element={<Channels />} />
           <Route path="/admin/layout-settings" element={<LayoutSetting />} />
           <Route path="/admin/user-analytics" element={<UserAnalytics />} />
+          <Route path="/admin/blogs" element={<Blogs />} />
+          <Route path="/admin/subscription" element={<Subscription />} />
+          <Route
+            path="/admin/Update/Channel/:id"
+            element={<UpdateAdminChannel />}
+          />
           <Route
             path="/admin/channel-analytics"
             element={<ChannelsAnalytics />}
           />
           <Route
-            path="/admin/sellers-analytics"
-            element={<SellerAnalytics />}
+            path="/admin/subscription-analytics"
+            element={<SubscriptionAnalytic />}
           />
         </Routes>
         <Toaster />

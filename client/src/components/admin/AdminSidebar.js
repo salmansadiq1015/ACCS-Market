@@ -6,9 +6,8 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { FaUsers } from "react-icons/fa";
 import { GrChannel } from "react-icons/gr";
 import { BsFileEarmarkText } from "react-icons/bs";
-import { BsBell } from "react-icons/bs";
+// import { BsBell } from "react-icons/bs";
 import { BsCashCoin } from "react-icons/bs";
-import { LiaUsersSolid } from "react-icons/lia";
 import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import { LiaUsersCogSolid } from "react-icons/lia";
 import { TbFileAnalytics } from "react-icons/tb";
@@ -180,7 +179,7 @@ export default function AdminSidebar({ hide, setHide }) {
             </div>
           </div>
           {/* 4 */}
-          <div
+          {/* <div
             className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/sellers");
@@ -214,7 +213,7 @@ export default function AdminSidebar({ hide, setHide }) {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
           {/* 5 */}
           <div
             className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
@@ -252,7 +251,7 @@ export default function AdminSidebar({ hide, setHide }) {
             </div>
           </div>
           {/* 6 */}
-          <div
+          {/* <div
             className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
               router("/admin/notifications");
@@ -286,7 +285,7 @@ export default function AdminSidebar({ hide, setHide }) {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
           {/* 7 */}
           <div
             className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
@@ -408,33 +407,39 @@ export default function AdminSidebar({ hide, setHide }) {
           <div
             className=" mainbtn relative h-[2.6rem] rounded-r-3xl cursor-pointer shadow-sm shadow-gray-300 bg-gray-200  filter drop-shadow-md  overflow-hidden"
             onClick={() => {
-              router("/admin/sellers-analytics");
+              router("/admin/subscription-analytics");
             }}
           >
             <div
               className="adminbtn absolute h-full  sidebtn z-[20]"
               style={{
-                width: active === "sellers-analytics" && "100%",
+                width: active === "subscription-analytics" && "100%",
                 background: `rgb(2, 68, 2)`,
               }}
             ></div>
             <div className="relative w-full h-full flex items-center px-2 z-30 bg-transparent">
               {hide ? (
                 <TbFileAnalytics
-                  className="h-7 w-7 cursor-pointer ml-2"
-                  style={{ color: active === "sellers-analytics" && "#fff" }}
+                  className="h-7 w-7 cursor-pointer ml-1"
+                  style={{
+                    color: active === "subscription-analytics" && "#fff",
+                  }}
                 />
               ) : (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
                   <TbFileAnalytics
                     className="h-6 w-6 cursor-pointer ml-2"
-                    style={{ color: active === "sellers-analytics" && "#fff" }}
+                    style={{
+                      color: active === "subscription-analytics" && "#fff",
+                    }}
                   />
                   <span
                     className="text-[16px] font-[400] "
-                    style={{ color: active === "sellers-analytics" && "#fff" }}
+                    style={{
+                      color: active === "subscription-analytics" && "#fff",
+                    }}
                   >
-                    Sellers Analytics
+                    Subscription Analytic
                   </span>
                 </div>
               )}

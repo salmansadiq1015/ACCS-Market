@@ -45,7 +45,7 @@ export default function UserAnalytics() {
   const minValue = 0;
   return (
     <Layout>
-      <div className="w-full h-[89%]  py-7 px-3 sm:px-5 overflow-y-auto message">
+      <div className="w-full h-[89%]  py-7 px-2 sm:px-5 overflow-y-auto message">
         {loading ? (
           <Loader />
         ) : (
@@ -65,10 +65,10 @@ export default function UserAnalytics() {
             <hr className="my-3 h-[2px] bg-gray-300" />
 
             <div className="w-full h-[90%] flex items-center justify-center">
-              <ResponsiveContainer width="90%" height="80%">
+              <ResponsiveContainer width="98%" height="80%">
                 <AreaChart
                   data={analyticsData}
-                  className="top-4 right-30 left-0 bottom-0"
+                  className="top-4 right-5 left-0 bottom-0"
                 >
                   <XAxis dataKey={"name"} />
                   <YAxis domain={[minValue, "auto"]} />

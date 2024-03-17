@@ -49,7 +49,7 @@ export default function ChannelsAnalytics() {
 
   return (
     <Layout>
-      <div className="w-full h-[89%]  py-7 px-3 sm:px-5 overflow-y-auto message">
+      <div className="w-full h-[89%]  py-7 px-2 sm:px-5 overflow-y-auto message">
         {loading ? (
           <Loader />
         ) : (
@@ -62,23 +62,23 @@ export default function ChannelsAnalytics() {
                   textShadow: "-.1px 1px 0px #ccc",
                 }}
               >
-                Lead Analytics
+                Channels Analytics
               </h1>
               <p className="text-[15px]">Last 12 months analytics data</p>
             </div>
             <hr className="my-3 h-[2px] bg-gray-300" />
 
             <div className="w-full h-[90%] flex items-center justify-center">
-              <ResponsiveContainer width="90%" height="80%">
+              <ResponsiveContainer width="98%" height="80%">
                 <ComposedChart
                   data={analyticsData}
                   width={500}
                   height={400}
                   margin={{
                     top: 20,
-                    right: 80,
+                    right: 5,
                     bottom: 20,
-                    left: 20,
+                    left: 5,
                   }}
                 >
                   <CartesianGrid stroke={"#047857"} />
