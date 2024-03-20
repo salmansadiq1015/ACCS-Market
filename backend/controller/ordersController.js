@@ -263,3 +263,65 @@ export const getSellerOrders = async (req, res) => {
     });
   }
 };
+
+// Update Payment Status
+export const updatePaymentStatus = async (req, res) => {
+  try {
+    const { paymentStatus } = req.body;
+    const orderId = req.params.id;
+    if (!paymentStatus) {
+      return res.status(400).send({
+        success: false,
+        message: "Payment status is required!",
+      });
+    }
+
+    const order = await orderModel.findByIdAndUpdate(
+      orderId,
+      { $set: { paymentStatus: paymentStatus } },
+      { new: true }
+    );
+
+    res.status(200).send({
+      success: true,
+      message: "Payment status updated!",
+      order: order,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while Update payment status!",
+      error,
+    });
+  }
+};
+
+// Delete Order
+export const deleteOrder = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+
+    const order = await orderModel.findById(orderId);
+    if (!order) {
+      return res.status(400).send({
+        success: false,
+        message: "Order not found!",
+      });
+    }
+
+    await orderModel.findByIdAndDelete({ _id: order._id });
+
+    res.status(200).send({
+      success: true,
+      message: "Order deleted successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while delete order!",
+      error,
+    });
+  }
+};

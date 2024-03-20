@@ -50,7 +50,7 @@ export default function AdminSidebar({ hide, setHide }) {
         <div
           className={`relative ${
             hide ? "w-[3rem] h-[3rem]" : "w-[4rem] h-[4rem]"
-          } rounded-full object-fill mt-2 border-[2px] shadow-md shadow-gray-300  filter drop-shadow-md active:scale-[1.03] select-none`}
+          } rounded-full object-fill overflow-hidden mt-2 border-[2px] shadow-md shadow-gray-300  filter drop-shadow-md active:scale-[1.03] select-none`}
           style={{
             border: `2px solid rgb(2, 68, 2)`,
           }}
@@ -58,8 +58,9 @@ export default function AdminSidebar({ hide, setHide }) {
           <img
             src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${auth?.user?.id}`}
             alt="Admin"
-            layout="fill"
-            className="rounded-full"
+            className={`rounded-full ${
+              hide ? "w-[3rem] h-[3rem]" : "w-[4rem] h-[4rem]"
+            }`}
             loader={loaderProp}
           />
         </div>

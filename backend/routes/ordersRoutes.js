@@ -1,9 +1,11 @@
 import express from "express";
 import {
   createOrder,
+  deleteOrder,
   getAllOrders,
   getSellerOrders,
   storeOrder,
+  updatePaymentStatus,
   webhookHandler,
 } from "../controller/ordersController.js";
 
@@ -23,5 +25,11 @@ router.get("/all-orders", getAllOrders);
 
 // Seller Orders
 router.get("/seller-orders/:id", getSellerOrders);
+
+// Update Order Status
+router.put("/order-status/:id", updatePaymentStatus);
+
+// Delete Order
+router.delete("/order-delete/:id", deleteOrder);
 
 export default router;

@@ -74,7 +74,7 @@ export default function UpdateProfile({ setRoute, setOpen }) {
             />
           ) : (
             <img
-              src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${auth?.user.id}`}
+              src={`/api/v1/user/user-avatar/${auth?.user.id}`}
               layout="fill"
               objectFit="fill"
               alt="Profile"

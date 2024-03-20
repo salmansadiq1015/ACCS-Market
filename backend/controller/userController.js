@@ -45,7 +45,12 @@ export const register = async (req, res) => {
       });
     }
 
-    const user = { name, email, password, avatar };
+    const user = {
+      name,
+      email,
+      password,
+      avatar,
+    };
 
     const activationToken = await createActivationToken(user);
     const activationCode = activationToken.activationCode;
@@ -134,6 +139,11 @@ export const verificationUser = async (req, res) => {
     // Hashed Password
     const handedPassword = await hashPassword(password);
 
+    // Default Avatar
+    const defaultAvatarPath = "../assets/profile1.jpeg";
+    const defaultAvatarBuffer = fs.readFileSync(defaultAvatarPath);
+    const defaultAvatarBase64 = defaultAvatarBuffer.toString("base64");
+
     const user = new userModel({
       name,
       email,
@@ -144,6 +154,7 @@ export const verificationUser = async (req, res) => {
       user.avatar.data = fs.readFileSync(avatar.path);
       user.avatar.contentType = avatar.type;
     }
+
     await user.save();
 
     res.status(200).send({

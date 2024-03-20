@@ -64,6 +64,22 @@ export default function ChatSection() {
   }, [selectedChat]);
 
   // Send Message Socket
+  // useEffect(() => {
+  //   socket.on("message received", (newMessageReceived) => {
+  //     if (
+  //       !selectedChatCompare ||
+  //       selectedChatCompare._id !== newMessageReceived.chat._id
+  //     ) {
+  //       // Give notification
+  //       if (!notification.includes(newMessageReceived)) {
+  //         setNotification([...notification, newMessageReceived]);
+  //       }
+  //     } else {
+  //       setMessages([...messages, newMessageReceived]);
+  //     }
+  //   });
+  // });
+
   useEffect(() => {
     socket.on("message received", (newMessageReceived) => {
       if (
@@ -71,25 +87,15 @@ export default function ChatSection() {
         selectedChatCompare._id !== newMessageReceived.chat._id
       ) {
         // Give notification
-        if (!notification.includes(newMessageReceived)) {
+        if (!notification.some((msg) => msg._id === newMessageReceived._id)) {
           setNotification([...notification, newMessageReceived]);
         }
       } else {
-        setMessages([...messages, newMessageReceived]);
+        setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
       }
     });
-    // ------------
-    // socket.on("message received", (newMessageReceived) => {
-    //   if (selectedChat?._id === newMessageReceived.chat._id) {
-    //     setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
-    //   } else {
-    //     // Give notification
-    //     if (!notification.includes(newMessageReceived)) {
-    //       setNotification([...notification, newMessageReceived]);
-    //     }
-    //   }
-    // });
-  });
+    // eslint-disable-next-line
+  }, [notification, selectedChatCompare]);
 
   // Upload Image In CLoud
 
@@ -217,14 +223,14 @@ export default function ChatSection() {
                   // JSX code
                   <div
                     className={`flex ${
-                      mess?.sender._id === auth?.user?.id
+                      mess?.sender?._id === auth?.user?.id
                         ? "justify-end"
                         : "justify-start"
                     }`}
                     key={mess._id}
                   >
                     {/* Conditional rendering of image based on sender */}
-                    {mess?.sender._id !== auth?.user?.id && (
+                    {mess?.sender?._id !== auth?.user?.id && (
                       <span>
                         <img
                           src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${mess?.sender?._id}`}
@@ -238,7 +244,7 @@ export default function ChatSection() {
                     {mess.content.startsWith("http") ? (
                       <div className="w-[10rem] h-[9rem] bg-gray-950/50 rounded-lg overflow-hidden shadow-md border mt-[1.8rem] ">
                         <img
-                          src={mess.content}
+                          src={mess?.content}
                           alt="Images"
                           className="w-full h-full object-fill"
                         />
@@ -246,18 +252,18 @@ export default function ChatSection() {
                     ) : (
                       <span
                         className={`m-2  ${
-                          mess?.sender._id !== auth?.user?.id
+                          mess?.sender?._id !== auth?.user?.id
                             ? "rounded-tr-xl rounded-br-xl rounded-bl-xl"
                             : "rounded-tl-xl rounded-br-xl rounded-bl-xl"
                         }  text-white max-w-[75%] gap-2 w-fit py-1 px-2 mt-[2rem] shadow-md shadow-gray-300 filter drop-shadow-md cursor-pointer`}
                         style={{
                           backgroundColor: `${
-                            mess?.sender._id === auth?.user?.id
+                            mess?.sender?._id === auth?.user?.id
                               ? "#0091ff"
                               : "#fff"
                           }`,
                           color: `${
-                            mess?.sender._id === auth?.user?.id
+                            mess?.sender?._id === auth?.user?.id
                               ? "white"
                               : "#111"
                           }`,
@@ -288,7 +294,7 @@ export default function ChatSection() {
                     </span> */}
 
                     {/* Conditional rendering of image based on sender */}
-                    {mess?.sender._id === auth?.user?.id && (
+                    {mess?.sender?._id === auth?.user?.id && (
                       <span>
                         <img
                           src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${mess?.sender?._id}`}

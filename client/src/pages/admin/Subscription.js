@@ -16,13 +16,13 @@ export default function Subscription() {
   const navigate = useNavigate();
 
   // Get All Channels Data
-  const getChannels = async () => {
+  const getOrders = async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/v1/channel/get-channels`
+        `${process.env.REACT_APP_API_URL}/api/v1/orders/all-orders`
       );
-      setChannelData(data?.channels || []);
+      setChannelData(data?.orders || []);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching channels:", error);
@@ -31,17 +31,38 @@ export default function Subscription() {
   };
 
   useEffect(() => {
-    getChannels();
+    getOrders();
   }, []);
+
+  //------------Handle Update-------->
+  const handleUpdate = async (id, updatedPaymentStatus) => {
+    if (!id) {
+      return toast.error("Order id is required");
+    }
+    try {
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/v1/orders/order-status/${id}`,
+        { paymentStatus: updatedPaymentStatus }
+      );
+
+      if (data?.success) {
+        getOrders();
+        toast.success("Payment status updated successfully!");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+  };
 
   // Handle Delete
   const handleDelete = async (id) => {
     try {
       const { data } = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/v1/channel/delete/channels/${id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/orders/order-delete/${id}`
       );
       if (data) {
-        getChannels();
+        getOrders();
         toast.success(data?.message, { duration: 3000 });
       }
     } catch (error) {
@@ -53,27 +74,11 @@ export default function Subscription() {
   // Display Data
 
   const columns = [
-    { field: "id", headerName: "Channel ID", flex: 0.2 },
-    {
-      field: "avatar",
-      headerName: "Channel Logo",
-      flex: 0.3,
-      renderCell: (params) => {
-        return (
-          <>
-            <img
-              src={params?.row.avatar ? params?.row.avatar : "/profile.jpeg"}
-              layout="fill"
-              objectFit="contain"
-              className="w-[2.5rem] h-[2.5rem] rounded-full border border-gray-400 shadow-md shadow-gray-300"
-              alt="Icon"
-            />
-          </>
-        );
-      },
-    },
+    { field: "id", headerName: "Channel ID", flex: 0.3 },
+
     { field: "channelName", headerName: "Channel Name", flex: 0.4 },
-    { field: "sellerName", headerName: "Seller Name", flex: 0.4 },
+    { field: "sellerName", headerName: "Seller Name", flex: 0.3 },
+    { field: "sellerEmail", headerName: "Seller Email", flex: 0.4 },
     {
       field: "price",
       headerName: "Price",
@@ -82,9 +87,36 @@ export default function Subscription() {
         <div style={{ whiteSpace: "nowrap" }}>$ {params.value}</div>
       ),
     },
+    { field: "parmentId", headerName: "Payment Id", flex: 0.3 },
     { field: "channelLink", headerName: "Channel Link", flex: 0.3 },
-    { field: "sellerId", headerName: "Seller Id", flex: 0.2 },
-    { field: "created_at", headerName: "Created_At", flex: 0.2 },
+    { field: "sellerId", headerName: "Seller Id", flex: 0.3 },
+    { field: "buyerEmail", headerName: "Buyer Email", flex: 0.3 },
+    { field: "created_at", headerName: "Created_At", flex: 0.3 },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 0.5,
+      renderCell: (params) => (
+        console.log(params),
+        (
+          <div className="">
+            <select
+              value={params.row.paymentStatus}
+              onChange={(e) => {
+                const updatedPaymentStatus = e.target.value;
+                handleUpdate(params.row.id, updatedPaymentStatus);
+              }}
+              className="w-[6rem] h-[2.2rem] rounded-md cursor-pointer border border-gray-400"
+            >
+              <option value="">Status</option>
+              <option value="Processing">Processing</option>
+              <option value="Send Successfully">Send Successfully</option>
+              <option value="Failed">Failed</option>
+            </select>
+          </div>
+        )
+      ),
+    },
     {
       field: "actions",
       headerName: "Actions",
@@ -112,12 +144,15 @@ export default function Subscription() {
         const formattedDate = format(new Date(chan?.createdAt), "dd-MM-yyyy");
         const empObject = {
           id: chan?._id,
-          avatar: chan?.logo,
-          channelName: chan?.name,
-          sellerName: chan?.userName,
+          channelName: chan?.channelName,
+          sellerName: chan?.sellerName,
+          sellerEmail: chan?.sellerEmail,
+          parmentId: chan?.paymentId,
           price: chan?.price,
           channelLink: chan?.channelLink,
-          sellerId: chan?.userId,
+          sellerId: chan?.sellerId,
+          buyerEmail: chan?.buyerEmail,
+          paymentStatus: chan?.paymentStatus,
           created_at: formattedDate,
         };
 

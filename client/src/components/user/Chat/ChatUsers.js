@@ -8,10 +8,11 @@ import moment from "moment";
 export default function ChatUsers({ setSelected }) {
   const [active, setActive] = useState("");
   const [admin, setAdmin] = useState([]);
-  const { auth, setSelectedChat, chats, setChats } = useAuth();
+  const { auth, setSelectedChat, chats, setChats, notification } = useAuth();
   const userId = auth?.user?.id;
   const [loading, setLoading] = useState(false);
   const [chatLoad, setChatLoad] = useState(false);
+  console.log("Notification:", notification);
 
   // Get Admin
   const getAdmin = async () => {
@@ -120,7 +121,7 @@ export default function ChatUsers({ setSelected }) {
           <div className="flex flex-col gap-3 overflow-auto  pb-8 pt-2 scroll px-2 ">
             {admin?.map((chat) => (
               <>
-                {auth?.user?.id !== chat?._id && (
+                {chat && auth?.user?.id !== chat?._id && (
                   <div
                     className={`flex items-center py-1 px-2 gap-2  shadow-md hover:shadow-xl cursor-pointer border border-sky-500 rounded-md ${
                       chat?._id === active
@@ -129,8 +130,8 @@ export default function ChatUsers({ setSelected }) {
                     } `}
                     key={chat._id}
                     onClick={() => {
-                      setActive(chat._id);
-                      chatHandler(chat._id);
+                      setActive(chat?._id);
+                      chatHandler(chat?._id);
                     }}
                   >
                     <img
@@ -144,7 +145,7 @@ export default function ChatUsers({ setSelected }) {
                         {chat?.name}
                       </span>
                     </div>
-                    {loading && chat._id === active && (
+                    {loading && chat?._id === active && (
                       <span className="ml-2">
                         <TbLoader3 className="h-5 w-5 text-fuchsia-600 animate-spin" />
                       </span>
@@ -170,9 +171,9 @@ export default function ChatUsers({ setSelected }) {
                     ? "bg-sky-500 text-white shadow-2xl transform scale-[1.02] transition-all duration-300 ease-in-out"
                     : "bg-zinc-100 text-black"
                 } `}
-                key={chat._id}
+                key={chat?._id}
                 onClick={() => {
-                  setActive(chat._id);
+                  setActive(chat?._id);
                   setSelected(true);
                   setSelectedChat(chat);
                 }}
@@ -181,9 +182,9 @@ export default function ChatUsers({ setSelected }) {
                   <div className="flex items-center gap-1">
                     <img
                       src={
-                        chat?.users[0]._id === auth?.user?.id
-                          ? `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?.users[1]._id}`
-                          : `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?.users[0]._id}`
+                        chat?.users[0]?._id === auth?.user?.id
+                          ? `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?.users[1]?._id}`
+                          : `${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?.users[0]?._id}`
                       }
                       alt="avatar"
                       className="w-[2.5rem] h-[2.5rem] rounded-full border-2 border-sky-500 shadow-md shadow-gray-500 filter drop-shadow-md "
@@ -205,7 +206,7 @@ export default function ChatUsers({ setSelected }) {
                   </span>
                 </div>
 
-                {chatLoad && chat._id === active && (
+                {chatLoad && chat?._id === active && (
                   <span className="ml-2">
                     <TbLoader3 className="h-5 w-5 text-fuchsia-600 animate-spin" />
                   </span>

@@ -42,7 +42,7 @@ export default function Header() {
 
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/v1/orders/seller-orders/${auth.user.id}`
+        `${process.env.REACT_APP_API_URL}/api/v1/orders/seller-orders/${auth.user.id}`
       );
       if (data) {
         const sum = data.orders.reduce(

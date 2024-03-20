@@ -50,7 +50,27 @@ export default function Deals() {
         <div style={{ whiteSpace: "nowrap" }}>$ {params.value}</div>
       ),
     },
-    { field: "channelLink", headerName: "ChannelLink", flex: 0.3 },
+    { field: "channelLink", headerName: "ChannelLink", flex: 0.4 },
+    {
+      field: "paymentStatus",
+      headerName: "Payment Status",
+      flex: 0.4,
+      renderCell: (params) => (
+        <div
+          className={`text-center py-1 px-2 rounded-[2rem] text-white ${
+            params.row.paymentStatus === "Processing"
+              ? "bg-yellow-500"
+              : params.row.paymentStatus === "Send Successfully"
+              ? "bg-green-500"
+              : params.row.paymentStatus === "Failed"
+              ? "bg-red-500"
+              : ""
+          }`}
+        >
+          {params.row.paymentStatus}
+        </div>
+      ),
+    },
     { field: "created_at", headerName: "Created_At", flex: 0.3 },
   ];
 
@@ -67,6 +87,7 @@ export default function Deals() {
           paymentId: chan?.paymentId,
           price: chan?.price,
           channelLink: chan?.channelLink,
+          paymentStatus: chan?.paymentStatus,
           created_at: formattedDate,
         };
 
