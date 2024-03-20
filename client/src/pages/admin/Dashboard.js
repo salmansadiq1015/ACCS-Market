@@ -257,7 +257,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row flex-1 flex-wrap gap-4 mt-[2rem]">
-              <div className="flex-[1] md:flex-[.7] h-[22rem] py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300  cursor-pointer hover:scale-[1.01] active:scale-[1] ">
+              <div className="flex-[1] md:flex-[.7] min-h-[22rem] py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300  cursor-pointer hover:scale-[1.01] active:scale-[1] ">
                 <h3
                   className="text-xl sm:text-2xl flex items-center gap-2 font-semibold text-gray-800 
                 "

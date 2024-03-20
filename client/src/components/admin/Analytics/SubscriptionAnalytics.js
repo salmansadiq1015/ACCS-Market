@@ -55,7 +55,11 @@ export default function SubscriptionAnalytics() {
         </div>
       ) : (
         <div className="w-full  h-[100%] flex items-center justify-center ">
-          <ResponsiveContainer width="100%" height="90%">
+          <ResponsiveContainer
+            width="100%"
+            height="90%"
+            className="min-h-[19rem]"
+          >
             <ComposedChart
               data={analyticsData}
               width={600}

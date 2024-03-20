@@ -97,24 +97,21 @@ export default function Subscription() {
       headerName: "Status",
       flex: 0.5,
       renderCell: (params) => (
-        console.log(params),
-        (
-          <div className="">
-            <select
-              value={params.row.paymentStatus}
-              onChange={(e) => {
-                const updatedPaymentStatus = e.target.value;
-                handleUpdate(params.row.id, updatedPaymentStatus);
-              }}
-              className="w-[6rem] h-[2.2rem] rounded-md cursor-pointer border border-gray-400"
-            >
-              <option value="">Status</option>
-              <option value="Processing">Processing</option>
-              <option value="Send Successfully">Send Successfully</option>
-              <option value="Failed">Failed</option>
-            </select>
-          </div>
-        )
+        <div className="">
+          <select
+            value={params.row.paymentStatus}
+            onChange={(e) => {
+              const updatedPaymentStatus = e.target.value;
+              handleUpdate(params.row.id, updatedPaymentStatus);
+            }}
+            className="w-[6rem] h-[2.2rem] rounded-md cursor-pointer border border-gray-400"
+          >
+            <option value="">Status</option>
+            <option value="Processing">Processing</option>
+            <option value="Send Successfully">Send Successfully</option>
+            <option value="Failed">Failed</option>
+          </select>
+        </div>
       ),
     },
     {
@@ -163,17 +160,17 @@ export default function Subscription() {
 
   return (
     <Layout>
-      <div className=" w-full h-[85vh] sm:h-[88.5vh] overflow-y-auto  pb-[3rem] px-4 mt-3">
+      <div className=" w-full h-[85vh] sm:h-[88.5vh] overflow-y-auto hidden1 pb-[3rem] px-4 mt-3">
         <h1 className="text-3xl sm:text-4xl font-bold  ">Subscriptions</h1>
 
-        <div className="w-full h-full overflow-x-auto ">
+        <div className="w-full h-full overflow-x-auto hidden1 ">
           {/* Employee Data */}
           {loading ? (
             <div className="">
               <Loader />
             </div>
           ) : (
-            <div className="w-full pb-[1rem] min-w-[700px] ">
+            <div className="w-full pb-[1rem] min-w-[800px] ">
               <Box
                 m="40px 0 0 0"
                 height="68vh"

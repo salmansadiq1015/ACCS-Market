@@ -27,6 +27,9 @@ export default function Header() {
   const [profileOpen, setProfileOpen] = useState(false);
   const { auth, setAuth } = useAuth();
   const router = useNavigate();
+  const [logo, setLogo] = useState([]);
+
+  console.log("lo:", logo);
 
   const handleLogout = () => {
     setAuth({ ...auth, user: null, token: "" });
@@ -61,6 +64,23 @@ export default function Header() {
     // eslint-disable-next-line
   }, [auth]);
 
+  // Get FAQ
+  const getLogo = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/layout/get-layouts/Logo`
+      );
+      console.log(data);
+      setLogo(data?.layoutData?.logo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getLogo();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-950 h-[4rem] relative z-[999]">
@@ -75,8 +95,8 @@ export default function Header() {
                     onClick={() => router("/")}
                   >
                     <img
-                      className="h-10 w-auto flex  sm:hidden"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      className="h-10 w-auto mr-[1rem] rounded-full"
+                      src={logo?.logoImage}
                       alt="Your Company"
                     />
                     <h1 className="text-3xl hidden sm:flex font-bold text-white ">

@@ -137,9 +137,7 @@ export default function LayoutSetting() {
         <div className="flex flex-col gap-4 mt-[2rem]">
           {/* Logo Setting */}
           <div className="">
-            <h3 className="text-xl font-[600] text-black dark:text-white">
-              Modify Logo
-            </h3>
+            <h3 className="text-xl font-[600] text-black ">Modify Logo</h3>
             <hr className="my-3 h-[1px] bg-gray-300" />
             <label className="flex items-center gap-4">
               <input
@@ -159,7 +157,7 @@ export default function LayoutSetting() {
               </div>
               {imageUrl && (
                 <button
-                  className="text-[15px] w-[4.3rem] h-[2.1rem] text-white bg-green-500 cursor-pointer flex items-center justify-center rounded-md hover:shadow-xl shadow-gray-300 dark:shadow-gray-700 "
+                  className="text-[15px] w-[4.3rem] h-[2.1rem] text-white bg-green-500 cursor-pointer flex items-center justify-center rounded-md hover:shadow-xl shadow-gray-300  "
                   onClick={updateLogo}
                 >
                   Save
@@ -172,9 +170,7 @@ export default function LayoutSetting() {
             <Loader />
           ) : (
             <div className="">
-              <h3 className="text-xl font-[600] text-black dark:text-white">
-                FAQ Edit
-              </h3>
+              <h3 className="text-xl font-[600] text-black ">FAQ Edit</h3>
               <hr className="my-3 h-[1px] bg-gray-300" />
 
               <dl className="space-y-8">
@@ -182,17 +178,17 @@ export default function LayoutSetting() {
                   <div
                     className={`${
                       faq._id !== faqData[0]?._id && "border-t"
-                    } border-gray-300 bg-gray-100 px-2 py-2 rounded-md shadow-md hover:shadow-lg stroke-gray-200 dark:bg-gray-800  dark:shadow-gray-700`}
+                    } border-gray-300 bg-gray-100 px-2 py-2 rounded-md shadow-md hover:shadow-lg stroke-gray-200   `}
                     key={faq?._id}
                   >
                     <dt className="text-lg ">
                       <button
-                        className="flex items-center dark:text-white text-black justify-between w-full text-left focus:outline-none"
+                        className="flex items-center  text-black justify-between w-full text-left focus:outline-none"
                         onClick={() => toggleQuestion(faq._id)}
                       >
                         <input
                           type="text"
-                          className={`w-full border-2 rounded-sm bg-transparent border-none border-gray-300 dark:bg-gray-800 outline-none py-2 px-2 cursor-pointer `}
+                          className={`w-full border-2 rounded-sm bg-transparent border-none border-gray-300  outline-none py-2 px-2 cursor-pointer `}
                           value={faq?.question}
                           onChange={(e) =>
                             handleQuestionChange(faq?._id, e.target.value)
@@ -211,7 +207,7 @@ export default function LayoutSetting() {
                     {faq.active && (
                       <dd className="mt-2 mr-[1.5rem] border-t border-gray-300">
                         <textarea
-                          className="w-full h-[7rem] bg-transparent sm:h-[4rem] border-2 border-none resize-none border-gray-300 dark:bg-gray-800  rounded-sm outline-none py-2 px-2 cursor-pointer "
+                          className="w-full h-[7rem] bg-transparent sm:h-[4rem] border-2 border-none resize-none border-gray-300   rounded-sm outline-none py-2 px-2 cursor-pointer "
                           value={faq?.answer}
                           onChange={(e) =>
                             handleAnswerChange(faq?._id, e.target.value)
@@ -220,7 +216,7 @@ export default function LayoutSetting() {
                         />
                         <span className="ml-10 flex-shrink-0">
                           <AiOutlineDelete
-                            className="text-black  dark:text-white text-[18px] hover:text-red-500 cursor-pointer"
+                            className="text-black text-[18px] hover:text-red-500 cursor-pointer"
                             onClick={() => {
                               setFaqData((prevFaq) =>
                                 prevFaq.filter((item) => item?._id !== faq?._id)
@@ -236,7 +232,7 @@ export default function LayoutSetting() {
               <br />
               <br />
               <IoMdAddCircleOutline
-                className="text-black dark:text-white text-[25px] cursor-pointer"
+                className="text-black  text-[25px] cursor-pointer"
                 onClick={newFAQHandler}
               />
               <div className="w-[98%] sm:w-[96%] flex items-center justify-end ">

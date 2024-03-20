@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <div className=" w-full flex-1 gap-1 flex h-screen  fixed top-0 left-0 overflow-hidden mt-[4rem]">
+      <div className=" w-full flex-1 gap-1 flex h-screen  fixed top-0 left-0 overflow-hidden  mt-[4rem]">
         {!show && (
           <div className=" flex sm:hidden  absolute top-2 left-3">
             <IoMenu
@@ -44,7 +44,7 @@ export default function Layout({ children }) {
             <AdminSidebar />
           </div>
         )}
-        <div className="flex-[1.8] border-r-red-500  pt-[2.5rem] sm:pt-0 border-l-[2px] dark:border-gray-300 ">
+        <div className="flex-[1.8] border-r-red-500  pt-[2.5rem] overflow-x-auto hidden1  sm:pt-0 border-l-[2px] dark:border-gray-300 ">
           {children}
         </div>
       </div>
