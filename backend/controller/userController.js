@@ -99,7 +99,6 @@ export const createActivationToken = async (user) => {
 export const verificationUser = async (req, res) => {
   try {
     const { activation_token, activation_code } = req.body;
-    console.log(activation_code, activation_token);
     if (!activation_token || !activation_code) {
       return res.status(400).send({
         success: false,
@@ -139,11 +138,6 @@ export const verificationUser = async (req, res) => {
     // Hashed Password
     const handedPassword = await hashPassword(password);
 
-    // Default Avatar
-    const defaultAvatarPath = "../assets/profile1.jpeg";
-    const defaultAvatarBuffer = fs.readFileSync(defaultAvatarPath);
-    const defaultAvatarBase64 = defaultAvatarBuffer.toString("base64");
-
     const user = new userModel({
       name,
       email,
@@ -167,6 +161,7 @@ export const verificationUser = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error in verification controller.",
+      error: error,
     });
   }
 };

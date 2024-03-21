@@ -53,7 +53,7 @@ export default function Register({ setRoute }) {
         toast.error(data?.message, { duration: 3000 });
         setLoading(false);
       }
-      setAvatar("");
+      setAvatar(null);
       setEmail("");
       setName("");
       setPassword("");
@@ -74,6 +74,7 @@ export default function Register({ setRoute }) {
           <input
             type="file"
             placeholder="Avatar"
+            required
             onChange={(e) => setAvatar(e.target.files[0])}
             className="hidden"
             id="avatar"
@@ -91,14 +92,12 @@ export default function Register({ setRoute }) {
               <img
                 src={avatar ? URL.createObjectURL(avatar) : "/user2.png"}
                 alt="Avatar"
-                layout="fill"
-                objectFit="cover"
-                className="border-[2px] border-gray-900  rounded-full"
+                className="border-[2px] w-full h-full  border-gray-900 dark:border-zinc-200 rounded-full"
               />
             </div>
             <label
               htmlFor="avatar"
-              className="text-[.9rem] font-[400] text-white py-[.4rem] px-[.6rem] rounded-md cursor-pointer bg-blue-500 hover:bg-blue-600 transition duration-150 "
+              className="text-[.9rem] text-white font-[400] py-[.4rem] px-[.6rem] rounded-md cursor-pointer bg-blue-500 hover:bg-blue-600 transition duration-150 "
             >
               {avatar ? "Update Avatar" : "Upload Avater"}
             </label>
