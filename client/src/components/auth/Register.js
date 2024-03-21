@@ -93,7 +93,7 @@ export default function Register({ setRoute }) {
                 alt="Avatar"
                 layout="fill"
                 objectFit="cover"
-                className="border-[2px] border-gray-900 dark:border-zinc-200 rounded-full"
+                className="border-[2px] border-gray-900  rounded-full"
               />
             </div>
             <label
@@ -115,7 +115,7 @@ export default function Register({ setRoute }) {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="py-2 px-3 border-2 dark:border-zinc-200 text-[15px] outline-none border-gray-900 rounded-md shadow-md"
+            className="py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -128,7 +128,7 @@ export default function Register({ setRoute }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="py-2 px-3 border-2 dark:border-zinc-200 text-[15px] outline-none border-gray-900 rounded-md shadow-md"
+            className="py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -153,9 +153,7 @@ export default function Register({ setRoute }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className={`w-full py-2 px-3 border-2 text-[15px]   outline-none  ${
-                !pass
-                  ? "border-red-600"
-                  : "dark:border-zinc-200 border-gray-900"
+                !pass ? "border-red-600" : " border-gray-900"
               } rounded-md shadow-md`}
             />
           </div>

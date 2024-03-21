@@ -58,7 +58,7 @@ export default function Login({ setOpen, setRoute }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="py-2 px-3 border-2 dark:border-zinc-200 text-[15px] outline-none border-gray-900 rounded-md shadow-md"
+            className="py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -82,7 +82,7 @@ export default function Login({ setOpen, setRoute }) {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full py-2 px-3 border-2 dark:border-zinc-200 text-[15px] outline-none border-gray-900 rounded-md shadow-md"
+              className="w-full py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
             />
           </div>
           <div className="flex items-center justify-between my-3">

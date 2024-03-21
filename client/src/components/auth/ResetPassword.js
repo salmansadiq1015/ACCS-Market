@@ -54,7 +54,7 @@ export default function ResetPassword({ setOpen, setRoute }) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="py-2 px-3 border-2 dark:border-zinc-200 text-[15px] outline-none border-gray-900 rounded-md shadow-md"
+              className="py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
             />
           </div>
           <button

@@ -103,7 +103,7 @@ export default function UpdateProfile({ setRoute, setOpen }) {
           <input
             type="text"
             value={name}
-            className="py-2 px-3 text-[1rem] ring-gray-900 dark:ring-gray-200 ring-2 rounded-md shadow-md w-full "
+            className="py-2 px-3 text-[1rem] ring-gray-900  ring-2 rounded-md shadow-md w-full "
             onChange={(e) => setName(e.target.value)}
           />
         </div>
@@ -114,7 +114,7 @@ export default function UpdateProfile({ setRoute, setOpen }) {
           <input
             type="text"
             value={email}
-            className=" py-2 px-3 text-[1rem] ring-gray-900 dark:ring-gray-200 ring-2 rounded-md shadow-md w-full "
+            className=" py-2 px-3 text-[1rem] ring-gray-900 ring-2 rounded-md shadow-md w-full "
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>

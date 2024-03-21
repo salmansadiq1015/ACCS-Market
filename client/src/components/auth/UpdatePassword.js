@@ -59,7 +59,7 @@ export default function UpdatePassword({ setOpen, setRoute }) {
               required
               value={token}
               onChange={(e) => setToken(e.target.value)}
-              className="py-2 px-3 border-2 dark:border-zinc-200 text-[15px] outline-none border-gray-900 rounded-md shadow-md"
+              className="py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -83,7 +83,7 @@ export default function UpdatePassword({ setOpen, setRoute }) {
                 required
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full py-2 px-3 border-2 dark:border-zinc-200 text-[15px] outline-none border-gray-900 rounded-md shadow-md"
+                className="w-full py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
               />
             </div>
           </div>
