@@ -82,7 +82,7 @@ export default function Verification({ setRoute }) {
             type="number"
             key={key}
             ref={inputRefs[index]}
-            className={`w-[65px] h-[65px] bg-transparent border-[3px] rounded-md flex items-center text-black dark:text-white justify-center text-[18px]  font-Poppins outline-none text-center ${
+            className={`w-[65px] h-[65px] bg-transparent border-[3px] rounded-md flex items-center text-black  justify-center text-[18px]  font-Poppins outline-none text-center ${
               invalidError
                 ? " shake border-red-600"
                 : "dark:border-white border-gray-900"
@@ -108,7 +108,7 @@ export default function Verification({ setRoute }) {
         </button>
       </div>
       <br />
-      <h5 className="text-center font-[16px] text-black dark:text-white mt-2 font-Poppins">
+      <h5 className="text-center font-[16px] text-black  mt-2 font-Poppins">
         Go back to sign in?{" "}
         <span
           className="text-blue-500 hover:text-blue-600 cursor-pointer pl-2 font-semibold"
