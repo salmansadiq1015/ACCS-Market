@@ -85,7 +85,7 @@ export default function Verification({ setRoute }) {
             className={`w-[65px] h-[65px] bg-transparent border-[3px] rounded-md flex items-center text-black  justify-center text-[18px]  font-Poppins outline-none text-center ${
               invalidError
                 ? " shake border-red-600"
-                : "dark:border-white border-gray-900"
+                : " border-gray-900"
             }`}
             placeholder=""
             maxLength={1}
