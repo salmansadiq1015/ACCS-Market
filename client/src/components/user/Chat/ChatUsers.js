@@ -22,7 +22,7 @@ export default function ChatUsers({ setSelected }) {
         `${process.env.REACT_APP_API_URL}/api/v1/user/get-admin`
       );
       if (data) {
-        setAdmin(data?.admin);
+        setAdmin(data?.admin[0]);
         setLoading(false);
       }
     } catch (error) {
@@ -118,52 +118,52 @@ export default function ChatUsers({ setSelected }) {
         <hr className="w-full bg-gray-300 my-4 h-[2px]" />
         {/* Admins */}
         <div className="overflow-hidden">
-          <div className="flex flex-col gap-3 overflow-auto  pb-8 pt-2 scroll px-2 ">
-            {admin?.map((chat) => (
-              <>
-                {chat && auth?.user?.id !== chat?._id && (
-                  <div
-                    className={`flex items-center py-1 px-2 gap-2  shadow-md hover:shadow-xl cursor-pointer border border-sky-500 rounded-md ${
-                      chat?._id === active
-                        ? "bg-sky-500 text-white shadow-2xl transform scale-[1.02] overflow-hidden transition-all duration-300 ease-in-out"
-                        : "bg-zinc-100 text-black"
-                    } `}
-                    key={chat._id}
-                    onClick={() => {
-                      setActive(chat?._id);
-                      chatHandler(chat?._id);
-                    }}
-                  >
-                    <img
-                      src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${chat?._id}`}
-                      alt="avatar"
-                      className="w-[2.8rem] h-[2.8rem] rounded-full border-2 border-fuchsia-600 shadow-md shadow-gray-500 filter drop-shadow-md "
-                    />
-                    <div className="flex flex-col gap-[1px]">
-                      <h3 className="text-[16px] font-semibold ">ACCS Agent</h3>
-                      <span className="text-[14px] font-medium ">
-                        {chat?.name}
-                      </span>
-                    </div>
-                    {loading && chat?._id === active && (
-                      <span className="ml-2">
-                        <TbLoader3 className="h-5 w-5 text-fuchsia-600 animate-spin" />
-                      </span>
-                    )}
+          <div className="flex flex-col gap-3 overflow-auto  pb-4 pt-2 scroll px-2 ">
+            {/* {admin?.map((chat) => ( */}
+            <>
+              {admin && auth?.user?.id !== admin?._id && (
+                <div
+                  className={`flex items-center py-1 px-2 gap-2  shadow-md hover:shadow-xl cursor-pointer border border-sky-500 rounded-md ${
+                    admin?._id === active
+                      ? "bg-sky-500 text-white shadow-2xl transform scale-[1.02] overflow-hidden transition-all duration-300 ease-in-out"
+                      : "bg-zinc-100 text-black"
+                  } `}
+                  key={admin._id}
+                  onClick={() => {
+                    setActive(admin?._id);
+                    chatHandler(admin?._id);
+                  }}
+                >
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${admin?._id}`}
+                    alt="avatar"
+                    className="w-[2.8rem] h-[2.8rem] rounded-full border-2 border-fuchsia-600 shadow-md shadow-gray-500 filter drop-shadow-md "
+                  />
+                  <div className="flex flex-col gap-[1px]">
+                    <h3 className="text-[16px] font-semibold ">ACCS Agent</h3>
+                    <span className="text-[14px] font-medium ">
+                      {admin?.name}
+                    </span>
                   </div>
-                )}
+                  {loading && admin?._id === active && (
+                    <span className="ml-2">
+                      <TbLoader3 className="h-5 w-5 text-fuchsia-600 animate-spin" />
+                    </span>
+                  )}
+                </div>
+              )}
 
-                {auth?.user?.id !== chat?._id && (
-                  <hr className="w-full h-[2px] bg-gray-200 mb-6" />
-                )}
-              </>
-            ))}
+              {auth?.user?.id !== admin?._id && (
+                <hr className="w-full h-[2px] bg-gray-200 mb-4" />
+              )}
+            </>
+            {/* ))} */}
           </div>
         </div>
 
         {/* Sellers  */}
         <div className="overflow-hidden">
-          <div className="flex flex-col gap-3 overflow-auto h-[18rem] px-2 sm:h-[25rem] pb-8 pt-2 scroll ">
+          <div className="flex flex-col gap-3 overflow-auto h-[15rem] px-2 sm:h-[25rem] pb-8 pt-2 scroll ">
             {chats?.map((chat) => (
               <div
                 className={`flex items-center py-1 px-2 gap-2 shadow-md hover:shadow-xl cursor-pointer border border-sky-500 rounded-md ${

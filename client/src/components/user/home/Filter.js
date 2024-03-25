@@ -29,7 +29,10 @@ export default function Filter({
         style={{ borderRadius: "68% 32% 40% 60% / 38% 57% 43% 62%" }}
       ></div>
 
-      <div className=" relative z-40 flex items-center justify-center rounded-lg shadow-md w-[98%] sm:w-[75%] flex-col gap-5 bg-black/60 py-4 sm:py-6 px-2 sm:px-4">
+      <div
+        className=" relative z-40 flex items-center justify-center rounded-lg shadow-md w-[98%] sm:w-[75%] flex-col gap-5 bg-black/60 py-4 sm:py-6 px-2 sm:px-4"
+        data-aos="fade-right"
+      >
         <h1 className=" text-white text-3xl sm:text-4xl text-center font-semibold pb-8 ">
           Filter Channel
         </h1>
@@ -46,6 +49,7 @@ export default function Filter({
               setActive("Youtube");
               setSearchQuery("Youtube");
             }}
+            data-aos="fade-down-right"
           >
             Youtube
           </span>
@@ -59,6 +63,7 @@ export default function Filter({
               setActive("Facebook");
               setSearchQuery("Facebook");
             }}
+            data-aos="fade-down-right"
           >
             Facebook
           </span>
@@ -72,6 +77,7 @@ export default function Filter({
               setActive("Instagram");
               setSearchQuery("Instagram");
             }}
+            data-aos="fade-down-left"
           >
             Instagram
           </span>
@@ -85,12 +91,16 @@ export default function Filter({
               setActive("Tiktok");
               setSearchQuery("Tiktok");
             }}
+            data-aos="fade-down-left"
           >
             Tiktok
           </span>
         </div>
         {/* By Name */}
-        <div className="flex flex-col gap-4 w-[95%] mt-4 sm:w-[80%]">
+        <div
+          className="flex flex-col gap-4 w-[95%] mt-4 sm:w-[80%]"
+          data-aos="flip-up"
+        >
           <input
             type="text"
             placeholder="Search by name"

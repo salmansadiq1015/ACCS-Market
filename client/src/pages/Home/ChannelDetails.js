@@ -165,12 +165,19 @@ export default function ChannelDetails() {
                   src={channelData?.logo}
                   alt="Logo"
                   className="md:w-[19rem] w-full h-[20rem] rounded-md shadow-md border border-gray-300"
+                  data-aos="fade-right"
                 />
                 <div className="flex flex-col gap-3 items-start">
-                  <h2 className="text-xl sm:text-3xl font-bold text-gray-900">
+                  <h2
+                    className="text-xl sm:text-3xl font-bold text-gray-900"
+                    data-aos="fade-right"
+                  >
                     {channelData?.name}
                   </h2>
-                  <span className="text-[15px] text-gray-700 flex items-center gap-4 ">
+                  <span
+                    className="text-[15px] text-gray-700 flex items-center gap-4 "
+                    data-aos="fade-right"
+                  >
                     {channelData?.category} | {channelData?.subject}
                   </span>
                   <Link
@@ -189,12 +196,12 @@ export default function ChannelDetails() {
                         Subscribers
                       </span>
                       <span className=" flex items-center gap-1">
-                        {channelData?.income}{" "}
+                        $ {channelData?.income}{" "}
                         <span className="w-[1.5rem] h-[2px] bg-gray-600 rounded-3xl"></span>
                         Income (Month)
                       </span>
                       <span className=" flex items-center gap-1">
-                        {channelData?.expense}{" "}
+                        $ {channelData?.expense}{" "}
                         <span className="w-[1.5rem] h-[2px] bg-gray-600 rounded-3xl"></span>
                         Expense (Month)
                       </span>
@@ -260,7 +267,10 @@ export default function ChannelDetails() {
             </div>
             <div className="flex-1 sm:flex-[.30] ">
               <div className="relative flex items-center  justify-between border rounded-[4rem] h-[3.6rem] rounded-br-none hover:shadow-lg shadow-gray-300 hover:bg-gray-100 transition duration-150">
-                <div className="flex items-center gap-4 w-full">
+                <div
+                  className="flex items-center gap-4 w-full"
+                  data-aos="fade-left"
+                >
                   <img
                     src={channelData?.logo}
                     alt="Logo"
@@ -287,10 +297,13 @@ export default function ChannelDetails() {
           {/* 2 */}
           <div className="flex flex-col-reverse md:flex-row flex-1 md:flex-wrap gap-[4rem] md:gap-2 mt-8">
             <div className="flex flex-col gap-3 flex-1  sm:flex-[.70]  ">
-              <h3 className="text-[1.1rem]  font-semibold text-gray-800">
+              <h3
+                className="text-[1.1rem]  font-semibold text-gray-800"
+                data-aos="fade-left"
+              >
                 Description:
               </h3>
-              <p>{channelData?.description}</p>
+              <p data-aos="fade-right">{channelData?.description}</p>
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
                   <h3 className="text-[1rem] font-semibold text-gray-800">
@@ -365,6 +378,7 @@ export default function ChannelDetails() {
                       setImageUrl(img);
                       setOpen(true);
                     }}
+                    data-aos="fade-up-left"
                   />
                 ))}
               </div>
@@ -378,8 +392,11 @@ export default function ChannelDetails() {
               </h3>
               <span>{0}</span>
             </div>
-            <div className="mt-4 w-full">
-              <ChannelComment channelId={channelData?._id} />
+            <div className="mt-4 w-full" data-aos="flip-up">
+              <ChannelComment
+                channelId={channelData?._id}
+                data-aos="fade-down-right"
+              />
             </div>
           </div>
           {/* Image Details */}
@@ -392,7 +409,7 @@ export default function ChannelDetails() {
                 />
               </div>
 
-              <ImageModel url={ImageUrl} />
+              <ImageModel url={ImageUrl} data-aos="fade-down-right" />
             </div>
           )}
         </div>

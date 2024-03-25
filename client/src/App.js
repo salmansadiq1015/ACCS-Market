@@ -28,8 +28,11 @@ import Blogs from "./pages/admin/Blogs";
 import Subscription from "./pages/admin/Subscription";
 import UpdateAdminChannel from "./pages/admin/UpdateAdminChannel";
 import AllChannels from "./components/user/home/AllChannels";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
+  AOS.init();
   return (
     <div>
       <BrowserRouter>

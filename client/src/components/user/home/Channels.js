@@ -101,6 +101,7 @@ export default function Channels({ channelsData }) {
                   <div
                     className="rounded-md relative card border border-gray-300 filter drop-shadow hover:drop-shadow-lg transition-all duration-150 cursor-pointer shadow-md hover:shadow-xl overflow-hidden "
                     key={c?._id}
+                    data-aos="fade-down-right"
                   >
                     <div className="show absolute top-0 left-0 w-full  py-[5rem] flex items-center justify-center ">
                       <span

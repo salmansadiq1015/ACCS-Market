@@ -105,7 +105,7 @@ export default function Dashboard() {
         <div className="h-[70vh] pb-[6rem] transition-all duration-200 ">
           <div className="flex flex-col sm:flex-row flex-1 flex-wrap gap-4">
             <div className=" md:flex-[.3] py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300 cursor-pointer hover:scale-[1.01] active:scale-[1] ">
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1" data-aos="fade-right">
                 <h3 className="text-2xl font-semibold text-gray-800 ">
                   Congratulations! 🥳
                 </h3>
@@ -114,7 +114,7 @@ export default function Dashboard() {
                 </span>
               </div>
               <div className="flex items-center gap-4 justify-between sm:justify-normal  mt-4">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4" data-aos="fade-left">
                   <h1 className="text-3xl font-[500] text-fuchsia-600">
                     {formatPrice(price)}
                   </h1>
@@ -123,7 +123,7 @@ export default function Dashboard() {
                     View <GoArrowRight className="h-5 w-5 " />
                   </button>
                 </div>
-                <div className=" ml-[1rem] xl:ml-[4rem]">
+                <div className=" ml-[1rem] xl:ml-[4rem]" data-aos="fade-left">
                   <img
                     src="/dash.png"
                     alt="AdminLogo"
@@ -133,7 +133,10 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className="flex-[.6] md:flex-[.7] py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300  cursor-pointer  ">
+            <div
+              className="flex-[.6] md:flex-[.7] py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300  cursor-pointer "
+              data-aos="fade-up-left"
+            >
               <div className="flex flex-col gap-1">
                 <h3 className="text-2xl font-semibold text-gray-800 ">
                   Statistics Card

@@ -8,14 +8,14 @@ export default function Section1() {
     <div className=" relative w-full min-h-screen pt-8 px-2 pb-5 sm:px-4 bg-gradient-to-br  from-fuchsia-950 to-gray-950">
       <div className="absolute top-3 right-2 w-[13rem] h-[13rem] borderRadius bg-fuchsia-600/30 animate-spin z-20"></div>
       <div className="relative grid grid-cols-1 sm:grid-cols-2 sm:grid-flow-col-reverse z-30 gap-8 sm:gap-4">
-        <div className="w-full h-full">
+        <div className="w-full h-full" data-aos="fade-right">
           <img
             src="/c1.avif"
             alt="Section1"
             className="w-full h-full rounded-md object-fill"
           />
         </div>
-        <div className="flex flex-col gap-4 px-3 sm:px-4">
+        <div className="flex flex-col gap-4 px-3 sm:px-4" data-aos="fade-left">
           <h1
             className=" text-3xl sm:text-5xl font-semibold text-white text-center"
             style={{ textShadow: "-.2px 1px 0px $ccc" }}

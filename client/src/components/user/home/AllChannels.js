@@ -35,7 +35,7 @@ export default function AllChannels() {
         <h1 className="text-3xl sm:text-4xl ml-0 sm:ml-7 font-bold">
           All Channels
         </h1>
-        <div className="py-6">
+        <div className="py-6" data-aos="fade-down-right">
           {loading ? <Loader /> : <Channels channelsData={channelsData} />}
         </div>
       </div>

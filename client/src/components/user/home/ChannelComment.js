@@ -68,6 +68,8 @@ export default function ChannelComment({ channelId }) {
       );
       if (data) {
         setComments(data?.comments);
+        setComment("");
+        setStars(0);
         setLoading(false);
       }
     } catch (error) {
@@ -128,7 +130,7 @@ export default function ChannelComment({ channelId }) {
                   <img
                     src={`${process.env.REACT_APP_API_URL}/api/v1/user/user-avatar/${c?.userId}`}
                     fill
-                    className="rounded-full"
+                    className="rounded-full w-full h-full"
                     alt="Logo"
                   />
                 </div>

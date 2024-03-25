@@ -48,7 +48,7 @@ export default function Section5() {
         style={{ borderRadius: "68% 32% 40% 60% / 38% 57% 43% 62%" }}
       ></div>
       <div className=" relative grid grid-cols-1 md:grid-cols-2 mt-[2.5rem] z-30">
-        <div className="">
+        <div className="" data-aos="fade-up">
           <img src="/faq.png" alt="FAQ" className="box1" />
         </div>
         <div className="">
@@ -62,6 +62,7 @@ export default function Section5() {
                     faq._id !== faqData[0]?._id && "border-t"
                   } border-gray-300 bg-gray-100  px-2 py-2 rounded-md shadow-md  hover:shadow-lg stroke-gray-200 `}
                   key={faq?._id}
+                  data-aos="fade-down"
                 >
                   <dt className="text-lg ">
                     <button
