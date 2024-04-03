@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./bdetails.css";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import ReactHtmlParser from "react-html-parser";
+// import parse from "html-react-parser";
 import axios from "axios";
 
 export default function BlogDetails() {
@@ -37,7 +37,8 @@ export default function BlogDetails() {
             <p>{data?.userName}, Admin</p>
           </div>
           <div className="blogdetail-content1" data-aos="fade-up">
-            {ReactHtmlParser(data?.description)}
+            {/* {parse(data?.description)} */}
+            <div dangerouslySetInnerHTML={{ __html: data?.description }}></div>
           </div>
         </div>
 
