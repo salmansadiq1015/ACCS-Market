@@ -151,17 +151,17 @@ export default function Channels() {
   //------------Handle Update-------->
   const handleUpdate = async (id, updatedPaymentStatus) => {
     if (!id) {
-      return toast.error("Order id is required");
+      return toast.error("channel id is required");
     }
     try {
       const { data } = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/v1/orders/order-status/${id}`,
-        { paymentStatus: updatedPaymentStatus }
+        `${process.env.REACT_APP_API_URL}/api/v1/channel/update_channel_status/${id}`,
+        { status: updatedPaymentStatus }
       );
 
       if (data?.success) {
         getChannels();
-        toast.success("Payment status updated successfully!");
+        toast.success("Status updated successfully!");
       }
     } catch (error) {
       console.log(error);

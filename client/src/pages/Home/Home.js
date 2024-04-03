@@ -107,7 +107,7 @@ export default function Home() {
   };
   return (
     <MainLayout>
-      <div className="overflow-x-hidden">
+      <div className="overflow-hidden scroll-smooth">
         <section className="w-full min-h-screen">
           <Section1 />
         </section>

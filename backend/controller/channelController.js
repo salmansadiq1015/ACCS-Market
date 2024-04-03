@@ -259,3 +259,37 @@ export const SingleChannel = async (req, res) => {
     });
   }
 };
+
+// Update Status
+export const updateChannelStatus = async (req, res) => {
+  try {
+    const channelId = req.params.id;
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).send({
+        success: false,
+        message: "Status is required!",
+      });
+    }
+
+    const updateStatus = await channelModel.findByIdAndUpdate(
+      channelId,
+      { $set: { status: status } },
+      { new: true }
+    );
+    updateStatus.save();
+
+    res.status(200).send({
+      success: true,
+      message: "Status updated!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while update Status",
+      error,
+    });
+  }
+};

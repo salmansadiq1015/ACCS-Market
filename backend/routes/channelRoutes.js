@@ -6,6 +6,7 @@ import {
   deleteSingleChannel,
   getAllChannels,
   getSingleChannel,
+  updateChannelStatus,
 } from "../controller/channelController.js";
 import { isAdmin, requireSignIn } from "../middleware/authMiddleware.js";
 
@@ -33,5 +34,12 @@ router.delete(
 
 // Get All Sell Channel By User
 router.get("/getSingle-channel/:id", SingleChannel);
+// Channel Status
+router.put(
+  "/update_channel_status/:id",
+  requireSignIn,
+  isAdmin,
+  updateChannelStatus
+);
 
 export default router;
