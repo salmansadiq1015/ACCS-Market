@@ -86,6 +86,28 @@ export default function Channels() {
     { field: "sellerId", headerName: "Seller Id", flex: 0.2 },
     { field: "created_at", headerName: "Created_At", flex: 0.2 },
     {
+      field: "status",
+      headerName: "Status",
+      flex: 0.4,
+      renderCell: (params) => (
+        <div className="">
+          <select
+            value={params.row.paymentStatus}
+            onChange={(e) => {
+              const updatedPaymentStatus = e.target.value;
+              handleUpdate(params.row.id, updatedPaymentStatus);
+            }}
+            className="w-[6rem] h-[2.2rem] rounded-md cursor-pointer border border-gray-400"
+          >
+            <option value="">Status</option>
+            <option value="Processing">Processing</option>
+            <option value="Verify">Verify</option>
+            <option value="Not Verify">Not Verify</option>
+          </select>
+        </div>
+      ),
+    },
+    {
       field: "actions",
       headerName: "Actions",
       flex: 0.4,
@@ -125,6 +147,27 @@ export default function Channels() {
       }
     });
   }
+
+  //------------Handle Update-------->
+  const handleUpdate = async (id, updatedPaymentStatus) => {
+    if (!id) {
+      return toast.error("Order id is required");
+    }
+    try {
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/v1/orders/order-status/${id}`,
+        { paymentStatus: updatedPaymentStatus }
+      );
+
+      if (data?.success) {
+        getChannels();
+        toast.success("Payment status updated successfully!");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+  };
 
   return (
     <Layout>

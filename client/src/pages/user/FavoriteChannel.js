@@ -7,14 +7,13 @@ import { FiCheck } from "react-icons/fi";
 import Empty from "../../utils/Empty";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { loadStripe } from "@stripe/stripe-js";
-import { BiLoaderCircle } from "react-icons/bi";
+import PaymentModel from "../../utils/PaymentModel";
 
 export default function FavoriteChannel() {
-  const { favorite, setFavorite, auth } = useAuth();
+  const { favorite, setFavorite } = useAuth();
   const navigate = useNavigate();
-  const [paymentLoad, setPaymentLoad] = useState(false);
-  console.log(favorite);
+  const [isOpen, setIsOpen] = useState(false);
+  const [channelData, setChannelData] = useState([]);
 
   const removeFromFavorites = (channelIdToRemove) => {
     const existingFavorites =
@@ -29,60 +28,6 @@ export default function FavoriteChannel() {
     toast.success("Channel remove successfully!");
   };
 
-  // ---------------Handle Buy Channels-------------
-  const makePayment = async (userId, channelId, price) => {
-    if (!auth?.token) {
-      return toast.error("Login required to buy channel!");
-    }
-
-    if (!channelId) {
-      return toast.error("Channel Id is required!");
-    }
-    setPaymentLoad(true);
-    const stripe = await loadStripe(
-      "pk_test_51OKdAYHDam9TUVDQjZG6rTj0nzzrKcvaUui6kSk4ivuTObT42WJZEhrfj5UeIrbBVgnjAkH7iWkxSgPRvalzBrTz00FOa4YigN"
-    );
-
-    const body = {
-      userId: userId,
-      channelId: channelId,
-      price: price,
-      buyerEmail: auth.user.email,
-    };
-
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    // ${process.env.REACT_APP_API_URL}
-
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/v1/orders/channel/payment`,
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
-    setPaymentLoad(false);
-
-    const session = await response.json();
-    const metaData = session.metaData;
-    localStorage.setItem(
-      "metaData",
-      JSON.stringify({ paymentId: session.id, metaData: metaData })
-    );
-
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-    setPaymentLoad(false);
-
-    if (result.error) {
-      console.log(result.error);
-      setPaymentLoad(false);
-    }
-  };
-
   return (
     <MainLayout>
       <div className=" relative w-full min-h-screen py-8 px-3 sm:px-6">
@@ -91,7 +36,7 @@ export default function FavoriteChannel() {
             <Empty message={"Channel not found in favorites"} />
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {favorite &&
               favorite?.map((c, i) => (
                 <div
@@ -171,16 +116,23 @@ export default function FavoriteChannel() {
                     <button
                       type="button"
                       className={`btn flex items-center justify-center gap-1 `}
-                      onClick={() => makePayment(c.userId, c._id, c?.price)}
+                      onClick={() => {
+                        setChannelData(c);
+                        setIsOpen(true);
+                      }}
                     >
-                      Buy this Channel{" "}
-                      {paymentLoad && (
-                        <BiLoaderCircle className="h-4 w-4 animate-spin text-white" />
-                      )}
+                      Buy this Channel
                     </button>
                   </div>
                 </div>
               ))}
+          </div>
+        )}
+
+        {/* Payment Model */}
+        {isOpen && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center">
+            <PaymentModel setIsOpen={setIsOpen} channelData={channelData} />
           </div>
         )}
       </div>

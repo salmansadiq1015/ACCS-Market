@@ -107,9 +107,9 @@ export default function Subscription() {
             className="w-[6rem] h-[2.2rem] rounded-md cursor-pointer border border-gray-400"
           >
             <option value="">Status</option>
-            <option value="Processing">Processing</option>
-            <option value="Send Successfully">Send Successfully</option>
-            <option value="Failed">Failed</option>
+            <option value="pending">Pending</option>
+            <option value="success">Success</option>
+            <option value="failed">Failed</option>
           </select>
         </div>
       ),

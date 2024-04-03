@@ -84,10 +84,10 @@ export default function ChatSection() {
     socket.on("message received", (newMessageReceived) => {
       if (
         !selectedChatCompare ||
-        selectedChatCompare._id !== newMessageReceived.chat._id
+        selectedChatCompare._id !== newMessageReceived.chat?._id
       ) {
         // Give notification
-        if (!notification.some((msg) => msg._id === newMessageReceived._id)) {
+        if (!notification.some((msg) => msg?._id === newMessageReceived?._id)) {
           setNotification([...notification, newMessageReceived]);
         }
       } else {
@@ -135,15 +135,15 @@ export default function ChatSection() {
 
   // Handle Messages
   const handleMessage = async (e) => {
-    if (!selectedChat._id) return toast.error("Chat id is required!");
+    if (!selectedChat?._id) return toast.error("Chat id is required!");
     e.preventDefault();
-    socket.emit("stop typing", selectedChat._id);
+    socket.emit("stop typing", selectedChat?._id);
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/v1/message/channel/create-messages`,
         {
           content: newMessage,
-          chatId: selectedChat._id,
+          chatId: selectedChat?._id,
         }
       );
       setNewMessage("");
@@ -165,7 +165,7 @@ export default function ChatSection() {
     if (!socketConnected) return;
     if (!typing) {
       setTyping(true);
-      socket.emit("typing", selectedChat._id);
+      socket.emit("typing", selectedChat?._id);
     }
     let lastTypingTime = new Date().getTime();
     var timerLenght = 3000;
@@ -173,7 +173,7 @@ export default function ChatSection() {
       var timeNow = new Date().getTime();
       var timeDiff = timeNow - lastTypingTime;
       if (timeDiff >= timerLenght && typing) {
-        socket.emit("stop typing", selectedChat._id);
+        socket.emit("stop typing", selectedChat?._id);
         setTyping(false);
       }
     }, timerLenght);
@@ -227,7 +227,7 @@ export default function ChatSection() {
                         ? "justify-end"
                         : "justify-start"
                     }`}
-                    key={mess._id}
+                    key={mess?._id}
                   >
                     {/* Conditional rendering of image based on sender */}
                     {mess?.sender?._id !== auth?.user?.id && (

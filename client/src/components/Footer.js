@@ -80,7 +80,7 @@ export default function Footer() {
                   <Link to="/comments">Testimonials</Link>
                 </li>
                 <li className="hover:text-sky-500 cursor-pointer hover:border-b-2 hover:border-sky-500 transition-all">
-                  <Link to="#research">Blogs</Link>
+                  <Link to="/blogs">Blogs</Link>
                 </li>
               </ul>
             </div>

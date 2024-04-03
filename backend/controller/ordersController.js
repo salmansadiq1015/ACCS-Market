@@ -4,6 +4,9 @@ import Stripe from "stripe";
 import channelModel from "../model/channelModel.js";
 import userModel from "../model/userModel.js";
 import orderModel from "../model/orderModel.js";
+import axios from "axios";
+import crypto from "crypto";
+import paymentModel from "../model/paymentModel.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16",
@@ -321,6 +324,166 @@ export const deleteOrder = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error while delete order!",
+      error,
+    });
+  }
+};
+
+// ------------------Crypto Payment----------->
+
+export const createCryptoPayment = async (req, res) => {
+  try {
+    const { userId, channelId, price, buyerEmail } = req.body;
+
+    if (!userId) {
+      return res.status(400).send({
+        success: false,
+        message: "User id is required!",
+      });
+    }
+    if (!channelId) {
+      return res.status(400).send({
+        success: false,
+        message: "Channel id is required!",
+      });
+    }
+    if (!price) {
+      return res.status(400).send({
+        success: false,
+        message: "Price is required!",
+      });
+    }
+    // Get Channel
+    const channel = await channelModel.findById({ _id: channelId });
+    if (!channel) {
+      return res.status(400).send({
+        success: true,
+        message: "Channel not found!",
+      });
+    }
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.status(400).send({
+        success: true,
+        message: "Sell User not found!",
+      });
+    }
+
+    // Create new order (process.env.CRYPTOMUS_URI)
+
+    const order = await orderModel.create({
+      sellerId: userId,
+      sellerName: user.name,
+      sellerEmail: user.email,
+      channelId: channelId,
+      channelName: channel.name,
+      channelLink: channel.channelLink,
+      price: price,
+      buyerEmail: buyerEmail,
+    });
+
+    // Create Payment Intend
+    const payload = {
+      amount: price.toString(),
+      currency: "usd",
+      order_id: order._id,
+      url_callback: `${process.env.SUCCESS_URI}/success`,
+      metadata: {
+        sellerId: channel.userId,
+        sellerName: user.name,
+        sellerEmail: user.email,
+        channelId: channelId,
+        channelName: channel.name,
+        channelLink: channel.channelLink,
+        price: price,
+        buyerEmail: buyerEmail,
+      },
+    };
+    const merchant = process.env.CRYPTO_MERCHANT_ID;
+    const bufferData = Buffer.from(JSON.stringify(payload))
+      .toString("base64")
+      .concat(process.env.MERCHANT_API_KEY);
+
+    const sign = crypto.createHash("md5").update(bufferData).digest("hex");
+    const { data } = await axios.post(
+      `${process.env.CRYPTOMUS_URI}/payment`,
+      payload,
+      {
+        headers: {
+          merchant,
+          sign,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    res.status(200).send({
+      success: true,
+      messsage: "Payment Success!",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while making payment!",
+      error,
+    });
+  }
+};
+
+export const paymentSuccess = async (req, res) => {
+  try {
+    const {
+      sign,
+      order_id,
+      uuid,
+      payer_currency,
+      amount,
+      payment_amount,
+      currency,
+      network,
+    } = req.body;
+
+    if (!sign) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid Payment!",
+      });
+    }
+
+    const order = await orderModel.findById(order_id);
+    if (!order) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid order!",
+      });
+    }
+
+    const payment = await paymentModel.create({
+      uuid,
+      order_id,
+      payer_currency,
+      amount,
+      payment_amount,
+      currency,
+      network,
+    });
+
+    order.paymentStatus = "paid";
+    order.payment_info = payment._id;
+    await order.save();
+
+    res.status(200).send({
+      success: true,
+      url: payment,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong!",
       error,
     });
   }

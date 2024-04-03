@@ -229,7 +229,6 @@ export default function UpdateChannels() {
                 type="file"
                 id="selectLogo"
                 accept="image/*"
-                multiple
                 required
                 onChange={(e) => postLogo(e.target.files[0])}
                 className="hidden"

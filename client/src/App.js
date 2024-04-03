@@ -30,6 +30,8 @@ import UpdateAdminChannel from "./pages/admin/UpdateAdminChannel";
 import AllChannels from "./components/user/home/AllChannels";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Blog from "./pages/user/Blogs";
+import BlogDetails from "./components/user/BlogDetails";
 
 function App() {
   AOS.init();
@@ -53,6 +55,8 @@ function App() {
           <Route path="/deals" element={<Deals />} />
           <Route path="/balance" element={<Balance />} />
           <Route path="/all-channels" element={<AllChannels />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/blogs/detail/:id" element={<BlogDetails />} />
           {/* Chats */}
           <Route path="/chats/:id" element={<Chat />} />
 

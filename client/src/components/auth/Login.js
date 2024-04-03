@@ -85,7 +85,7 @@ export default function Login({ setOpen, setRoute }) {
               className="w-full py-2 px-3 border-2  text-[15px] outline-none border-gray-900 rounded-md shadow-md"
             />
           </div>
-          <div className="flex items-center justify-between my-3">
+          <div className="flex items-start sm:items-center flex-col sm:flex-row justify-normal sm:justify-between my-3">
             <div className="flex items-center gap-2 ">
               <p className="text-[16px]">Not have an account?</p>
               <span

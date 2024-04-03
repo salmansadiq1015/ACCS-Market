@@ -297,7 +297,7 @@ export default function Dashboard() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-[2.5rem] gap-4 ">
               {/* User Analytics */}
-              <div className=" h-[22rem] md:flex-[.3] overflow-hidden py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300 dark:shadow-gray-700 cursor-pointer hover:scale-[1.01] active:scale-[1] ">
+              {/* <div className=" h-[22rem] md:flex-[.3] overflow-hidden py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300 dark:shadow-gray-700 cursor-pointer hover:scale-[1.01] active:scale-[1] ">
                 <h3
                   className="flex items-center gap-2 text-xl sm:text-2xl font-semibold text-gray-800 
                 "
@@ -305,7 +305,7 @@ export default function Dashboard() {
                   <TbFileAnalytics className="  text-3xl sm:text-4xl text-pink-600 " />{" "}
                   Sellers Analytics
                 </h3>
-                {/* <FilesAnalytics /> */}
+                <FilesAnalytics />
               </div>
               <div className=" h-[22rem] md:flex-[.3] overflow-hidden py-4 px-3 bg-gray-100  rounded-md shadow shadow-gray-300 dark:shadow-gray-700 cursor-pointer hover:scale-[1.01] active:scale-[1] ">
                 <h3
@@ -315,8 +315,8 @@ export default function Dashboard() {
                   <AiOutlineRead className="  text-3xl sm:text-4xl text-fuchsia-500  " />{" "}
                   Blogs Analytics
                 </h3>
-                {/* <LeadAnalytics /> */}
-              </div>
+                <LeadAnalytics />
+              </div> */}
             </div>
           </div>
         </div>

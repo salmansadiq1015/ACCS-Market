@@ -1,0 +1,126 @@
+.blogs-wrapper1 {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+}
+.blogs-wrapper1 > .blog-container {
+  width: 100%;
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.blog-container > .blog-left {
+  flex-basis: 25%;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.blog-left > span {
+  font-size: 0.9rem;
+  color: #111;
+}
+.blog-left > .blog-auth {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.blog-auth > .auth-name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.auth-name > h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
+}
+.auth-name > span {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #555;
+}
+.blog-container > .blog-right {
+  flex-basis: 65%;
+  padding: 2rem 2rem;
+}
+.blog-right > .blog-right-content {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+.blog-right-content > h2 {
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: #000;
+  text-align: justify;
+}
+.blog-right-content > p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #444;
+  text-align: justify;
+}
+.blog-right-content > button {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background: #000;
+  cursor: pointer;
+  border-radius: 2rem;
+  padding: 0.4rem 0.8rem;
+}
+.blog-right-auth {
+  display: none;
+}
+
+/* ------------Responsive------------- */
+
+@media (max-width: 900px) {
+  .blog-container > .blog-left {
+    display: none;
+  }
+  .blog-container > .blog-right {
+    flex-basis: 100%;
+    padding: 1rem 3rem;
+  }
+  .blog-right-auth {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .blog-right-auth > span {
+    font-size: 0.9rem;
+    color: #111;
+  }
+  .blog-right-auth > .blog-auth {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .blog-auth > .auth-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .auth-name > h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+  }
+  .auth-name > span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #555;
+  }
+}
+@media (max-width: 650px) {
+  .blog-container > .blog-right {
+    flex-basis: 100%;
+    padding: 1rem 1rem;
+  }
+}

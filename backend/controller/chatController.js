@@ -44,7 +44,6 @@ export const createChat = async (req, res) => {
       .populate("users", "-password -avatar");
 
     res.status(200).send({
-      success: true,
       fullChat,
     });
   } catch (error) {

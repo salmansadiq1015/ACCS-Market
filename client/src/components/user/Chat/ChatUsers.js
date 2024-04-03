@@ -7,57 +7,59 @@ import moment from "moment";
 
 export default function ChatUsers({ setSelected }) {
   const [active, setActive] = useState("");
-  const [admin, setAdmin] = useState([]);
-  const { auth, setSelectedChat, chats, setChats, notification } = useAuth();
+  // const [admin, setAdmin] = useState([]);
+  const { auth, setSelectedChat, selectedChat, chats, setChats, notification } =
+    useAuth();
   const userId = auth?.user?.id;
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [chatLoad, setChatLoad] = useState(false);
   console.log("Notification:", notification);
 
   // Get Admin
-  const getAdmin = async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/v1/user/get-admin`
-      );
-      if (data) {
-        setAdmin(data?.admin[0]);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong!");
-      setLoading(false);
-    }
-  };
+  // const getAdmin = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const { data } = await axios.get(
+  //       `${process.env.REACT_APP_API_URL}/api/v1/user/get-admin`
+  //     );
+  //     if (data) {
+  //       setAdmin(data?.admin[0]);
+  //       setLoading(false);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("Something went wrong!");
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    getAdmin();
-  }, []);
+  // useEffect(() => {
+  //   getAdmin();
+  // }, []);
 
   // Create Chat
-  const chatHandler = async (userId) => {
-    if (!auth?.token) {
-      return toast.error("Login required to initiate chat!");
-    }
-    try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/chat/channel/create-chat`,
-        {
-          userId: userId,
-        }
-      );
-      if (data) {
-        getChat();
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong, try again!", { duration: 3000 });
-    }
-  };
+  // const chatHandler = async (userId) => {
+  //   if (!auth?.token) {
+  //     return toast.error("Login required to initiate chat!");
+  //   }
+  //   try {
+  //     const { data } = await axios.post(
+  //       `${process.env.REACT_APP_API_URL}/api/v1/chat/channel/create-chat`,
+  //       {
+  //         userId: userId,
+  //       }
+  //     );
+  //     if (data) {
+  //       getChat();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("Something went wrong, try again!", { duration: 3000 });
+  //   }
+  // };
 
   const getChat = async () => {
+    console.log("selectedChat", selectedChat);
     if (!userId) {
       toast.error("User id is required!");
     }
@@ -68,7 +70,6 @@ export default function ChatUsers({ setSelected }) {
       );
 
       if (data) {
-        console.log(data);
         setChats(data.results);
         setChatLoad(false);
       }
@@ -117,9 +118,8 @@ export default function ChatUsers({ setSelected }) {
         </div>
         <hr className="w-full bg-gray-300 my-4 h-[2px]" />
         {/* Admins */}
-        <div className="overflow-hidden">
+        {/* <div className="overflow-hidden">
           <div className="flex flex-col gap-3 overflow-auto  pb-4 pt-2 scroll px-2 ">
-            {/* {admin?.map((chat) => ( */}
             <>
               {admin && auth?.user?.id !== admin?._id && (
                 <div
@@ -128,7 +128,7 @@ export default function ChatUsers({ setSelected }) {
                       ? "bg-sky-500 text-white shadow-2xl transform scale-[1.02] overflow-hidden transition-all duration-300 ease-in-out"
                       : "bg-zinc-100 text-black"
                   } `}
-                  key={admin._id}
+                  key={admin?._id}
                   onClick={() => {
                     setActive(admin?._id);
                     chatHandler(admin?._id);
@@ -157,9 +157,8 @@ export default function ChatUsers({ setSelected }) {
                 <hr className="w-full h-[2px] bg-gray-200 mb-4" />
               )}
             </>
-            {/* ))} */}
           </div>
-        </div>
+        </div> */}
 
         {/* Sellers  */}
         <div className="overflow-hidden">

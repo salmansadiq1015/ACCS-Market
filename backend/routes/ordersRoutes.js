@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  createCryptoPayment,
   createOrder,
   deleteOrder,
   getAllOrders,
@@ -31,5 +32,8 @@ router.put("/order-status/:id", updatePaymentStatus);
 
 // Delete Order
 router.delete("/order-delete/:id", deleteOrder);
+
+// Create Crypto Payment
+router.post("/checkout", createCryptoPayment);
 
 export default router;

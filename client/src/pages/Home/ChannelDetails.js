@@ -8,8 +8,7 @@ import { IoClose } from "react-icons/io5";
 import Loader from "../../utils/Loader";
 import ChannelComment from "../../components/user/home/ChannelComment";
 import toast from "react-hot-toast";
-import { loadStripe } from "@stripe/stripe-js";
-import { BiLoaderCircle } from "react-icons/bi";
+import PaymentModel from "../../utils/PaymentModel";
 
 export default function ChannelDetails() {
   const [channelData, setChannelData] = useState([]);
@@ -19,8 +18,8 @@ export default function ChannelDetails() {
   const [ImageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
-  const [paymentLoad, setPaymentLoad] = useState(false);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   // Rating
   const getRating = (comments) => {
@@ -79,54 +78,6 @@ export default function ChannelDetails() {
     // eslint-disable-next-line
   }, [channelData]);
 
-  // ---------------Handle Buy Channels-------------
-  const makePayment = async () => {
-    if (!auth?.token) {
-      return toast.error("Login required to buy channel!");
-    }
-    setPaymentLoad(true);
-    const stripe = await loadStripe(
-      "pk_test_51OKdAYHDam9TUVDQjZG6rTj0nzzrKcvaUui6kSk4ivuTObT42WJZEhrfj5UeIrbBVgnjAkH7iWkxSgPRvalzBrTz00FOa4YigN"
-    );
-
-    const body = {
-      userId: channelData.userId,
-      channelId: channelData._id,
-      price: channelData.price,
-      buyerEmail: auth.user.email,
-    };
-
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    // ${process.env.REACT_APP_API_URL}
-
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/v1/orders/channel/payment`,
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
-    const session = await response.json();
-    const metaData = session.metaData;
-    localStorage.setItem(
-      "metaData",
-      JSON.stringify({ paymentId: session.id, metaData: metaData })
-    );
-
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-    setPaymentLoad(false);
-
-    if (result.error) {
-      console.log(result.error);
-      setPaymentLoad(false);
-    }
-  };
-
   // Create Chat
 
   const chatHandler = async (userId) => {
@@ -142,6 +93,7 @@ export default function ChannelDetails() {
       );
 
       if (data) {
+        // setSelectedChat(data);
         navigate(`/chats/${channelData?.userId}`);
       }
     } catch (error) {
@@ -219,13 +171,11 @@ export default function ChannelDetails() {
                     {
                       <button
                         className="text-[16px] border-2 flex items-center justify-center gap-1 border-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer text-fuchsia-500 transition-all duration-150 hover:text-white rounded-3xl py-2 px-5 shadow-md hover:shadow-xl hover:scale-[1.02] shadow-gray-200 active:scale-[1] filter hover:drop-shadow-md "
-                        onClick={makePayment}
-                        disabled={paymentLoad}
+                        // onClick={makePayment}
+
+                        onClick={() => setIsOpen(true)}
                       >
-                        Buy Channel{" "}
-                        {paymentLoad && (
-                          <BiLoaderCircle className="h-4 w-4 animate-spin text-green-500" />
-                        )}
+                        Buy Channel
                       </button>
                     }
                     <button
@@ -410,6 +360,13 @@ export default function ChannelDetails() {
               </div>
 
               <ImageModel url={ImageUrl} data-aos="fade-down-right" />
+            </div>
+          )}
+
+          {/* Payment Model */}
+          {isOpen && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center">
+              <PaymentModel setIsOpen={setIsOpen} channelData={channelData} />
             </div>
           )}
         </div>

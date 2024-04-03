@@ -12,6 +12,7 @@ import layoutRoutes from "./routes/LayoutRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import messageRoutes from "./routes/messagesRoutes.js";
 import analyticsRoutes from "./routes/analyticsRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 import { Server } from "socket.io";
 
 // Dotenv Config
@@ -35,6 +36,7 @@ app.use("/api/v1/layout", layoutRoutes);
 app.use("/api/v1/chat", chatRoutes);
 app.use("/api/v1/message", messageRoutes);
 app.use("/api/v1/analytics", analyticsRoutes);
+app.use("/api/v1/blogs", blogRoutes);
 
 // Rest API Call
 app.use("/", (req, res) => {
@@ -42,7 +44,7 @@ app.use("/", (req, res) => {
 });
 
 // PORT
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 // Listening
 const server = app.listen(PORT, () => {
